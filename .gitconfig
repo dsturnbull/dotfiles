@@ -20,7 +20,7 @@
 	autosetupmerge = true
 
 [core]
-	excludesfile = /Users/david/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
 
 [merge]
 	tool = vimdiff
