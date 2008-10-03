@@ -13,4 +13,9 @@ export PATH=$MXMLC_HOME/bin:$EC2_HOME/bin:$PATH:$HOME/bin
 export PS1="\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\] "
 
 export PATH=/opt/ruby-enterprise/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin:/opt/local/bin
-alias vi='mvim'
+
+if [ `uname` == "Linux" ]; then
+  alias vi='vim'
+else
+  alias vi='mvim'
+fi
