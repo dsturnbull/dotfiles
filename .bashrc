@@ -20,6 +20,12 @@ else
   alias vi='mvim'
 fi
 
+if [ $TERM == "xterm" ]; then
+  if [ `uname` == "Darwin" ]; then
+    alias vi='gvim'
+  fi
+fi
+
 if [ $TERM == "screen" ]; then
   alias vi='vim'
 fi
