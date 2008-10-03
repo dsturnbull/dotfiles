@@ -15,7 +15,11 @@ export PS1="\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\
 export PATH=/opt/ruby-enterprise/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin:/opt/local/bin
 
 if [ `uname` == "Linux" ]; then
-  alias vi='vim'
+  alias vi='gvim'
 else
   alias vi='mvim'
+fi
+
+if [ $TERM == "screen" ]; then
+  alias vi='vim'
 fi
