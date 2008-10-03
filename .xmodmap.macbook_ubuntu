@@ -1,0 +1,5 @@
+clear mod1
+clear mod4
+
+keycode 115 = Meta_L
+keycode 116 = Alt_L
