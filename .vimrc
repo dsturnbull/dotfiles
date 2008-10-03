@@ -1,5 +1,7 @@
 " http://github.com/foot/dotfiles/tree/master/.vimrc
 "
+colorscheme tango
+
 syntax on
 set ts=2
 set sts=2
@@ -40,8 +42,6 @@ nmap <M-j> mz:m+<CR>`z
 nmap <M-k> mz:m-2<CR>`z
 vmap <M-j> :m'>+<CR>gv
 vmap <M-l> :><CR>gv
-
-colorscheme tango
 
 set wildmode=list:longest,full
 
@@ -86,3 +86,8 @@ let g:FuzzyFinderOptions.Base.key_open_split = '<CR>'
  
 " key_next_mode is already <c-l>, change key_prev_mode to matching <c-h>
 let g:FuzzyFinderOptions.Base.key_prev_mode = '<C-h>'
+
+let g:vimirc_nick = "dave_vim"
+let g:vimirc_user = "dave_vim"
+let g:vimirc_realname = "David Turnbull"
+let g:vimirc_server = "irc.meobets.com:6667"
