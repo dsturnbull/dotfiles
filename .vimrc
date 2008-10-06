@@ -17,7 +17,6 @@ set guioptions-=a
 set guioptions-=A
 set guioptions=c
 set mousemodel=popup
-set mouse=n
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 set incsearch
 

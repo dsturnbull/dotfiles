@@ -29,3 +29,5 @@ fi
 if [ $TERM == "screen" ]; then
   alias vi='vim'
 fi
+
+export EDITOR=vi
