@@ -13,12 +13,8 @@ set guioptions-=m
 set guioptions-=L
 set guioptions-=r
 set guioptions-=T
-"set guioptions-=a
-"set guioptions-=A
 set guioptions+=c
-"set mousemodel=popup
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
-set incsearch
 
 cnoremap <C-A> <Home>
 
