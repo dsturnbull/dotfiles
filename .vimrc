@@ -83,6 +83,12 @@ let g:FuzzyFinderOptions.Base.key_open_split = '<CR>'
 " key_next_mode is already <c-l>, change key_prev_mode to matching <c-h>
 let g:FuzzyFinderOptions.Base.key_prev_mode = '<C-h>'
 
+" speed hax
+let g:fuzzy_matching_limit = 20
+
+" textmate
+map <leader>t :FuzzyFinderTextMate<CR>
+
 let g:vimirc_nick = "dave_vim"
 let g:vimirc_user = "dave_vim"
 let g:vimirc_realname = "David Turnbull"
