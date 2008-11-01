@@ -18,7 +18,7 @@ set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 
 cnoremap <C-A> <Home>
 
-vmap <Leader>a :<C-U>!svn blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+vmap <Leader>a :<C-U>!git blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 cmap w!! %!sudo tee > /dev/null %
 inoremap # X#
