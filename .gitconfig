@@ -1,0 +1,9 @@
+[user]
+	name = Dave Turnbull
+	email = dave@redcordial.org
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+  st = status
