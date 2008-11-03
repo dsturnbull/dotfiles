@@ -18,3 +18,5 @@ if [ `uname` == "Linux" ]; then
 fi
 
 export EDITOR=vi
+
+stty -ixon
