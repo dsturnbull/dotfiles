@@ -19,3 +19,5 @@ fi
 
 alias vi='vi'
 export EDITOR=vi
+
+stty -ixon
