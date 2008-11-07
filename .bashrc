@@ -18,7 +18,6 @@ fi
 alias vi='vi'
 export EDITOR=vi
 
-echo $PS1
 if test -n "$PS1"; then
   stty -ixon
 fi
