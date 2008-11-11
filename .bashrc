@@ -7,9 +7,7 @@ export EC2_PRIVATE_KEY=~/.ec2/pk-YQZTGHR2ENHCTZCHZF2ZBQRSLQZTQAPM.pem
 export EC2_CERT=~/.ec2/cert-YQZTGHR2ENHCTZCHZF2ZBQRSLQZTQAPM.pem
 export MXMLC_HOME=~/src/flex
 export CLASSPATH=$HOME/src/classpath
-export PATH=$MXMLC_HOME/bin:$EC2_HOME/bin:$PATH:$HOME/bin:$HOME/local/bin:$HOME/.gem/ruby/1.8/bin
-
-export PATH=/opt/ruby-enterprise/bin:/opt/local/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin:$HOME/src/git-issues
+export PATH=/opt/ruby-enterprise-1.8.6-20080810/bin:$MXMLC_HOME/bin:$EC2_HOME/bin:$HOME/bin:$HOME/local/bin:$HOME/.gem/ruby/1.8/bin:/opt/local/bin:$HOME/.cabal/bin:$PATH
 
 if [ `uname` == "Linux" ]; then
   export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.06/jre
