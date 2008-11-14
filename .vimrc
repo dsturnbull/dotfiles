@@ -94,3 +94,36 @@ let g:vimirc_nick = "dave_vim"
 let g:vimirc_user = "dave_vim"
 let g:vimirc_realname = "David Turnbull"
 let g:vimirc_server = "irc.meobets.com:6667"
+
+""""""""""""""""""""""""""""""
+" => Visual
+""""""""""""""""""""""""""""""
+" From an idea by Michael Naumann (via xpaulbettsx)
+function! VisualSearch(direction) range
+  let l:saved_reg = @"
+  execute "normal! vgvy"
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  else
+    execute "normal /" . l:pattern . "^M"
+  endif
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
+ 
+"Basically you press * or # to search for the current selection !! Really useful
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+ 
+" turn on hlsearch when searching for something explicitly
+nnoremap * :set hlsearch<cr>*
+nnoremap # :set hlsearch<cr>#
+nnoremap / :set hlsearch<cr>/
+nnoremap ? :set hlsearch<cr>?
+" turn hlsearch OFF
+nmap <Leader><Leader> :set hlsearch!<cr>
+nmap <Leader>/ :set hlsearch!<cr>
+" TODO: turn OFF when using search as a motion
+" onoremap / :set nohlsearch<cr>/
