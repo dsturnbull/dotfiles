@@ -7,3 +7,5 @@
 	branch = auto
 [alias]
   st = status
+[branch]
+	autosetupmerge = true
