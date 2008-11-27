@@ -25,6 +25,8 @@ if [ `uname` == "Linux" ]; then
 fi
 
 alias vi='vi'
+alias grin='grin --force-color'
+alias less='less -R'
 export EDITOR=vi
 
 if test -n "$PS1"; then
