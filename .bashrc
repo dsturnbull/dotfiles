@@ -31,4 +31,10 @@ if test -n "$PS1"; then
   stty -ixon
 fi
 
-export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\n↪ '
+function git_status {
+  if current_git_status=$(git status 2>/dev/null | grep 'added to commit'); then
+    echo "☠"
+  fi
+}
+
+export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(__git_ps1 " (%s)") $(git_status)\n→ '
