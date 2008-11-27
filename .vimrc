@@ -118,10 +118,10 @@ vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
  
 " turn on hlsearch when searching for something explicitly
-nnoremap * :set hlsearch<cr>*
-nnoremap # :set hlsearch<cr>#
-nnoremap / :set hlsearch<cr>/
-nnoremap ? :set hlsearch<cr>?
+"nnoremap * :set hlsearch<cr>*
+"nnoremap # :set hlsearch<cr>#
+"nnoremap / :set hlsearch<cr>/
+"nnoremap ? :set hlsearch<cr>?
 " turn hlsearch OFF
 nmap <Leader><Leader> :set hlsearch!<cr>
 nmap <Leader>/ :set hlsearch!<cr>
