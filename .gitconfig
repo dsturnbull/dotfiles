@@ -7,5 +7,6 @@
 	branch = auto
 [alias]
   st = status
+  web = ! open "http://ci/gitweb/?p=ssv.git"
 [branch]
 	autosetupmerge = true
