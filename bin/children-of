@@ -1,0 +1,19 @@
+#!/bin/bash
+ 
+commit=$(git rev-parse $1)
+branch=$2
+if [[ -z "$branch" ]]; then
+    branch=HEAD
+fi
+ 
+while true; do
+  commit=$(git rev-list --children $branch --not $commit^@ | \
+      awk "/^$commit/ { print \$2 }")
+  case $commit in
+    *[a-z0-9]*) ;;
+    *) break;
+  esac
+  author_name=$(git show --pretty=format:"%an" $commit | sed q)
+  description=$(git log -n1 --pretty=medium $commit | sed '1,4d' | head -1 | cut -c 1-40 | sed 's/^ *//')
+  printf "\033[01;34m$commit\033[00m \033[01;32m%-20s\033[00m %s\n" "$author_name" "$description"
+done

@@ -1,0 +1,4 @@
+#!/bin/sh
+sudo mkdir /var/run/mysqld
+sudo /opt/local/lib/mysql5/bin/mysqld_safe --user=mysql &
+sudo ln -s /opt/local/var/run/mysql5/mysqld.sock /var/run/mysqld/mysqld.sock

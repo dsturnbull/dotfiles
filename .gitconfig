@@ -7,6 +7,7 @@
 	branch = auto
 [alias]
   st = status
-  web = ! open "http://ci/gitweb/?p=ssv.git"
+  web = !open "http://ci/gitweb/?p=ssv.git"
+  mergy = !sh -c 'git cherry -v HEAD $0 | grep ^+'
 [branch]
 	autosetupmerge = true

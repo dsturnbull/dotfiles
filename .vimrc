@@ -127,3 +127,5 @@ nmap <Leader><Leader> :set hlsearch!<cr>
 nmap <Leader>/ :set hlsearch!<cr>
 " TODO: turn OFF when using search as a motion
 " onoremap / :set nohlsearch<cr>/
+
+set hidden

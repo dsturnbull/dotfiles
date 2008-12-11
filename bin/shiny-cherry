@@ -1,0 +1,21 @@
+#!/bin/sh
+
+git cherry -v HEAD $1 | grep ^+ | while read line; do
+    hash=`git rev-parse --short $( echo "$line" | cut -d' ' -f2 )`
+    description=$( echo "$line" | cut -d' ' -f3- | cut -c 1-64 )
+    conflict=$( git cherry-pick -n $hash 2> /dev/null | grep 'CONFLICT' )
+    status=$( git status )
+    if ! current_git_status=$( echo "$status" | grep 'working directory clean' ); then
+        if [ "$conflict" ]; then
+            num_conflicting_files=$( echo "$status" | grep 'unmerged: ' | wc -l | sed 's/ //g' )
+            num_conflicts=$( git diff | grep '++=======' | wc -l | sed 's/ //g' )
+            printf "+ \033[01;31m$hash\033[00m %1d %2d %s\n" "$num_conflicting_files" "$num_conflicts" "$description"
+        else
+            printf "+ \033[01;32m$hash\033[00m      $description\n"
+        fi
+        git reset --hard > /dev/null
+
+    #else echo "- $hash      $description"
+
+    fi
+done
