@@ -4,3 +4,4 @@ mv .vim .vim.old ; ln -sf dotfiles/.vim .vim
 mv .bashrc .bashrc.old ; ln -sf dotfiles/.bashrc
 mv .xmonad .xmonad.old ; ln -sf dotfiles/.xmonad .xmonad
 mv .gitconfig .gitconfig.old ; ln -sf dotfiles/.gitconfig .gitconfig
+mv bin bin.old; ln -sf dotfiles/bin bin
