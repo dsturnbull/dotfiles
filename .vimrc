@@ -13,8 +13,12 @@ set guioptions-=m
 set guioptions-=L
 set guioptions-=r
 set guioptions-=T
-set guioptions+=c
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+set guioptions-=a
+set guioptions-=A
+set guioptions=c
+set mousemodel=popup
+set mouse=n
+set guifont=Bitstream\ Vera\ Sans\ Mono\ 7
 
 cnoremap <C-A> <Home>
 
@@ -46,8 +50,8 @@ filetype indent on
 filetype plugin on
 
 augroup init
-  au FileType python setlocal textwidth=79 tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType ruby setlocal textwidth=79 tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  au FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType haskell setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 

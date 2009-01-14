@@ -21,7 +21,10 @@ export PATH=/opt/ruby-enterprise-1.8.6-20080810/bin:$PATH
 export PATH=/opt/local/bin:$PATH
 
 if [ `uname` == "Linux" ]; then
-  export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.06/jre
+  #alias vi='vim'
+  nothing=1
+else
+  alias vi='mvim'
 fi
 
 alias vi='vi'
