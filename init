@@ -1,6 +1,7 @@
 #!/bin/sh
 mv .vimrc .vimrc.old ; ln -sf dotfiles/.vimrc .vimrc
 mv .vim .vim.old ; ln -sf dotfiles/.vim .vim
+mv .irbrc .irbrc.old ; ln -sf dotfiles/.irbrc .irbrc
 mv .bashrc .bashrc.old ; ln -sf dotfiles/.bashrc
 mv .xmonad .xmonad.old ; ln -sf dotfiles/.xmonad .xmonad
 mv .gitconfig .gitconfig.old ; ln -sf dotfiles/.gitconfig .gitconfig
