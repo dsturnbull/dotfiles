@@ -10,7 +10,7 @@ main = do
   xmonad $ defaultConfig {
     manageHook = manageDocks <+> manageHook defaultConfig,
     layoutHook = avoidStruts  $  layoutHook defaultConfig,
-    terminal = "/usr/bin/xterm",
+    terminal = "/usr/bin/gnome-terminal",
     normalBorderColor = "#cccccc",
     focusedBorderColor = "#cd8b00",
     modMask = mod4Mask,
