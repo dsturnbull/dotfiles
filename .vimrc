@@ -1,6 +1,6 @@
 " http://github.com/foot/dotfiles/tree/master/.vimrc
 "
-colorscheme tango
+colorscheme dave
 
 syntax on
 set ts=2
