@@ -1,6 +1,6 @@
 " http://github.com/foot/dotfiles/tree/master/.vimrc
 "
-"colorscheme dave
+colorscheme dave
 
 syntax on
 set background=dark
@@ -18,7 +18,6 @@ set guioptions-=a
 set guioptions-=A
 set guioptions=c
 set mousemodel=popup
-set mouse=n
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 7
 
 cnoremap <C-A> <Home>
