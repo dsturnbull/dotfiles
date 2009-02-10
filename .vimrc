@@ -3,6 +3,7 @@
 "colorscheme dave
 
 syntax on
+set background=dark
 set ts=2
 set sts=2
 set shiftwidth=2
@@ -55,6 +56,7 @@ augroup init
   au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType haskell setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType c setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
   au BufNewFile,BufRead *.as setlocal filetype=actionscript
   au BufRead,BufNewFile *.json setlocal filetype=javascript
@@ -134,3 +136,16 @@ nmap <Leader>/ :set hlsearch!<cr>
 " onoremap / :set nohlsearch<cr>/
 
 set hidden
+
+" vim -b : edit binary using xxd-format!
+  augroup Binary
+    au!
+    au BufReadPre  *.pyc let &bin=1
+    au BufReadPost *.pyc if &bin | %!xxd
+    au BufReadPost *.pyc set ft=xxd | endif
+    au BufWritePre *.pyc if &bin | %!xxd -r
+    au BufWritePre *.pyc endif
+    au BufWritePost *.pyc if &bin | %!xxd
+    au BufWritePost *.pyc set nomod | endif
+  augroup END
+

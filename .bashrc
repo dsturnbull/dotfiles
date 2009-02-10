@@ -13,10 +13,14 @@ export MXMLC_HOME=~/src/tilefile/flex
 export PATH=$MXMLC_HOME/bin:$EC2_HOME/bin:$PATH:$HOME/bin
 export PS1="\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\] "
 export EDITOR=vi
-export PATH=/opt/local/bin:/opt/ruby-enterprise/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin
+export CRYSTAL=/Library/CrystalSpace
+export CEL=/Library/CEL
+export PATH=$CRYSTAL/bin:/opt/local/bin:/opt/ruby-enterprise/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin
 
 if [ `uname` == "Linux" ]; then
   export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(__git_ps1 " (%s)") $(git_status)\n→ '
+elif [ `uname -m` == "iPhone1,2" ]; then
+  export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]\n→ '
 else
   export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(__git_ps1 " (%s)") $(git_status)\n→ '
 fi
