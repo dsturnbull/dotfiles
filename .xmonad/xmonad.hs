@@ -10,9 +10,10 @@ main = do
   xmonad $ defaultConfig {
     manageHook = manageDocks <+> manageHook defaultConfig,
     layoutHook = avoidStruts  $  layoutHook defaultConfig,
-    terminal = "/usr/bin/xterm",
+    terminal = "/usr/bin/rxvt-unicode",
     normalBorderColor = "#cccccc",
     focusedBorderColor = "#cd8b00",
+    modMask = mod4Mask,
     logHook = dynamicLogWithPP $ xmobarPP {
       ppOutput = hPutStrLn xmproc,
       ppTitle = xmobarColor "green" "" . shorten 50
