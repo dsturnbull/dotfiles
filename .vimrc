@@ -137,14 +137,17 @@ nmap <Leader>/ :set hlsearch!<cr>
 set hidden
 
 " vim -b : edit binary using xxd-format!
-  augroup Binary
-    au!
-    au BufReadPre  *.pyc let &bin=1
-    au BufReadPost *.pyc if &bin | %!xxd
-    au BufReadPost *.pyc set ft=xxd | endif
-    au BufWritePre *.pyc if &bin | %!xxd -r
-    au BufWritePre *.pyc endif
-    au BufWritePost *.pyc if &bin | %!xxd
-    au BufWritePost *.pyc set nomod | endif
-  augroup END
+augroup Binary
+  au!
+  au BufReadPre  *.pyc let &bin=1
+  au BufReadPost *.pyc if &bin | %!xxd
+  au BufReadPost *.pyc set ft=xxd | endif
+  au BufWritePre *.pyc if &bin | %!xxd -r
+  au BufWritePre *.pyc endif
+  au BufWritePost *.pyc if &bin | %!xxd
+  au BufWritePost *.pyc set nomod | endif
+augroup END
 
+" autosave folds
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
