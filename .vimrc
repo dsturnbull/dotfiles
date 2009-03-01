@@ -19,6 +19,7 @@ set guioptions-=A
 set guioptions=c
 set mousemodel=popup
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 7
+set viminfo='100,f1
 
 cnoremap <C-A> <Home>
 
