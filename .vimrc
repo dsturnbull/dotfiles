@@ -126,8 +126,8 @@ vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
  
 " turn on hlsearch when searching for something explicitly
-"nnoremap * :set hlsearch<cr>*
-"nnoremap # :set hlsearch<cr>#
+nnoremap * :set hlsearch<cr>*
+nnoremap # :set hlsearch<cr>#
 "nnoremap / :set hlsearch<cr>/
 "nnoremap ? :set hlsearch<cr>?
 " turn hlsearch OFF
@@ -160,3 +160,7 @@ aug views
     \ silent loadview |
     \ endif
 aug END
+
+" tab hax
+nmap <c-n> :tabn<CR>
+nmap <c-p> :tabp<CR>
