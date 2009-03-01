@@ -20,6 +20,7 @@ set guioptions=c
 set mousemodel=popup
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 7
 set viminfo='100,f1
+set showtabline=2
 
 cnoremap <C-A> <Home>
 
@@ -150,5 +151,12 @@ augroup Binary
 augroup END
 
 " autosave folds
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+aug views
+  au!
+  au BufWinLeave * if expand("%") != "" |
+    \ mkview |
+    \ endif
+  au BufWinEnter * if expand("%") != "" |
+    \ silent loadview |
+    \ endif
+aug END
