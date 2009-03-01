@@ -87,11 +87,9 @@ let g:FuzzyFinderOptions.TaggedFile = {'mode_available': 0}
 " Change open key so we're 'pulling down' new file into current window.
 let g:FuzzyFinderOptions.Base = {}
 let g:FuzzyFinderOptions.Base.key_open = '<CR>'
-let g:FuzzyFinderOptions.Base.key_open_split = '<c-j>'
+"let g:FuzzyFinderOptions.Base.key_open_split = '<c-j>'
+let g:FuzzyFinderOptions.Base.key_open_tab = '<c-j>'
  
-" key_next_mode is already <c-l>, change key_prev_mode to matching <c-h>
-let g:FuzzyFinderOptions.Base.key_prev_mode = '<C-h>'
-
 " speed hax
 let g:fuzzy_matching_limit = 20
 
