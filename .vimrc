@@ -1,11 +1,13 @@
-" http://github.com/foot/dotfiles/tree/master/.vimrc
-"
-colorscheme dave
+" inspiration: http://github.com/foot/dotfiles/tree/master/.vimrc
 
+" colours
+colorscheme dave
 syntax on
+
 set background=dark
 set ts=2
 set sts=2
+set hidden
 set shiftwidth=2
 set nocompatible
 set expandtab
@@ -21,21 +23,32 @@ set mousemodel=popup
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 7
 set viminfo='100,f1
 set showtabline=2
+set wildmode=list:longest,full
+set shiftround
+set autoindent
+set smartindent
 
+" use c-a in command mode
 cnoremap <C-A> <Home>
 
+" git blame - \a on a visual block
 vmap <Leader>a :<C-U>!git blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
+" sudo writes
 cmap w!! %!sudo tee > /dev/null %
-inoremap # X#
 
+" ?
+inoremap # X#
+nmap X ci"
+cnoremap <M-BS> <C-W>
+
+" move windows easily
 noremap <C-k> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 noremap <C-j> <C-W>j
 
-nmap X ci"
-
+" slide text around
 imap <M-j> <Esc>:m+<CR>gi
 imap <M-k> <Esc>:m-2<CR>gi
 vmap <M-k> :m'<-2<CR>gv
@@ -45,8 +58,46 @@ nmap <M-k> mz:m-2<CR>`z
 vmap <M-j> :m'>+<CR>gv
 vmap <M-l> :><CR>gv
 
-set wildmode=list:longest,full
+" redo ctags
+nmap <M-c> :!ctags -R .
 
+" fuzzy - keybindings
+nmap <c-e> :FuzzyFinderTag<cr>
+nmap <c-s> :FuzzyFinderBuffer<cr>
+nmap <c-f> :FuzzyFinderFile \*\*\/<cr>
+map <leader>t :FuzzyFinderTextMate<CR>
+
+" fuzzy - dont use these modes
+let g:FuzzyFinderOptions = {}
+let g:FuzzyFinderOptions.Dir = {'mode_available': 0}
+let g:FuzzyFinderOptions.MruFile = {'mode_available': 0}
+let g:FuzzyFinderOptions.MruCmd = {'mode_available': 0}
+let g:FuzzyFinderOptions.FavFile = {'mode_available': 0}
+let g:FuzzyFinderOptions.TaggedFile = {'mode_available': 0}
+ 
+" fuzzy - speed hax
+let g:fuzzy_matching_limit = 20
+
+" Basically you press * or # to search for the current selection !! Really useful
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
+ 
+" turn on hlsearch when searching for something explicitly
+nnoremap * :set hlsearch<cr>*
+nnoremap # :set hlsearch<cr>#
+"nnoremap / :set hlsearch<cr>/
+"nnoremap ? :set hlsearch<cr>?
+" turn hlsearch OFF
+nmap <Leader><Leader> :set hlsearch!<cr>
+nmap <Leader>/ :set hlsearch!<cr>
+" TODO: turn OFF when using search as a motion
+" onoremap / :set nohlsearch<cr>/
+
+" tab hax
+nmap <c-n> :tabn<CR>
+nmap <c-p> :tabp<CR>
+
+" indentation
 filetype on
 filetype indent on
 filetype plugin on
@@ -64,47 +115,9 @@ augroup init
   au BufRead,BufNewFile Capfile setlocal filetype=ruby
 augroup END
 
-set shiftround
-set autoindent
-set smartindent
-
-nmap <M-c> :!ctags -R .
-
-cnoremap <M-BS> <C-W>
-
-nmap <c-e> :FuzzyFinderTag<cr>
-nmap <c-s> :FuzzyFinderBuffer<cr>
-nmap <c-f> :FuzzyFinderFile \*\*\/<cr>
- 
-" Dont use these modes.
-let g:FuzzyFinderOptions = {}
-let g:FuzzyFinderOptions.Dir = {'mode_available': 0}
-let g:FuzzyFinderOptions.MruFile = {'mode_available': 0}
-let g:FuzzyFinderOptions.MruCmd = {'mode_available': 0}
-let g:FuzzyFinderOptions.FavFile = {'mode_available': 0}
-let g:FuzzyFinderOptions.TaggedFile = {'mode_available': 0}
- 
-" Change open key so we're 'pulling down' new file into current window.
-let g:FuzzyFinderOptions.Base = {}
-let g:FuzzyFinderOptions.Base.key_open = '<CR>'
-"let g:FuzzyFinderOptions.Base.key_open_split = '<c-j>'
-let g:FuzzyFinderOptions.Base.key_open_tab = '<c-j>'
- 
-" speed hax
-let g:fuzzy_matching_limit = 20
-
-" textmate
-map <leader>t :FuzzyFinderTextMate<CR>
-
-let g:vimirc_nick = "dave_vim"
-let g:vimirc_user = "dave_vim"
-let g:vimirc_realname = "David Turnbull"
-let g:vimirc_server = "irc.meobets.com:6667"
-
-""""""""""""""""""""""""""""""
-" => Visual
-""""""""""""""""""""""""""""""
+" visual search
 " From an idea by Michael Naumann (via xpaulbettsx)
+" RT @foot
 function! VisualSearch(direction) range
   let l:saved_reg = @"
   execute "normal! vgvy"
@@ -119,23 +132,6 @@ function! VisualSearch(direction) range
   let @" = l:saved_reg
 endfunction
  
-"Basically you press * or # to search for the current selection !! Really useful
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
- 
-" turn on hlsearch when searching for something explicitly
-nnoremap * :set hlsearch<cr>*
-nnoremap # :set hlsearch<cr>#
-"nnoremap / :set hlsearch<cr>/
-"nnoremap ? :set hlsearch<cr>?
-" turn hlsearch OFF
-nmap <Leader><Leader> :set hlsearch!<cr>
-nmap <Leader>/ :set hlsearch!<cr>
-" TODO: turn OFF when using search as a motion
-" onoremap / :set nohlsearch<cr>/
-
-set hidden
-
 " vim -b : edit binary using xxd-format!
 augroup Binary
   au!
@@ -151,14 +147,7 @@ augroup END
 " autosave folds
 aug views
   au!
-  au BufWinLeave * if expand("%") != "" |
-    \ mkview |
-    \ endif
-  au BufWinEnter * if expand("%") != "" |
-    \ silent loadview |
-    \ endif
+  au BufWinLeave * nested mkview
+  au BufWinEnter * nested silent! loadview
 aug END
 
-" tab hax
-nmap <c-n> :tabn<CR>
-nmap <c-p> :tabp<CR>
