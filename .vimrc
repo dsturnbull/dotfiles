@@ -4,6 +4,7 @@
 colorscheme dave
 syntax on
 
+" options
 set background=dark
 set ts=2
 set sts=2
@@ -47,6 +48,10 @@ noremap <C-k> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 noremap <C-j> <C-W>j
+
+" taglist bindings
+nmap <c-o> :TlistOpen<CR>
+nmap <c-i> :TlistToggle<CR>
 
 " slide text around
 imap <M-j> <Esc>:m+<CR>gi
@@ -150,4 +155,12 @@ aug views
   au BufWinLeave * nested mkview
   au BufWinEnter * nested silent! loadview
 aug END
+
+" taglist
+let Tlist_Inc_Winwidth = 0
+let Tlist_Sort_Type = "order"
+"let Tlist_Use_Horiz_Window = 1
+"let Tlist_WinHeight = 20
+let Tlist_WinWidth = 40
+let Tlist_Display_Tag_Scope = 0
 
