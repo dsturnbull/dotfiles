@@ -9,7 +9,9 @@ if exists("syntax_on")
 endif
 
 hi Pmenu guibg=#75507b
+hi Pmenu ctermbg=black
 hi PmenuSel guibg=#000000
+hi PmenuSel ctermbg=blue
 
 let colors_name = "dave"
 
@@ -34,7 +36,7 @@ hi StatusLineNC guifg=#d3d7df guibg=#4e9a06
 hi StatusLineNC ctermfg=lightgray ctermbg=darkgreen
 hi VertSplit    guifg=#eeeeec guibg=#eeeeec
 hi Folded       guifg=#eeeeec guibg=#75507b
-hi Folded       ctermfg=white ctermbg=magenta
+hi Folded       ctermfg=white ctermbg=blue
 hi Visual       guifg=#d3d7cf guibg=#4e9a06
 hi Visual       ctermbg=white ctermfg=lightgreen cterm=reverse
 
@@ -60,7 +62,7 @@ hi Comment      ctermfg=cyan cterm=none
 hi Type         guifg=#d3d7cf gui=bold
 hi Type         ctermfg=gray cterm=bold
 hi Special      guifg=#75507b
-hi Special      ctermfg=magenta cterm=none
+hi Special      ctermfg=blue cterm=none
 hi Error        guifg=#eeeeec guibg=#ef2929
 hi Error        ctermfg=white ctermbg=red
 
