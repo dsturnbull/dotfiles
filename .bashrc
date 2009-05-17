@@ -6,17 +6,14 @@ if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
-export EC2_HOME=$HOME/src/ec2-api-tools-1.3-19403
+export EC2_HOME=$HOME/src/ec2-api-tools-1.3-34128
 export EC2_PRIVATE_KEY=~/.ec2/pk-YQZTGHR2ENHCTZCHZF2ZBQRSLQZTQAPM.pem
 export EC2_CERT=~/.ec2/cert-YQZTGHR2ENHCTZCHZF2ZBQRSLQZTQAPM.pem
 export MXMLC_HOME=~/src/tilefile/flex
-export PATH=$MXMLC_HOME/bin:$EC2_HOME/bin:$PATH:$HOME/bin
 export PS1="\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\] "
 export EDITOR=vi
-export CRYSTAL=/Library/CrystalSpace
-export CEL=/Library/CEL
-export PATH=$HOME/src/flex/bin:/opt/local/lib/postgresql83/bin:$CRYSTAL/bin:/opt/local/sbin:/opt/local/bin:/opt/ruby-enterprise/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin:$IRONRUBY/bin
 export MANPATH=$MANPATH:/opt/local/share/man
+export PATH=$MXMLC_HOME/bin:$EC2_HOME/bin:$PATH:$HOME/bin:/opt/local/lib/postgresql83/bin:/opt/local/sbin:/opt/local/bin:/opt/ruby-enterprise/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin
 
 if [ `uname` == "Linux" ]; then
   export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(__git_ps1 " (%s)") $(git_status)\n→ '
@@ -40,3 +37,5 @@ function git_status {
     echo "☠"
   fi
 }
+
+export CLICOLOR=1
