@@ -7,13 +7,14 @@ if [ -f /opt/local/etc/bash_completion ]; then
 fi
 
 export EC2_HOME=$HOME/src/ec2-api-tools-1.3-34128
-export EC2_PRIVATE_KEY=~/.ec2/pk-YQZTGHR2ENHCTZCHZF2ZBQRSLQZTQAPM.pem
-export EC2_CERT=~/.ec2/cert-YQZTGHR2ENHCTZCHZF2ZBQRSLQZTQAPM.pem
+export EC2_PRIVATE_KEY=~/.ec2/pk-AWS-App-UAT.pem
+export EC2_CERT=~/.ec2/cert-AWS-App-UAT.pem
 export MXMLC_HOME=~/src/tilefile/flex
 export PS1="\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\] "
 export EDITOR=vi
 export MANPATH=$MANPATH:/opt/local/share/man
-export PATH=$MXMLC_HOME/bin:$EC2_HOME/bin:$PATH:$HOME/bin:/opt/local/lib/postgresql83/bin:/opt/local/sbin:/opt/local/bin:/opt/ruby-enterprise/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+export PATH=$MXMLC_HOME/bin:$EC2_HOME/bin:$HOME/bin:/opt/local/lib/postgresql83/bin:/opt/local/sbin:/opt/local/bin:/opt/ruby-enterprise/bin:$HOME/local/bin:$PATH:$HOME/bin:$HOME/.cabal/bin
 
 if [ `uname` == "Linux" ]; then
   export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(__git_ps1 " (%s)") $(git_status)\n→ '
