@@ -15,7 +15,7 @@ function resty() {
 
   case "$method" in
     GET|DELETE)
-      res=$(curl -s -L -f -H "$accp" -X $method "$@" "$uri" | pp)
+      res=$(curl -s -L -f -b $HOME/.resty_cookies -c $HOME/.resty_cookies -H "$accp" -X $method "$@" "$uri" | pp)
       ret=$?
       [ "$ret" != "0" ] && echo "resty: curl returned error $ret" 1>&2
       [ -n "$res" ] && echo "$res"
@@ -23,7 +23,7 @@ function resty() {
       ;;
     POST|PUT)
       data="$1"; shift
-      res=$(curl -s -L -f -H "$accp" -X $method --data-binary "$data" "$@" \
+      res=$(curl -s -L -f -b $HOME/.resty_cookies -c $HOME/.resty_cookies -H "$accp" -X $method --data-binary "$data" "$@" \
             "$uri" | pp)
       ret=$?
       [ "$ret" != "0" ] && echo "resty: curl returned error $ret" 1>&2
