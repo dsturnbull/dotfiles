@@ -6,8 +6,8 @@ if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
-export EC2_PRIVATE_KEY=~/.ec2/pk-AWS-App-UAT.pem
-export EC2_CERT=~/.ec2/cert-AWS-App-UAT.pem
+export EC2_PRIVATE_KEY=~/.ec2/pk.pem
+export EC2_CERT=~/.ec2/cert.pem
 
 export EC2_HOME=$HOME/src/ec2-api-tools-1.3-36506
 export AMI_HOME=$HOME/src/ec2-ami-tools-1.3-31780
