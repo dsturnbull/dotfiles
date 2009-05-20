@@ -58,3 +58,4 @@ function git_status {
 }
 
 . $HOME/dotfiles/resty/resty
+. $HOME/.ec2/local_keys
