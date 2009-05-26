@@ -5,4 +5,4 @@
 .xmonad/xmonad.o
 .vim/view
 bin/e1a*
-bin/staging
+bin/staging*
