@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
-mono ~/bin/ir.exe $*
+#!/bin/sh
+/usr/bin/env mono $IRONRUBY_HOME/bin/ir.exe $*
