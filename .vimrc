@@ -114,6 +114,7 @@ augroup init
   au FileType haskell setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType c setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType cs setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
   au BufNewFile,BufRead *.as setlocal filetype=actionscript
   au BufRead,BufNewFile *.json setlocal filetype=javascript

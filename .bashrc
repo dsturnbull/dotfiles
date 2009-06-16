@@ -47,6 +47,10 @@ alias vi='vi'
 alias grin='grin --force-color'
 alias less='less -R'
 
+alias chiron='mono /Applications/Silverlight/sdl-sdk/bin/Chiron.exe'
+alias sl='/Applications/Silverlight/sdl-sdk/script/sl'
+alias slserver='/Applications/Silverlight/sdl-sdk/script/server'
+
 if test -n "$PS1"; then
   stty -ixon
 fi
