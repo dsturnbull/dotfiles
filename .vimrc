@@ -72,6 +72,9 @@ nmap <c-s> :FuzzyFinderBuffer<cr>
 nmap <c-f> :FuzzyFinderFile \*\*\/<cr>
 map <leader>t :FuzzyFinderTextMate<CR>
 
+" set paste! - keybindings
+map <leader>p :set paste!<cr>
+
 " fuzzy - dont use these modes
 let g:FuzzyFinderOptions = {}
 let g:FuzzyFinderOptions.Dir = {'mode_available': 0}
