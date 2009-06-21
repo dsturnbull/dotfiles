@@ -32,6 +32,9 @@ export PATH=/opt/local/sbin:$PATH
 export PATH=/opt/local/bin:$PATH
 export PATH=/opt/ruby-enterprise/bin:$PATH
 
+GEM_PATH=$(gem env path | sed -e 's/:/\/bin:/g' -e 's/$/\/bin/')
+export PATH=$GEM_PATH:$PATH
+
 export PS1="\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\] "
 export EDITOR=vi
 export MANPATH=$MANPATH:/opt/local/share/man

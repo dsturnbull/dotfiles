@@ -168,3 +168,8 @@ let Tlist_Sort_Type = "order"
 let Tlist_WinWidth = 40
 let Tlist_Display_Tag_Scope = 0
 
+" haskell
+au BufEnter *.hs compiler ghc
+let g:haddock_browser = "open"
+let g:haddock_browser_callformat = "%s %s"
+

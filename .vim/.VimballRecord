@@ -1,0 +1,1 @@
+haskellmode-20090430.vba: call delete('/Users/dave/.vim/compiler/ghc.vim')|call delete('/Users/dave/.vim/ftplugin/haskell.vim')|call delete('/Users/dave/.vim/ftplugin/haskell_doc.vim')|call delete('/Users/dave/.vim/ftplugin/haskell_hpaste.vim')|call delete('/Users/dave/.vim/autoload/haskellmode.vim')|call delete('/Users/dave/.vim/doc/haskellmode.txt')
