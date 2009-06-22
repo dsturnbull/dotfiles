@@ -6,3 +6,8 @@
 .vim/view
 bin/e1a*
 bin/staging*
+bin/PRAUE1BKMRS01
+bin/PRAUE1CKMRS01
+bin/puppet
+bin/puppetmaster
+
