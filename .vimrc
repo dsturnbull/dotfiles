@@ -173,3 +173,7 @@ au BufEnter *.hs compiler ghc
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 
+" lambda key and sum key
+imap <c-a> λ
+imap <c-s> ∑
+

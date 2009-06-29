@@ -23,14 +23,14 @@ export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 export IRONRUBY_HOME=~/src/ironruby
 export PATH=$IRONRUBY_HOME/bin:$PATH
 
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/local/bin:$PATH
-export PATH=$HOME/.cabal/bin:$PATH
-
 export PATH=/opt/local/lib/postgresql83/bin:$PATH
 export PATH=/opt/local/sbin:$PATH
 export PATH=/opt/local/bin:$PATH
 export PATH=/opt/ruby-enterprise/bin:$PATH
+
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/local/bin:$PATH
+export PATH=$HOME/.cabal/bin:$PATH
 
 GEM_PATH=$(gem env path | sed -e 's/:/\/bin:/g' -e 's/$/\/bin/')
 export PATH=$GEM_PATH:$PATH
