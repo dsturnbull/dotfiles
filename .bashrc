@@ -15,7 +15,7 @@ export ELB_HOME=$HOME/src/ElasticLoadBalancing-1.0
 export AUTO_SCALING_HOME=$HOME/src/AutoScaling-1.0
 export PATH=$EC2_HOME/bin:$AMI_HOME/bin:$ELB_HOME/bin:$AUTO_SCALING_HOME/bin:$PATH
 
-export MXMLC_HOME=~/src/tilefile/flex
+export MXMLC_HOME=$HOME/src/flex_sdk_3
 export PATH=$MXMLC_HOME/bin:$PATH
 
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
