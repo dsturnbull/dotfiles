@@ -32,8 +32,9 @@ set smartindent
 " use c-a in command mode
 cnoremap <C-A> <Home>
 
-" git blame - \a on a visual block
-vmap <Leader>a :<C-U>!git blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+" git/svn blame - \g/\s on a visual block
+vmap <Leader>g :<C-U>!git blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+vmap <Leader>s :<C-U>!svn blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 " sudo writes
 cmap w!! %!sudo tee > /dev/null %
@@ -50,7 +51,7 @@ noremap <C-L> <C-W>l
 noremap <C-j> <C-W>j
 
 " taglist bindings
-nmap <c-o> :TlistOpen<CR>
+nmap <c-u> :TlistOpen<CR>
 nmap <c-i> :TlistToggle<CR>
 
 " slide text around
@@ -76,6 +77,7 @@ map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>p :set paste!<cr>
 
 " fuzzy - dont use these modes
+let g:fuzzy_ignore = ".git/*;.svn/*"
 let g:FuzzyFinderOptions = {}
 let g:FuzzyFinderOptions.Dir = {'mode_available': 0}
 let g:FuzzyFinderOptions.MruFile = {'mode_available': 0}
@@ -113,6 +115,10 @@ filetype plugin on
 augroup init
   au FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+
   au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType haskell setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
@@ -156,7 +162,7 @@ augroup END
 " autosave folds
 aug views
   au!
-  au BufWinLeave * nested mkview
+  au BufWinLeave * nested silent! mkview
   au BufWinEnter * nested silent! loadview
 aug END
 
@@ -176,4 +182,12 @@ let g:haddock_browser_callformat = "%s %s"
 " lambda key and sum key
 imap <c-a> λ
 imap <c-s> ∑
+" snippets
+function! HighlightSnips()
+     exec "hi snippetEmuJump guibg=grey30"
+     exec "syn region snippetEmuJump start=/".g:snip_start_tag."/ end=/".g:snip_end_tag."/"
+endfunction
+augroup highlight-snips
+    au BufNewFile,BufRead * call HighlightSnips()
+augroup END
 
