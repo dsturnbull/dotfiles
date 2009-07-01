@@ -76,14 +76,15 @@ map <leader>p :set paste!<cr>
 " fuzzy - dont use these modes
 let g:fuzzy_ignore = ".git/*;.svn/*"
 let g:FuzzyFinderOptions = {}
+let g:FuzzyFinderOptions.Bookmark = {'mode_available': 0}
 let g:FuzzyFinderOptions.Dir = {'mode_available': 0}
 let g:FuzzyFinderOptions.MruFile = {'mode_available': 0}
 let g:FuzzyFinderOptions.MruCmd = {'mode_available': 0}
-let g:FuzzyFinderOptions.FavFile = {'mode_available': 0}
 let g:FuzzyFinderOptions.TaggedFile = {'mode_available': 0}
- 
+let g:FuzzyFinderOptions.Tag = { 'matching_limit': 20 }
+
 " fuzzy - speed hax
-let g:fuzzy_matching_limit = 20
+let g:fuzzy_enumerating_limit = 20
 
 " Basically you press * or # to search for the current selection !! Really useful
 vnoremap <silent> * :call VisualSearch('f')<CR>
