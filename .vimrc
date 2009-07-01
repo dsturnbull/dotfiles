@@ -206,6 +206,3 @@ vmap <silent> i<space> <Plug>CamelCaseMotion_iw
 omap <silent> i<bs> <Plug>CamelCaseMotion_ib
 vmap <silent> i<bs> <Plug>CamelCaseMotion_ib
 
-" 0 goes to after ^[ ]*
-nmap 0 ^
-
