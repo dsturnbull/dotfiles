@@ -198,4 +198,6 @@ vmap <silent> i<bs> <Plug>CamelCaseMotion_ib
 
 " omni awesome
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
