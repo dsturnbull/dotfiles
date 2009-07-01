@@ -42,11 +42,11 @@ export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
 
 if [ `uname` == "Linux" ]; then
-  export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(__git_ps1 " (%s)") $(git_status)\n→ '
+  export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(git_prompt_info)\n→ '
 elif [ `uname -m` == "iPhone1,2" ]; then
   export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]\n→ '
 else
-  export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(__git_ps1 " (%s)") $(git_status)\n→ '
+  export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(git_prompt_info)\n→ '
 fi
 
 alias vi='vi'
@@ -61,11 +61,29 @@ if test -n "$PS1"; then
   stty -ixon
 fi
 
-function git_status {
-  if current_git_status=$(git status 2>/dev/null | grep 'added to commit'); then
-    echo "☠"
+# give back <c-s> to forward search (opposite of c-r)
+stty stop undef
+
+# Get the name of the branch we are on
+function git_prompt_info {
+  branch_prompt=$(__git_ps1 "$@")
+  if [ -n "$branch_prompt" ]; then
+    current_git_status=$(git status)
+    if dirty=$(echo "$current_git_status" | grep 'added to commit' 2> /dev/null); then
+      branch_prompt="$branch_prompt*"
+    fi
+    if behind_by=$(echo "$current_git_status" | grep 'behind .* [0-9]\+ commit'); then
+      behind_by=$(echo "$behind_by" | awk '{print $9}')
+      branch_prompt="$branch_prompt -$behind_by"
+    fi
+    if ahead_by=$(echo "$current_git_status" | grep 'ahead .* [0-9]\+ commit'); then
+      ahead_by=$(echo "$current_git_status" | grep 'ahead .* [0-9]\+ commit' | awk '{print $9}')
+      branch_prompt="$branch_prompt +$ahead_by"
+    fi
+    echo -e "$branch_prompt"
   fi
 }
+
 
 . $HOME/dotfiles/resty/resty
 . $HOME/.ec2/local_keys
