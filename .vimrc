@@ -51,10 +51,6 @@ noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 noremap <C-j> <C-W>j
 
-" taglist bindings
-nmap <c-u> :TlistOpen<CR>
-nmap <c-i> :TlistToggle<CR>
-
 " slide text around
 imap <M-j> <Esc>:m+<CR>gi
 imap <M-k> <Esc>:m-2<CR>gi
@@ -167,14 +163,6 @@ aug views
   au BufWinEnter * nested silent! loadview
 aug END
 
-" taglist
-let Tlist_Inc_Winwidth = 0
-let Tlist_Sort_Type = "order"
-"let Tlist_Use_Horiz_Window = 1
-"let Tlist_WinHeight = 20
-let Tlist_WinWidth = 40
-let Tlist_Display_Tag_Scope = 0
-
 " haskell
 au BufEnter *.hs compiler ghc
 let g:haddock_browser = "open"
@@ -208,10 +196,5 @@ omap <silent> i<bs> <Plug>CamelCaseMotion_ib
 vmap <silent> i<bs> <Plug>CamelCaseMotion_ib
 
 " omni awesome
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>"                  : "\<Esc>"
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>"                  : "\<CR>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>"   : "\<PageUp>"
-inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>"   : "\<C-u>"
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
