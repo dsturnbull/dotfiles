@@ -28,6 +28,7 @@ set wildmode=list:longest,full
 set shiftround
 set autoindent
 set smartindent
+set completeopt=longest,menuone
 
 " use c-a in command mode
 cnoremap <C-A> <Home>
@@ -205,4 +206,12 @@ omap <silent> i<space> <Plug>CamelCaseMotion_iw
 vmap <silent> i<space> <Plug>CamelCaseMotion_iw
 omap <silent> i<bs> <Plug>CamelCaseMotion_ib
 vmap <silent> i<bs> <Plug>CamelCaseMotion_ib
+
+" omni awesome
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>"                  : "\<Esc>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>"                  : "\<CR>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>"   : "\<PageUp>"
+inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>"   : "\<C-u>"
 
