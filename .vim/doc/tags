@@ -43,6 +43,9 @@
 'Tlist_WinHeight'	taglist.txt	/*'Tlist_WinHeight'*
 'Tlist_WinWidth'	taglist.txt	/*'Tlist_WinWidth'*
 'loaded_nerd_tree'	NERD_tree.txt	/*'loaded_nerd_tree'*
+,b	camelcasemotion.txt	/*,b*
+,e	camelcasemotion.txt	/*,e*
+,w	camelcasemotion.txt	/*,w*
 :DocIndex	haskellmode.txt	/*:DocIndex*
 :DocSettings	haskellmode.txt	/*:DocSettings*
 :ExportDocIndex	haskellmode.txt	/*:ExportDocIndex*
@@ -149,6 +152,16 @@ _opt	haskellmode.txt	/*_opt*
 _si	haskellmode.txt	/*_si*
 _t	haskellmode.txt	/*_t*
 basic-snippet	snippets_emu.txt	/*basic-snippet*
+camelcasemotion-configuration	camelcasemotion.txt	/*camelcasemotion-configuration*
+camelcasemotion-dependencies	camelcasemotion.txt	/*camelcasemotion-dependencies*
+camelcasemotion-description	camelcasemotion.txt	/*camelcasemotion-description*
+camelcasemotion-history	camelcasemotion.txt	/*camelcasemotion-history*
+camelcasemotion-installation	camelcasemotion.txt	/*camelcasemotion-installation*
+camelcasemotion-known-problems	camelcasemotion.txt	/*camelcasemotion-known-problems*
+camelcasemotion-todo	camelcasemotion.txt	/*camelcasemotion-todo*
+camelcasemotion-usage	camelcasemotion.txt	/*camelcasemotion-usage*
+camelcasemotion.txt	camelcasemotion.txt	/*camelcasemotion.txt*
+camelcasemotion.vim	camelcasemotion.txt	/*camelcasemotion.vim*
 compiler-ghc	haskellmode.txt	/*compiler-ghc*
 creating-snippets	snippets_emu.txt	/*creating-snippets*
 g:ghc	haskellmode.txt	/*g:ghc*

@@ -182,6 +182,7 @@ let g:haddock_browser_callformat = "%s %s"
 " lambda key and sum key
 imap <c-a> λ
 imap <c-s> ∑
+
 " snippets
 function! HighlightSnips()
      exec "hi snippetEmuJump guibg=grey30"
@@ -190,4 +191,18 @@ endfunction
 augroup highlight-snips
     au BufNewFile,BufRead * call HighlightSnips()
 augroup END
+
+" camel case motion overrides
+nmap <silent> <space> <Plug>CamelCaseMotion_w
+omap <silent> <space> <Plug>CamelCaseMotion_w
+vmap <silent> <space> <Plug>CamelCaseMotion_w
+
+nmap <silent> <bs> <Plug>CamelCaseMotion_b
+omap <silent> <bs> <Plug>CamelCaseMotion_b
+vmap <silent> <bs> <Plug>CamelCaseMotion_b
+
+omap <silent> i<space> <Plug>CamelCaseMotion_iw
+vmap <silent> i<space> <Plug>CamelCaseMotion_iw
+omap <silent> i<bs> <Plug>CamelCaseMotion_ib
+vmap <silent> i<bs> <Plug>CamelCaseMotion_ib
 
