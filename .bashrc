@@ -77,7 +77,7 @@ function git_prompt_info {
       branch_prompt="$branch_prompt*"
     fi
     if behind_by=$(echo "$current_git_status" | grep 'behind .* [0-9]\+ commit'); then
-      behind_by=$(echo "$behind_by" | awk '{print $9}')
+      behind_by=$(echo "$behind_by" | awk '{print $8}')
       branch_prompt="$branch_prompt -$behind_by"
     fi
     if ahead_by=$(echo "$current_git_status" | grep 'ahead .* [0-9]\+ commit'); then
