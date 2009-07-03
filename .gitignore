@@ -18,3 +18,4 @@ bin/console
 bin/np
 bin/routes
 bin/todo
+.xmonad/history
