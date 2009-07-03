@@ -87,21 +87,6 @@ let g:FuzzyFinderOptions.Tag = { 'matching_limit': 20 }
 " fuzzy - speed hax
 let g:fuzzy_enumerating_limit = 20
 
-" Basically you press * or # to search for the current selection !! Really useful
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
- 
-" turn on hlsearch when searching for something explicitly
-nnoremap * :set hlsearch<cr>*
-nnoremap # :set hlsearch<cr>#
-"nnoremap / :set hlsearch<cr>/
-"nnoremap ? :set hlsearch<cr>?
-" turn hlsearch OFF
-nmap <Leader><Leader> :set hlsearch!<cr>
-nmap <Leader>/ :set hlsearch!<cr>
-" TODO: turn OFF when using search as a motion
-" onoremap / :set nohlsearch<cr>/
-
 " tab hax
 nmap <c-n> :tabn<CR>
 nmap <c-p> :tabp<CR>
@@ -123,35 +108,6 @@ augroup init
   au BufNewFile,BufRead *.as setlocal filetype=actionscript
   au BufRead,BufNewFile *.json setlocal filetype=javascript
   au BufRead,BufNewFile Capfile setlocal filetype=ruby
-augroup END
-
-" visual search
-" From an idea by Michael Naumann (via xpaulbettsx)
-" RT @foot
-function! VisualSearch(direction) range
-  let l:saved_reg = @"
-  execute "normal! vgvy"
-  let l:pattern = escape(@", '\\/.*$^~[]')
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-  if a:direction == 'b'
-    execute "normal ?" . l:pattern . "^M"
-  else
-    execute "normal /" . l:pattern . "^M"
-  endif
-  let @/ = l:pattern
-  let @" = l:saved_reg
-endfunction
- 
-" vim -b : edit binary using xxd-format!
-augroup Binary
-  au!
-  au BufReadPre  *.pyc let &bin=1
-  au BufReadPost *.pyc if &bin | %!xxd
-  au BufReadPost *.pyc set ft=xxd | endif
-  au BufWritePre *.pyc if &bin | %!xxd -r
-  au BufWritePre *.pyc endif
-  au BufWritePost *.pyc if &bin | %!xxd
-  au BufWritePost *.pyc set nomod | endif
 augroup END
 
 " autosave folds

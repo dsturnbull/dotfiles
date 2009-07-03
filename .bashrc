@@ -1,3 +1,6 @@
+# crazy XQuartz
+cd
+
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
@@ -52,6 +55,12 @@ elif [ `uname -m` == "iPhone1,2" ]; then
 else
   export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(git_prompt_info)\n→ '
 fi
+
+if [ $TERM == "rxvt-unicode" ]; then
+  export TERM=xterm-color
+fi
+export LANG=en_US.UTF-8
+export USERWM=`which xmonad`
 
 alias vi='vi'
 alias grin='grin --force-color'
