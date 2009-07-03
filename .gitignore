@@ -12,3 +12,8 @@ bin/PRAUE1CKMRS01
 bin/puppet
 bin/puppetmaster
 bin/trturbinado
+bin/app
+bin/console
+bin/np
+bin/routes
+bin/todo
