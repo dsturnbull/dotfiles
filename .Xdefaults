@@ -1,0 +1,4 @@
+xterm*metaSendsEscape: true
+URxvt*scrollBar: false
+URxvt*foreground: white
+URxvt*background: black
