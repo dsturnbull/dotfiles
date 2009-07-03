@@ -3,13 +3,17 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Layout.ThreeColumns
 import System.IO
+
+myLayouts = ThreeCol 1 (3/100) (1/2)
 
 main = do
   xmproc <- spawnPipe "/home/dave/.cabal/bin/xmobar"
   xmonad $ defaultConfig {
     manageHook = manageDocks <+> manageHook defaultConfig,
-    layoutHook = avoidStruts  $  layoutHook defaultConfig,
+    -- layoutHook = avoidStruts  $  layoutHook defaultConfig,
+    layoutHook = avoidStruts  $  myLayouts,
     terminal = "/usr/bin/rxvt-unicode",
     normalBorderColor = "#cccccc",
     focusedBorderColor = "#cd8b00",
