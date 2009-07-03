@@ -18,7 +18,11 @@ export PATH=$EC2_HOME/bin:$AMI_HOME/bin:$ELB_HOME/bin:$AUTO_SCALING_HOME/bin:$PA
 export MXMLC_HOME=$HOME/src/flex_sdk_3
 export PATH=$MXMLC_HOME/bin:$PATH
 
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+if [ `uname` == "Linux" ]; then
+  export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.13
+else
+  export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+fi
 
 export IRONRUBY_HOME=~/src/ironruby
 export PATH=$IRONRUBY_HOME/bin:$PATH
