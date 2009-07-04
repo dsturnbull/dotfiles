@@ -1,8 +1,9 @@
+" vim:filetype=vim
 " inspiration: http://github.com/foot/dotfiles/tree/master/.vimrc
 
 " colours
-colorscheme dave
 syntax on
+colorscheme leo
 
 " options
 set ts=2
