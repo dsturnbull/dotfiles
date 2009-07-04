@@ -26,6 +26,7 @@ main = do
         , normalBorderColor  = "#cccccc"
         , focusedBorderColor = "#cd8b00"
         , modMask            = mod4Mask
+        , focusFollowsMouse  = sloppyFocus
         , manageHook         = manageDocks <+> manageHook defaultConfig
         , layoutHook         = smartBorders . layoutHints . avoidStruts $ myLayouts
         , logHook            = dynamicLogWithPP $ xmobarPP
@@ -60,6 +61,9 @@ myLayouts = tiled' ||| Mirror tiled' ||| Full
     ratio    = 1/2   -- Default proportion of screen occupied by master pane
     delta    = 3/100 -- Percent of screen to increment by when resizing panes
     tiled'   = maximize $ ResizableTall nmaster delta ratio []
+
+-- dodgy trackpad!
+sloppyFocus = False
 
 -- vim:filetype=haskell
 
