@@ -1,6 +1,7 @@
 #!/bin/sh
 mv .vimrc .vimrc.old ; ln -sf dotfiles/.vimrc .vimrc
 mv .vim .vim.old ; ln -sf dotfiles/.vim .vim
+mv .xinitrc .xinitrc.old ; ln -sf dotfiles/.xinitrc .xinitrc
 mv .vimperatorrc .vimperatorrc.old ; ln -sf dotfiles/.vimperatorrc .vimperatorrc
 mv .vimperator .vimperator.old ; ln -sf dotfiles/.vimperator .vimperator
 mv .irbrc .irbrc.old ; ln -sf dotfiles/.irbrc .irbrc
