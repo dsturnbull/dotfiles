@@ -1,12 +1,22 @@
 xterm*metaSendsEscape: true
 
 URxvt.scrollBar: false
+URxvt.fading: 20
+URxvt.scrollTtyOutput: false
+URxvt.scrollTtyKeypress: true
+URxvt.scrollWithBuffer: true
+URxvt.saveLines: 65535
+URxvt.cutchars: "BACKSLASH `"'&()*,;<=>?@[]^{|}"
 
 URxvt.depth: 32
 URxvt*foreground: white
 URxvt*background: black
 
+URxvt.transparent: true
+URxvt.shading: 15
+
 URxvt.urlLauncher: firefox-x11-standalone
 URxvt.perl-ext-common: default,matcher
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+
