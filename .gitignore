@@ -18,5 +18,6 @@ bin/console
 bin/np
 bin/routes
 bin/todo
+bin/mitter
 .xmonad/history
 .vimperator/info/
