@@ -5,7 +5,9 @@ import XMonad.Actions.FindEmptyWorkspace
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.LayoutHints
+import XMonad.Layout.Maximize
 import XMonad.Layout.NoBorders
+import XMonad.Layout.ResizableTile
 import XMonad.Prompt
 import XMonad.Prompt.Ssh
 import XMonad.Util.EZConfig(additionalKeys)
@@ -25,27 +27,39 @@ main = do
         , focusedBorderColor = "#cd8b00"
         , modMask = mod4Mask
         , manageHook = manageDocks <+> manageHook defaultConfig
-        , layoutHook = smartBorders $ layoutHints $ avoidStruts $ layoutHook defaultConfig
+        , layoutHook = smartBorders . layoutHints . avoidStruts $ myLayouts
         , logHook = dynamicLogWithPP $ xmobarPP
             { ppOutput = hPutStrLn xmproc
             , ppTitle = xmobarColor "green" "" . shorten 50
             }
-        } `additionalKeys`
-            [ ((mod4Mask,                xK_f), viewEmptyWorkspace)
-            , ((mod4Mask .|. shiftMask,  xK_f), tagToEmptyWorkspace)
-            , ((mod4Mask .|. shiftMask,  xK_s), sshPrompt defaultXPConfig)
-            , ((mod4Mask,                xK_s), SM.submap $ searchEngineMap $ S.promptSearch P.defaultXPConfig)
-            ]
+        } `additionalKeys` myKeys
 
-searchEngineMap method = M.fromList $
-    [ ((0, xK_g), method S.google)
-    , ((0, xK_h), method S.hoogle)
-    , ((0, xK_w), method S.wikipedia)
-    , ((0, xK_a), method S.amazon)
-    , ((0, xK_i), method S.imdb)
-    , ((0, xK_m), method S.maps)
-    , ((0, xK_y), method S.youtube)
+myKeys =
+    [ ((mod4Mask, xK_f), viewEmptyWorkspace)
+    , ((modShift, xK_f), tagToEmptyWorkspace)
+    , ((mod4Mask, xK_a), sendMessage MirrorExpand)
+    , ((mod4Mask, xK_z), sendMessage MirrorShrink)
+    , ((mod4Mask, xK_s), search)
+    , ((modShift, xK_s), sshPrompt defaultXPConfig)
     ]
+    where modShift    = mod4Mask .|. shiftMask
+          search      = SM.submap $ searchMap $ S.promptSearch P.defaultXPConfig
+          searchMap m = M.fromList $
+              [ ((0, xK_g), m S.google)
+              , ((0, xK_h), m S.hoogle)
+              , ((0, xK_w), m S.wikipedia)
+              , ((0, xK_a), m S.amazon)
+              , ((0, xK_i), m S.imdb)
+              , ((0, xK_m), m S.maps)
+              , ((0, xK_y), m S.youtube)
+              ]
+
+myLayouts = tiled' ||| Mirror tiled' ||| Full
+  where
+    nmaster  = 1     -- The default number of windows in the master pane
+    ratio    = 1/2   -- Default proportion of screen occupied by master pane
+    delta    = 3/100 -- Percent of screen to increment by when resizing panes
+    tiled'   = maximize $ ResizableTall nmaster delta ratio []
 
 -- vim:filetype=haskell
 
