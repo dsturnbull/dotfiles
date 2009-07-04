@@ -3,4 +3,4 @@ URxvt*scrollBar: false
 URxvt*foreground: white
 URxvt*background: black
 URxvt.depth: 32
-
+URxvt*urlLauncher: firefox
