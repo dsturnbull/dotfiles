@@ -1,32 +1,47 @@
+!alt-f alt-b alt-w
 xterm*metaSendsEscape: true
 
+!perl extensions
 URxvt.perl-ext-common: default,matcher,selection-autotransform,tabbed
 
+!make it work like terminal.app/gnome-term
 URxvt.scrollBar: false
 URxvt.scrollTtyOutput: false
 URxvt.scrollTtyKeypress: true
 URxvt.scrollWithBuffer: true
 
+!max history
 URxvt.saveLines: 65535
+
+!for reference
 URxvt.cutchars: "BACKSLASH `"'&()*,;<=>?@[]^{|}"
 
+!colors
 URxvt.depth: 32
-URxvt.fading: 40
-URxvt.shading: 15
 URxvt*foreground: white
 URxvt*background: black
+
+!transparency
+URxvt.fading: 40
+URxvt.shading: 15
 URxvt.transparent: true
 
+!click on a url
 URxvt.urlLauncher: firefox-x11-standalone
 URxvt.keysym.C-i: perl:matcher
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.matcher.launcher.1: firefox-x11-standalone
 
+!changes some/file.rb:32 to vi +32 some/file.rb
 URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/vi +$2 \\Q$1\\E\\x0d/
 
+!close as possible to my vim tablines
 URxvt.tabbed.tabbar-fg: 7
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg:    15
 URxvt.tabbed.tab-bg:    4
 
+!set env vars
+URxvt.termName: xterm-256color
+URxvt.imLocale: en_US.UTF-8

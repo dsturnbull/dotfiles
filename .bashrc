@@ -57,7 +57,7 @@ else
 fi
 
 if [ $TERM == "rxvt-unicode" ]; then
-  export TERM=xterm-color
+  export TERM=xterm-256color
 fi
 export LANG=en_US.UTF-8
 export USERWM=`which xmonad`
