@@ -19,3 +19,4 @@ bin/np
 bin/routes
 bin/todo
 .xmonad/history
+.vimperator/info/

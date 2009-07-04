@@ -29,7 +29,7 @@ set shiftround
 set autoindent
 set smartindent
 set completeopt=longest,menuone
-set guifont=Monaco:h10
+"set guifont=Monaco:h10
 
 " use c-a in command mode
 cnoremap <C-A> <Home>

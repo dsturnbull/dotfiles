@@ -1,6 +1,8 @@
 #!/bin/sh
 mv .vimrc .vimrc.old ; ln -sf dotfiles/.vimrc .vimrc
 mv .vim .vim.old ; ln -sf dotfiles/.vim .vim
+mv .vimperatorrc .vimperatorrc.old ; ln -sf dotfiles/.vimperatorrc .vimperatorrc
+mv .vimperator .vimperator.old ; ln -sf dotfiles/.vimperator .vimperator
 mv .irbrc .irbrc.old ; ln -sf dotfiles/.irbrc .irbrc
 mv .bashrc .bashrc.old ; ln -sf dotfiles/.bashrc
 mv .Xmodmap .Xmodmap.old ; ln -sf dotfiles/.Xmodmap
