@@ -72,10 +72,9 @@ alias slserver='/Applications/Silverlight/sdl-sdk/script/server'
 
 if test -n "$PS1"; then
   stty -ixon
+  # give back <c-s> to forward search (opposite of c-r)
+  stty stop undef
 fi
-
-# give back <c-s> to forward search (opposite of c-r)
-stty stop undef
 
 # Get the name of the branch we are on
 function git_prompt_info {
