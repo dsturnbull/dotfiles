@@ -21,16 +21,16 @@ main = do
     putEnv "BROWSER=firefox-x11-standalone"
     xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
     xmonad $ defaultConfig
-        { terminal = "/opt/local/bin/urxvt"
-        , borderWidth = 1
-        , normalBorderColor = "#cccccc"
+        { terminal           = "/opt/local/bin/urxvt"
+        , borderWidth        = 1
+        , normalBorderColor  = "#cccccc"
         , focusedBorderColor = "#cd8b00"
-        , modMask = mod4Mask
-        , manageHook = manageDocks <+> manageHook defaultConfig
-        , layoutHook = smartBorders . layoutHints . avoidStruts $ myLayouts
-        , logHook = dynamicLogWithPP $ xmobarPP
+        , modMask            = mod4Mask
+        , manageHook         = manageDocks <+> manageHook defaultConfig
+        , layoutHook         = smartBorders . layoutHints . avoidStruts $ myLayouts
+        , logHook            = dynamicLogWithPP $ xmobarPP
             { ppOutput = hPutStrLn xmproc
-            , ppTitle = xmobarColor "green" "" . shorten 50
+            , ppTitle  = xmobarColor "green" "" . shorten 50
             }
         } `additionalKeys` myKeys
 
