@@ -13,15 +13,15 @@ set shiftwidth=2
 set nocompatible
 set expandtab
 set backspace=indent,eol,start
-set guioptions-=m
-set guioptions-=L
-set guioptions-=r
-set guioptions-=T
-set guioptions-=a
-set guioptions-=A
-set guioptions=c
+set guioptions-=m " menu
+set guioptions+=c " console dialogues
+set guioptions-=t " tearoff menu items
+set guioptions-=T " toolbar
+set guioptions-=L " left scroll (when vertically split)
+set guioptions-=b " bottom scroll bar
+set guioptions-=r " right scroll bar
+set guioptions-=e " text mode tab lines
 set mousemodel=popup
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 7
 set viminfo='100,f1
 set showtabline=2
 set wildmode=list:longest,full
@@ -29,7 +29,7 @@ set shiftround
 set autoindent
 set smartindent
 set completeopt=longest,menuone
-"set guifont=Monaco:h10
+set guifont=monaco\ 9
 
 " use c-a in command mode
 cnoremap <C-A> <Home>
