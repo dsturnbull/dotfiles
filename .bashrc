@@ -46,21 +46,6 @@ export EDITOR=vi
 export MANPATH=$MANPATH:/opt/local/share/man
 export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
-
-NICE_ORANGE="\[\033[38;5;208m\]"
-NICE_BLUE="\[\033[38;5;39m\]"
-NICE_GREEN="\[\033[38;5;154m\]"
-GRAY="\[\033[1;30m\]"
-LIGHT_GRAY="\[\033[0;37m\]"
-CYAN="\[\033[0;36m\]"
-LIGHT_CYAN="\[\033[1;36m\]"
-NO_COLOUR="\[\033[0m\]"
-GREEN="\[\033[01;32m\]"
-BLUE="\[\033[01;34m\]"
-LIGHT_BLUE="\[\033[01;36m\]"
-
-export PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR $(git_prompt_info)\n→ "
-
 if [ $TERM == "rxvt-unicode" ]; then
   export TERM=xterm-256color
 fi
@@ -74,12 +59,6 @@ alias less='less -R'
 alias chiron='mono /Applications/Silverlight/sdl-sdk/bin/Chiron.exe'
 alias sl='/Applications/Silverlight/sdl-sdk/script/sl'
 alias slserver='/Applications/Silverlight/sdl-sdk/script/server'
-
-if test -n "$PS1"; then
-  stty -ixon
-  # give back <c-s> to forward search (opposite of c-r)
-  stty stop undef
-fi
 
 . $HOME/dotfiles/resty/resty
 . $HOME/.ec2/local_keys
@@ -167,4 +146,27 @@ _vim_ctags() {
 excludelist='*.@(o|O|so|SO|so.!(conf)|SO.!(CONF)|a|A|rpm|RPM|deb|DEB|gif|GIF|jp?(e)g|JP?(E)G|mp3|MP3|mp?(e)g|MP?(E)G|avi|AVI|asf|ASF|ogg|OGG|class|CLASS)'
 
 complete -F _vim_ctags -f -X "${excludelist}" vi vim gvim rvim view rview rgvim rgview gview
+
+# PS1 prompt
+NICE_ORANGE="\[\033[38;5;208m\]"
+NICE_BLUE="\[\033[38;5;39m\]"
+NICE_GREEN="\[\033[38;5;154m\]"
+GRAY="\[\033[1;30m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+CYAN="\[\033[0;36m\]"
+LIGHT_CYAN="\[\033[1;36m\]"
+NO_COLOUR="\[\033[0m\]"
+GREEN="\[\033[01;32m\]"
+BLUE="\[\033[01;34m\]"
+LIGHT_BLUE="\[\033[01;36m\]"
+
+export PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR $(git_prompt_info)\n→ "
+
+
+if test -n "$PS1"; then
+  stty -ixon
+  # give back <c-s> to forward search (opposite of c-r)
+  stty stop undef
+fi
+
 
