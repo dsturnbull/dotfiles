@@ -22,7 +22,7 @@ URxvt*foreground: white
 URxvt*background: black
 
 !transparency
-URxvt.fading: 40
+URxvt.fading: 10
 URxvt.shading: 15
 URxvt.transparent: true
 
