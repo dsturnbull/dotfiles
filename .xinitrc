@@ -5,4 +5,5 @@ quartz-wm --proxy-only &
 xsetroot -solid black
 xset b off
 Esetroot -scaled -center $HOME/dotfiles/High-Resolution-3-ALKVC8G2MB-1600x1200.jpg 
+xhost +localhost
 exec /Users/dave/.cabal/bin/xmonad
