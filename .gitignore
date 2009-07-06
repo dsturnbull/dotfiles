@@ -19,6 +19,7 @@ bin/np
 bin/routes
 bin/todo
 bin/mitter
+bin/xmobar
 .xmonad/history
 .vimperator/info/
 .vim/doc/tags
