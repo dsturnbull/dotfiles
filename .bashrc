@@ -42,19 +42,24 @@ export PATH=$HOME/.cabal/bin:$PATH
 GEM_PATH=$(gem env path | sed -e 's/:/\/bin:/g' -e 's/$/\/bin/')
 export PATH=$GEM_PATH:$PATH
 
-export PS1="\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\] "
 export EDITOR=vi
 export MANPATH=$MANPATH:/opt/local/share/man
 export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
 
-if [ `uname` == "Linux" ]; then
-  export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(git_prompt_info)\n→ '
-elif [ `uname -m` == "iPhone1,2" ]; then
-  export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]\n→ '
-else
-  export PS1='\j \[\033[1;0m\][\[\033[00;34m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]$(git_prompt_info)\n→ '
-fi
+NICE_ORANGE="\[\033[38;5;208m\]"
+NICE_BLUE="\[\033[38;5;39m\]"
+NICE_GREEN="\[\033[38;5;154m\]"
+GRAY="\[\033[1;30m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+CYAN="\[\033[0;36m\]"
+LIGHT_CYAN="\[\033[1;36m\]"
+NO_COLOUR="\[\033[0m\]"
+GREEN="\[\033[01;32m\]"
+BLUE="\[\033[01;34m\]"
+LIGHT_BLUE="\[\033[01;36m\]"
+
+export PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR $(git_prompt_info)\n→ "
 
 if [ $TERM == "rxvt-unicode" ]; then
   export TERM=xterm-256color
