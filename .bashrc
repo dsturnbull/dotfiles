@@ -1,6 +1,3 @@
-# crazy XQuartz
-cd
-
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
@@ -147,21 +144,24 @@ excludelist='*.@(o|O|so|SO|so.!(conf)|SO.!(CONF)|a|A|rpm|RPM|deb|DEB|gif|GIF|jp?
 
 complete -F _vim_ctags -f -X "${excludelist}" vi vim gvim rvim view rview rgvim rgview gview
 
+function do_ps1 {
 # PS1 prompt
-NICE_ORANGE="\[\033[38;5;208m\]"
-NICE_BLUE="\[\033[38;5;39m\]"
-NICE_GREEN="\[\033[38;5;154m\]"
-GRAY="\[\033[1;30m\]"
-LIGHT_GRAY="\[\033[0;37m\]"
-CYAN="\[\033[0;36m\]"
-LIGHT_CYAN="\[\033[1;36m\]"
-NO_COLOUR="\[\033[0m\]"
-GREEN="\[\033[01;32m\]"
-BLUE="\[\033[01;34m\]"
-LIGHT_BLUE="\[\033[01;36m\]"
+  NICE_ORANGE="\[\033[38;5;208m\]"
+  NICE_BLUE="\[\033[38;5;39m\]"
+  NICE_GREEN="\[\033[38;5;154m\]"
+  GRAY="\[\033[1;30m\]"
+  LIGHT_GRAY="\[\033[0;37m\]"
+  CYAN="\[\033[0;36m\]"
+  LIGHT_CYAN="\[\033[1;36m\]"
+  NO_COLOUR="\[\033[0m\]"
+  GREEN="\[\033[01;32m\]"
+  BLUE="\[\033[01;34m\]"
+  LIGHT_BLUE="\[\033[01;36m\]"
 
-export PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR $(git_prompt_info)\n→ "
+  PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR\$(git_prompt_info)\n→ "
+}
 
+do_ps1
 
 if test -n "$PS1"; then
   stty -ixon
