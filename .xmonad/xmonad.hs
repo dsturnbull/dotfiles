@@ -36,12 +36,14 @@ myConfig xmproc = defaultConfig
         , ppTitle  = xmobarColor "green" "" . shorten 50
         }
     }
+
 myKeys =
     [ ((modMask, xK_f), viewEmptyWorkspace)
     , ((modShft, xK_f), tagToEmptyWorkspace)
     , ((modMask, xK_a), sendMessage MirrorExpand)
     , ((modMask, xK_z), sendMessage MirrorShrink)
     , ((modMask, xK_s), search)
+    , ((modMask, xK_t), itunesMap)
     , ((modShft, xK_s), sshPrompt defaultXPConfig)
     ]
     where modMask     = mod4Mask
@@ -49,15 +51,28 @@ myKeys =
           modCtrl     = modMask .|. controlMask
           modShCr     = modMask .|. shiftMask .|. controlMask
           search      = SM.submap $ searchMap $ S.promptSearch P.defaultXPConfig
+          nilMask     = 0
+          jstShft     = shiftMask
           searchMap m = M.fromList $
-              [ ((0, xK_g), m S.google)
-              , ((0, xK_h), m S.hoogle)
-              , ((0, xK_w), m S.wikipedia)
-              , ((0, xK_a), m S.amazon)
-              , ((0, xK_i), m S.imdb)
-              , ((0, xK_m), m S.maps)
-              , ((0, xK_y), m S.youtube)
+              [ ((nilMask, xK_g), m S.google)
+              , ((nilMask, xK_h), m S.hoogle)
+              , ((nilMask, xK_w), m S.wikipedia)
+              , ((nilMask, xK_a), m S.amazon)
+              , ((nilMask, xK_i), m S.imdb)
+              , ((nilMask, xK_m), m S.maps)
+              , ((nilMask, xK_y), m S.youtube)
               ]
+          itunesMap = SM.submap . M.fromList $
+              [ ((nilMask, xK_n),      spawn "itunes next")
+              , ((nilMask, xK_p),      spawn "itunes prev")
+              , ((nilMask, xK_space),  spawn "itunes pause")
+              , ((jstShft, xK_space),  spawn "itunes play")
+              , ((nilMask, xK_m),      spawn "itunes mute")
+              , ((nilMask, xK_u),      spawn "itunes unmute")
+              , ((nilMask, xK_period), spawn "itunes vol up")
+              , ((nilMask, xK_comma),  spawn "itunes vol down")
+              ]
+
 
 myLayouts = tiled' ||| Mirror tiled' ||| Full
     where nmaster = 1     -- The default number of windows in the master pane
