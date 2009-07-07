@@ -1,0 +1,52 @@
+#! perl -w
+
+# David Turnbull <dsturnbull@gmail.com>
+
+# For use on MacOSX when you actually want to use X11 exclusively.
+# The perl Clipboard module does not work. xclip doesn't exist in macports,
+# but source is available from SF.
+# Mostly ripped from the macosx-clipboard perl ext.
+
+# Usage: put in your .Xdefaults the following lines
+
+# URxvt.perl-ext-common: x11-clipboard
+# URxvt.keysym.M-c: perl:x11-clipboard:copy
+# URxvt.keysym.M-v: perl:x11-clipboard:paste
+
+use Fcntl ();
+use locale;
+use utf8;
+
+sub copy {
+    my ($self) = @_;
+
+    if ($self->{have_Clipboard}) {
+        open(CLIPBOARD, " | xclip -i");
+        print CLIPBOARD $self->selection;
+        close CLIPBOARD;
+    }
+    ()
+}
+
+sub paste {
+    my ($self) = @_;
+    my ($str);
+
+    $str = `xclip -o`;
+    $self->tt_write($self->locale_encode($str));
+    ()
+}
+
+sub on_user_command {
+    my ($self, $cmd) = @_;
+
+    if ($cmd eq "x11-clipboard:copy") {
+        $self->copy;
+    }
+
+    if ($cmd eq "x11-clipboard:paste") {
+        $self->paste;
+    }
+    ()
+}
+
