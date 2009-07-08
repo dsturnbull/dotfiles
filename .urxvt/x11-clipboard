@@ -15,6 +15,9 @@ sub on_sel_grab {
   open CLIPBOARD, ">/tmp/intermediate_buffer";
   print CLIPBOARD $_[0]->selection;
   close CLIPBOARD;
+  open PB, "| pbcopy";
+  print PB $_[0]->selection;
+  close PB;
   ()
 }
 
