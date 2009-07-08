@@ -24,7 +24,7 @@ sub on_sel_grab {
 sub paste {
   my ($str, $data);
 
-  $str = `/Users/dave/.urxvt/x11-clipboard-contents`;
+  $str = `x11-clipboard-contents`;
   if ($str eq "") {
     open CLIPBOARD, "/tmp/intermediate_buffer";
     while ((read CLIPBOARD, $data, 4) != 0) {

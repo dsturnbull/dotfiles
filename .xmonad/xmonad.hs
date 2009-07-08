@@ -41,8 +41,10 @@ myConfig xmproc = defaultConfig
 myKeys =
     [ ((modMask, xK_f), viewEmptyWorkspace)
     , ((modShft, xK_f), tagToEmptyWorkspace)
-    , ((modMask, xK_a), sendMessage MirrorExpand)
-    , ((modMask, xK_z), sendMessage MirrorShrink)
+    , ((modMod1, xK_k), sendMessage MirrorExpand)
+    , ((modMod1, xK_l), sendMessage Expand)
+    , ((modMod1, xK_h), sendMessage Shrink)
+    , ((modMod1, xK_j), sendMessage MirrorShrink)
     , ((modMask, xK_s), search)
     , ((modMask, xK_t), itunesMap)
     , ((modShft, xK_s), sshPrompt defaultXPConfig)
