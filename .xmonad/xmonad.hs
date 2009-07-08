@@ -8,6 +8,7 @@ import XMonad.Layout.LayoutHints
 import XMonad.Layout.Maximize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.WindowNavigation
 import XMonad.Prompt
 import XMonad.Prompt.Ssh
 import XMonad.Util.EZConfig(additionalKeys)
@@ -45,11 +46,21 @@ myKeys =
     , ((modMask, xK_s), search)
     , ((modMask, xK_t), itunesMap)
     , ((modShft, xK_s), sshPrompt defaultXPConfig)
+    , ((modMod1, xK_l), sendMessage $ Go R)
+    , ((modMod1, xK_h), sendMessage $ Go L)
+    , ((modMod1, xK_k), sendMessage $ Go U)
+    , ((modMod1, xK_j), sendMessage $ Go D)
+    , ((modM1Cr, xK_l), sendMessage $ Swap R)
+    , ((modM1Cr, xK_h), sendMessage $ Swap L)
+    , ((modM1Cr, xK_k), sendMessage $ Swap U)
+    , ((modM1Cr, xK_j), sendMessage $ Swap D)
     ]
     where modMask     = mod4Mask
           modShft     = modMask .|. shiftMask
           modCtrl     = modMask .|. controlMask
           modShCr     = modMask .|. shiftMask .|. controlMask
+          modMod1     = modMask .|. mod1Mask
+          modM1Cr     = modMask .|. mod1Mask .|. controlMask
           search      = SM.submap $ searchMap $ S.promptSearch P.defaultXPConfig
           nilMask     = 0
           jstShft     = shiftMask
@@ -73,8 +84,7 @@ myKeys =
               , ((nilMask, xK_comma),  spawn "itunes vol down")
               ]
 
-
-myLayouts = tiled' ||| Mirror tiled' ||| Full
+myLayouts = windowNavigation $ tiled' ||| Mirror tiled' ||| Full
     where nmaster = 1     -- The default number of windows in the master pane
           ratio   = 1/2   -- Default proportion of screen occupied by master pane
           delta   = 3/100 -- Percent of screen to increment by when resizing panes
