@@ -20,12 +20,12 @@ def help
   puts <<-EOH
 usage: $0 cmd
   where cmd is one of:
-    vol               :: Int    -- get volume
-    wifi_station      :: String -- connected wifi access point
-    wifi_strength     :: String -- agrCtlRSSI.abs
-    battery_charging  :: Bool   -- - not charging, ~ charging
-    battery_life      :: Int    -- percentage
-    battery_remaining :: String -- %hh%mm remaining or .. if calculating
+    vol               -- get volume, - if muted
+    wifi_station      -- connected wifi access point
+    wifi_strength     -- agrCtlRSSI.abs
+    battery_charging  -- - not charging, ~ charging
+    battery_life      -- percentage
+    battery_remaining -- %hh%mm remaining or .. if calculating
   EOH
 end
 
@@ -35,7 +35,7 @@ def vol
   _, output, _, input, _, alert, _, muted = volume_settings.split(':').map { |e| e.split(',') }.flatten.map(&:strip)
   output = output.to_i
   muted = eval(muted)
-  muted ? nil : output
+  muted ? '-' : output
 end
 
 def wifi_station
