@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby1.9
+
+class String
+  def blank?
+    self == ''
+  end
+end
+
+class NilClass
+  def to_sym
+    :help
+  end
+  
+  def blank?
+    true
+  end
+end
+
+def help
+  puts <<-EOH
+usage: $0 cmd
+  where cmd is one of:
+    vol               :: Int    -- get volume
+    wifi_station      :: String -- connected wifi access point
+    wifi_strength     :: String -- agrCtlRSSI.abs
+    battery_charging  :: Bool   -- - not charging, ~ charging
+    battery_life      :: Int    -- percentage
+    battery_remaining :: String -- %hh%mm remaining or .. if calculating
+  EOH
+end
+
+def vol
+  # 0-100, nil = muted
+  volume_settings = `osascript -e 'get volume settings'`.strip
+  _, output, _, input, _, alert, _, muted = volume_settings.split(':').map { |e| e.split(',') }.flatten.map(&:strip)
+  output = output.to_i
+  muted = eval(muted)
+  muted ? nil : output
+end
+
+def wifi_station
+  station = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep " SSID"`.strip.sub(/.*: /, '')
+  station.blank? ? 'no wifi' : station
+end
+
+def wifi_strength
+  # apparently an unsigned 7-bit integer
+  str = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep agrCtlRSSI | awk '{print $2}'`.strip.to_i.abs
+  (str.to_f / 127 * 100).round
+end
+
+def _battery_info
+  ioregs = `ioreg -r -n AppleSmartBattery -l | grep -e "MaxCapacity\\\|CurrentCapacity\\\|IsCharging\\\|TimeRemaining"`.split("\n")
+  current_capacity, is_charging, time_remaining, max_capacity = ioregs.map { |l| l.sub(/.*= /, '') }
+
+  current_capacity = current_capacity.to_f
+  max_capacity = max_capacity.to_f
+  perc = (current_capacity/max_capacity * 100).to_i
+
+  charging = is_charging == 'No' ? false : true
+  is_charging = charging ? '~' : '-'
+
+  if charging || time_remaining.to_i == 0
+    time_remaining = '..'
+  else
+    time_remaining = time_remaining.to_i
+    time_remaining *= 60 if time_remaining < 10
+    hours = time_remaining / 60
+    mins  = time_remaining % 60
+    time_remaining = "#{hours}h#{mins}m"
+  end
+
+  { perc: perc, is_charging: is_charging, time_remaining: time_remaining }
+end
+
+def battery_charging
+  _battery_info[:is_charging]
+end
+
+def battery_life
+  _battery_info[:perc]
+end
+
+def battery_remaining
+  _battery_info[:time_remaining]
+end
+
+puts self.send(ARGV[0].to_sym)
+
+# vim:filetype=ruby

@@ -3,13 +3,19 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , fgColor = "grey"
        , position = TopW L 90
        , lowerOnStart = True
-       , commands = [ Run Weather "YSSY" ["-t"," <tempC>C","-L","64","-H","77","--normal","green","--high","red","--low","lightblue"] 36000
+       , commands = [ Run Weather "YSSY" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","blue"] 36000
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
+                    , Run Com "/Users/dave/bin/apple" ["wifi_station"]      "wifi_station"      30
+                    , Run Com "/Users/dave/bin/apple" ["wifi_strength"]     "wifi_strength"     30
+                    , Run Com "/Users/dave/bin/apple" ["battery_charging"]  "battery_charging"  30
+                    , Run Com "/Users/dave/bin/apple" ["battery_remaining"] "battery_remaining" 30
+                    , Run Com "/Users/dave/bin/apple" ["battery_life"]      "battery_life"      30
+                    , Run Com "/Users/dave/bin/apple" ["vol"]               "vol"               30
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc> | %YSSY%"
+       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc>%YSSY% | %wifi_station% | %wifi_strength% | %battery_remaining% %battery_life% %battery_charging% | %vol% "
        }
    
 -- vim:filetype=haskell
