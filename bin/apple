@@ -73,7 +73,7 @@ def _battery_info
   fully_charged = fully_charged == 'Yes' || false
   current_capacity = current_capacity.to_f
   max_capacity = max_capacity.to_f
-  perc = (current_capacity/max_capacity * 100).to_i
+  perc = (current_capacity/max_capacity * 100).to_i rescue 100
 
   charging = is_charging == 'Yes' || false
   is_charging = charging ? '~' : '-'
