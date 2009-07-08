@@ -46,20 +46,20 @@ myKeys =
     , ((modMask, xK_s), search)
     , ((modMask, xK_t), itunesMap)
     , ((modShft, xK_s), sshPrompt defaultXPConfig)
-    , ((modMod1, xK_l), sendMessage $ Go R)
-    , ((modMod1, xK_h), sendMessage $ Go L)
-    , ((modMod1, xK_k), sendMessage $ Go U)
-    , ((modMod1, xK_j), sendMessage $ Go D)
-    , ((modM1Cr, xK_l), sendMessage $ Swap R)
-    , ((modM1Cr, xK_h), sendMessage $ Swap L)
-    , ((modM1Cr, xK_k), sendMessage $ Swap U)
-    , ((modM1Cr, xK_j), sendMessage $ Swap D)
+    , ((modMask, xK_h), sendMessage $ Go L)
+    , ((modMask, xK_j), sendMessage $ Go D)
+    , ((modMask, xK_k), sendMessage $ Go U)
+    , ((modMask, xK_l), sendMessage $ Go R)
+    , ((modShft, xK_h), sendMessage $ Swap L)
+    , ((modShft, xK_j), sendMessage $ Swap D)
+    , ((modShft, xK_k), sendMessage $ Swap U)
+    , ((modShft, xK_l), sendMessage $ Swap R)
     ]
     where modMask     = mod4Mask
           modShft     = modMask .|. shiftMask
           modCtrl     = modMask .|. controlMask
           modShCr     = modMask .|. shiftMask .|. controlMask
-          modMod1     = modMask .|. mod1Mask
+          modMod1     = mod1Mask
           modM1Cr     = modMask .|. mod1Mask .|. controlMask
           search      = SM.submap $ searchMap $ S.promptSearch P.defaultXPConfig
           nilMask     = 0
