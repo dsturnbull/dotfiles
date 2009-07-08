@@ -111,7 +111,7 @@ def ip_addr
   network = `route get default | grep gateway | awk '{print $2}' 2>/dev/null`.strip.sub(/\.[0-9]+$/, '')
   unless network.blank?
     ip = `ifconfig | grep #{network} | awk '{print $2}'`.strip
-    ip.blank? '127.0.0.1' || ip
+    ip.blank? ? '127.0.0.1' : ip
   else
     '127.0.0.1'
   end
