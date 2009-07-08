@@ -88,7 +88,11 @@ def _battery_info
     time_remaining = "#{hours}h#{mins}m"
   end
 
-  @battery_info = { perc: perc, is_charging: is_charging, time_remaining: time_remaining }
+  if perc == 100 && is_charging == '-' && time_remaining == '..'
+    @battery_info = { perc: '~', is_charging: '~', time_remaining: '~' }
+  else
+    @battery_info = { perc: perc, is_charging: is_charging, time_remaining: time_remaining }
+  end
 end
 
 def battery_charging
