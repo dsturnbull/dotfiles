@@ -6,16 +6,17 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , commands = [ Run Weather "YSSY" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","blue"] 36000
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
-                    , Run Com "/Users/dave/bin/apple" ["wifi_station"]      "wifi_station"      30
-                    , Run Com "/Users/dave/bin/apple" ["wifi_strength"]     "wifi_strength"     30
-                    , Run Com "/Users/dave/bin/apple" ["battery_charging"]  "battery_charging"  30
-                    , Run Com "/Users/dave/bin/apple" ["battery_remaining"] "battery_remaining" 30
-                    , Run Com "/Users/dave/bin/apple" ["battery_life"]      "battery_life"      30
-                    , Run Com "/Users/dave/bin/apple" ["vol"]               "vol"               30
+                    , Run Com "apple" ["wifi_info"]         "wifi_info"         30
+                    , Run Com "apple" ["battery_charging"]  "battery_charging"  30
+                    , Run Com "apple" ["battery_remaining"] "battery_remaining" 30
+                    , Run Com "apple" ["battery_life"]      "battery_life"      30
+                    , Run Com "apple" ["vol"]               "vol"               30
+                    , Run Com "apple" ["bluetooth_network"] "bluetooth_network" 30
+                    , Run Com "apple" ["ip_addr"]           "ip_addr"           30
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc>%YSSY% | %wifi_station% | %wifi_strength% | %battery_remaining% %battery_life% %battery_charging% | %vol% "
+       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc> %YSSY% | %ip_addr% | %wifi_info% | bt: %bluetooth_network% | %battery_remaining% %battery_life% %battery_charging% | vol: %vol% "
        }
-   
+
 -- vim:filetype=haskell

@@ -21,11 +21,12 @@ def help
 usage: $0 cmd
   where cmd is one of:
     vol               -- get volume, - if muted
-    wifi_station      -- connected wifi access point
-    wifi_strength     -- agrCtlRSSI.abs
+    wifi_info         -- connected wifi access point and signal strength (RSSI)
     battery_charging  -- - not charging, ~ charging
     battery_life      -- percentage
     battery_remaining -- %hh%mm remaining or .. if calculating
+    bluetooth_network -- - or *
+    ip_addr           -- x.x.x.x
   EOH
 end
 
@@ -38,26 +39,43 @@ def vol
   muted ? '-' : output
 end
 
-def wifi_station
-  station = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep " SSID"`.strip.sub(/.*: /, '')
-  station.blank? ? 'no wifi' : station
-end
+def wifi_info
+  # get airport data into hash
+  data = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I`.strip.split("\n")
+  info = {}
+  data.each do |line|
+    k, v = line.split(':')
+    k.strip!
+    v.strip!
+    info[k] = v
+  end
 
-def wifi_strength
-  # apparently an unsigned 7-bit integer
-  str = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep agrCtlRSSI | awk '{print $2}'`.strip.to_i.abs
-  (str.to_f / 127 * 100).round
+  # sanitise
+  info['SSID'] = 'no wifi' if info['SSID'].blank?
+
+  # normalise
+  info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank?
+    0
+  else
+    (info['agrCtlRSSI'].to_f / 127 * 100).round
+  end
+
+  # output format
+  "#{info['SSID']} : #{info['agrCtlRSSI']}"
 end
 
 def _battery_info
-  ioregs = `ioreg -r -n AppleSmartBattery -l | grep -e "MaxCapacity\\\|CurrentCapacity\\\|IsCharging\\\|TimeRemaining"`.split("\n")
-  current_capacity, is_charging, time_remaining, max_capacity = ioregs.map { |l| l.sub(/.*= /, '') }
+  return @battery_info if @battery_info
 
+  ioregs = `ioreg -r -n AppleSmartBattery -l | grep -e "MaxCapacity\\\|CurrentCapacity\\\|IsCharging\\\|TimeRemaining\\\|FullyCharged"`.split("\n")
+  current_capacity, fully_charged, is_charging, time_remaining, max_capacity = ioregs.map { |l| l.sub(/.*= /, '') }
+
+  fully_charged = fully_charged == 'Yes' || false
   current_capacity = current_capacity.to_f
   max_capacity = max_capacity.to_f
   perc = (current_capacity/max_capacity * 100).to_i
 
-  charging = is_charging == 'No' ? false : true
+  charging = is_charging == 'Yes' || false
   is_charging = charging ? '~' : '-'
 
   if charging || time_remaining.to_i == 0
@@ -70,7 +88,7 @@ def _battery_info
     time_remaining = "#{hours}h#{mins}m"
   end
 
-  { perc: perc, is_charging: is_charging, time_remaining: time_remaining }
+  @battery_info = { perc: perc, is_charging: is_charging, time_remaining: time_remaining }
 end
 
 def battery_charging
@@ -83,6 +101,20 @@ end
 
 def battery_remaining
   _battery_info[:time_remaining]
+end
+
+def bluetooth_network
+  '-'
+end
+
+def ip_addr
+  network = `route get default | grep gateway | awk '{print $2}' 2>/dev/null`.strip.sub(/\.[0-9]+$/, '')
+  unless network.blank?
+    ip = `ifconfig | grep #{network} | awk '{print $2}'`.strip
+    ip.blank? '127.0.0.1' || ip
+  else
+    '127.0.0.1'
+  end
 end
 
 puts self.send(ARGV[0].to_sym)
