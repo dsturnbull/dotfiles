@@ -64,9 +64,9 @@ def wifi_info
     # the ratios roughly match to give -54 almost "5 bars"
     max = 130.0 / 600.0
     rssi = info['agrCtlRSSI'].to_f.abs / 255
-    (rssi / max * 100).round
+    rssi = (rssi / max * 100).round
     # output format
-    printf("Ψ %3d", info['agrCtlRSSI'])
+    printf("Ψ %3d", rssi)
   end
 end
 
