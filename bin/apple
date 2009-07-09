@@ -89,7 +89,9 @@ def battery_info
 end
 
 def bluetooth_network
-  'ß -'
+  connected = `ioreg -r -n IOBluetoothBNEPDriver -l | grep IOLinkStatus | awk '{print $4}'`.strip
+  connected = connected.to_i == 3 || false
+  'ß ' + (connected ? '*' : '-')
 end
 
 def ip_addr
