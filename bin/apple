@@ -1,6 +1,15 @@
 #!/usr/bin/env ruby1.9
 # -*- coding: utf-8 -*-
 
+RAINING = 'ʬ'
+BLUETOOTH = 'ß'
+WIFI = 'Ψ'
+NO_WIFI = 'no wifi'
+CHARGING = 'ϟ'
+HEADPHONES = 'Ω'
+SPEAKERS = '<'
+INTERNET = ''
+
 class String
   def blank?
     self == ''
@@ -39,7 +48,7 @@ def vol
   audio_terminal = `ioreg -r -n IOAudioStream -l | grep IOAudioStreamTerminalType | head -1 | awk '{print $3}'`.strip.to_i
   headphones = audio_terminal != 769
 
-  (headphones ? 'Ω ' : '< ') + (muted ? '-' : output)
+  (headphones ? "#{HEADPHONES} " : "#{SPEAKERS} ") + (muted ? '-' : output)
 end
 
 def wifi_info
@@ -58,7 +67,7 @@ def wifi_info
 
   # normalise
   info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank? || info['agrCtlRSSI'] == '0'
-    'no wifi'
+    NO_WIFI
   else
     # 802.11n is max 600mbit. i get roughly 130mbit out of my 802.11n station with an RSSI of -54
     # the ratios roughly match to give -54 almost "5 bars"
@@ -66,7 +75,7 @@ def wifi_info
     rssi = info['agrCtlRSSI'].to_f.abs / 255
     rssi = (rssi / max * 100).round
     # output format
-    printf("Ψ%3d", rssi)
+    printf("#{WIFI}%3d", rssi)
   end
 end
 
@@ -84,23 +93,23 @@ def battery_info
     mins  = time_remaining % 60
     "#{hours}h#{mins}m"
   else
-    '≈'
+    CHARGING
   end
 end
 
 def bluetooth_network
   connected = `ioreg -r -n IOBluetoothBNEPDriver -l | grep IOLinkStatus | awk '{print $4}'`.strip
   connected = connected.to_i == 3 || false
-  'ß' + (connected ? '+' : '-')
+  BLUETOOTH + (connected ? '+' : '-')
 end
 
 def ip_addr
-  default = '127.0.0.1'
+  default = "#{INTERNET} 127.0.0.1"
   network = `route get default | grep gateway | awk '{print $2}' 2>/dev/null`.strip.sub(/\.[0-9]+$/, '')
   network = `host #{network} | awk '{print $4}'`.strip.sub(/\.[0-9]+$/, '') unless network =~ /^[0-9]\.[0-9]\.[0-9]/
   unless network.blank?
     ip = `ifconfig | grep #{network} | awk '{print $2}'`.strip
-    ip.blank? ? default : ip
+    ip.blank? ? default : "#{INTERNET} #{ip}"
   else
     default
   end

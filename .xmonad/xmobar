@@ -1,6 +1,6 @@
-Config { font = "xft:Monaco-9"
+Config { font = "xft:Courier New-9:bold"
        , bgColor = "black"
-       , fgColor = "grey"
+       , fgColor = "white"
        , position = TopW L 100
        , lowerOnStart = True
        , commands = [ Run Weather "YSSY" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
