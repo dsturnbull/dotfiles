@@ -77,7 +77,7 @@ def _battery_info
   perc = (current_capacity/max_capacity * 100).to_i rescue 100
 
   charging = is_charging == 'Yes' || false
-  is_charging = charging ? '≈' : '-'
+  is_charging = (charging || fully_charged) ?  '≈' : '-'
 
   if charging || time_remaining.to_i == 0
     time_remaining = '∞'
