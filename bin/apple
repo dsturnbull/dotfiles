@@ -55,7 +55,7 @@ def wifi_info
   info['SSID'] = 'no wifi' if info['SSID'].blank?
 
   # normalise
-  info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank?
+  info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank? || info['agrCtlRSSI'] == '0'
     '-'
   else
     (info['agrCtlRSSI'].to_f / 127 * 100).round
