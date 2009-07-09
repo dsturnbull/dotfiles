@@ -16,7 +16,7 @@ Config { font = "xft:Monaco-9"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc> %YSSY% | %ip_addr% | %wifi_info% | bt: %bluetooth_network% | %battery_remaining% %battery_life% %battery_charging% | vol: %vol% "
+       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc> %YSSY% | %ip_addr% | %wifi_info% | %bluetooth_network% | %battery_remaining% %battery_life% %battery_charging% | %vol% "
        }
 
 -- vim:filetype=haskell

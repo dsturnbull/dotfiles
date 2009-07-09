@@ -35,9 +35,9 @@ def vol
   # 0-100, nil = muted
   volume_settings = `osascript -e 'get volume settings'`.strip
   _, output, _, input, _, alert, _, muted = volume_settings.split(':').map { |e| e.split(',') }.flatten.map(&:strip)
-  output = output.to_i
+  output = output.to_s
   muted = eval(muted)
-  muted ? '-' : output
+  'Ω ' + (muted ? '-' : output)
 end
 
 def wifi_info
@@ -56,13 +56,13 @@ def wifi_info
 
   # normalise
   info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank?
-    '.'
+    '-'
   else
     (info['agrCtlRSSI'].to_f / 127 * 100).round
   end
 
   # output format
-  "#{info['SSID']} Ψ#{info['agrCtlRSSI']}"
+  "#{info['SSID']} Ψ #{info['agrCtlRSSI']}"
 end
 
 def _battery_info
@@ -109,7 +109,7 @@ def battery_remaining
 end
 
 def bluetooth_network
-  '-'
+  'ß -'
 end
 
 def ip_addr
