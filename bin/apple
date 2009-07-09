@@ -23,9 +23,7 @@ usage: $0 cmd
   where cmd is one of:
     vol               -- get volume, - if muted
     wifi_info         -- connected wifi access point and signal strength (RSSI)
-    battery_charging  -- - not charging, ~ charging
-    battery_life      -- percentage
-    battery_remaining -- %hh%mm remaining or .. if calculating
+    battery_info      -- ~ charging, else %hh%mm
     bluetooth_network -- - or *
     ip_addr           -- x.x.x.x
   EOH
@@ -58,54 +56,28 @@ def wifi_info
   info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank? || info['agrCtlRSSI'] == '0'
     '-'
   else
-    (info['agrCtlRSSI'].to_f / 127 * 100).round
+    (info['agrCtlRSSI'].to_f.abs / 127 * 100).round
   end
 
   # output format
-  "#{info['SSID']} Ψ #{info['agrCtlRSSI']}"
+  "Ψ #{info['agrCtlRSSI']}"
 end
 
-def _battery_info
-  return @battery_info if @battery_info
+def battery_info
+  ioregs = `ioreg -r -n AppleSmartBattery -l | grep -e "ExternalConnected\\\|TimeRemaining"`.split("\n")
+  external_connected, time_remaining = ioregs.map { |l| l.sub(/.*= /, '') }
 
-  ioregs = `ioreg -r -n AppleSmartBattery -l | grep -e "MaxCapacity\\\|CurrentCapacity\\\|IsCharging\\\|TimeRemaining\\\|FullyCharged"`.split("\n")
-  current_capacity, fully_charged, is_charging, time_remaining, max_capacity = ioregs.map { |l| l.sub(/.*= /, '') }
+  external_connected = external_connected == 'Yes' || false
+  time_remaining     = time_remaining.to_i
 
-  fully_charged = fully_charged == 'Yes' || false
-  current_capacity = current_capacity.to_f
-  max_capacity = max_capacity.to_f
-  perc = (current_capacity/max_capacity * 100).to_i rescue 100
-
-  charging = is_charging == 'Yes' || false
-  is_charging = (charging || fully_charged) ?  '≈' : '-'
-
-  if charging || time_remaining.to_i == 0
-    time_remaining = '∞'
-  else
-    time_remaining = time_remaining.to_i
-    time_remaining *= 60 if time_remaining < 10
+  # avoid batshit values
+  if !external_connected && time_remaining > 10 && time_remaining < 1000
     hours = time_remaining / 60
     mins  = time_remaining % 60
-    time_remaining = "#{hours}h#{mins}m"
-  end
-
-  if perc == 100 && is_charging == '-' && time_remaining == '..'
-    @battery_info = { perc: '~', is_charging: '≈', time_remaining: '~' }
+    "#{hours}h#{mins}m"
   else
-    @battery_info = { perc: perc, is_charging: is_charging, time_remaining: time_remaining }
+    '≈'
   end
-end
-
-def battery_charging
-  _battery_info[:is_charging]
-end
-
-def battery_life
-  _battery_info[:perc]
-end
-
-def battery_remaining
-  _battery_info[:time_remaining]
 end
 
 def bluetooth_network

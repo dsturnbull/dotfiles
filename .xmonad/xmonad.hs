@@ -1,4 +1,3 @@
-import System.IO.UTF8 as U
 import System.Posix.Env
 import XMonad
 import XMonad.Actions.FindEmptyWorkspace
@@ -14,6 +13,7 @@ import XMonad.Prompt.Ssh
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 import qualified Data.Map as M
+import qualified System.IO.UTF8        as U
 import qualified XMonad.Actions.Search as S
 import qualified XMonad.Actions.Submap as SM
 import qualified XMonad.Prompt         as P
