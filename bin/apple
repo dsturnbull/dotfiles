@@ -35,7 +35,11 @@ def vol
   _, output, _, input, _, alert, _, muted = volume_settings.split(':').map { |e| e.split(',') }.flatten.map(&:strip)
   output = output.to_s
   muted = eval(muted)
-  'Ω ' + (muted ? '-' : output)
+
+  audio_terminal = `ioreg -r -n IOAudioStream -l | grep IOAudioStreamTerminalType | head -1 | awk '{print $3}'`.strip.to_i
+  headphones = audio_terminal != 769
+
+  (headphones ? 'Ω ' : '') + (muted ? '-' : output)
 end
 
 def wifi_info

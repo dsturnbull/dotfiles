@@ -1,7 +1,7 @@
 Config { font = "xft:Monaco-9"
        , bgColor = "black"
        , fgColor = "grey"
-       , position = TopW L 90
+       , position = TopW L 100
        , lowerOnStart = True
        , commands = [ Run Weather "YSSY" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","blue"] 36000
                     , Run Date "%a %b %_d %l:%M" "date" 10
