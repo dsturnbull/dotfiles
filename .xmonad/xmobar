@@ -3,7 +3,7 @@ Config { font = "xft:Monaco-9"
        , fgColor = "grey"
        , position = TopW L 100
        , lowerOnStart = True
-       , commands = [ Run Weather "YSSY" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","blue"] 36000
+       , commands = [ Run Weather "YSSY" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
                     , Run Com "apple" ["wifi_info"]         "wifi_info"         30
@@ -14,7 +14,7 @@ Config { font = "xft:Monaco-9"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#ee9a00>%date%</fc> %YSSY% | %ip_addr% | %wifi_info% | %bluetooth_network% | %battery_info% | %vol% "
+       , template = "%StdinReader% }{ %YSSY% %ip_addr% | %bluetooth_network% | %wifi_info% | %vol% | %battery_info% <fc=#ee9a00>%date%</fc>"
        }
 
 -- vim:filetype=haskell
