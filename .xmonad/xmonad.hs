@@ -1,4 +1,4 @@
-import System.IO
+import System.IO.UTF8 as U
 import System.Posix.Env
 import XMonad
 import XMonad.Actions.FindEmptyWorkspace
@@ -33,7 +33,7 @@ myConfig xmproc = defaultConfig
     , manageHook         = manageDocks <+> manageHook defaultConfig
     , layoutHook         = smartBorders . layoutHints . avoidStruts $ myLayouts
     , logHook            = dynamicLogWithPP $ xmobarPP
-        { ppOutput = hPutStrLn xmproc
+        { ppOutput = U.hPutStrLn xmproc
         , ppTitle  = xmobarColor "green" "" . shorten 50
         }
     }
