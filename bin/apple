@@ -68,12 +68,12 @@ def wifi_info
   end
 
   # output format
-  "Ψ #{info['agrCtlRSSI']}"
+  printf("Ψ %3d", info['agrCtlRSSI'])
 end
 
 def battery_info
   ioregs = `ioreg -r -n AppleSmartBattery -l | grep -e "ExternalConnected\\\|TimeRemaining\\\|BatteryInstalled"`.split("\n")
-  external_connected, time_remaining, battery_installed = ioregs.map { |l| l.sub(/.*= /, '') }
+  external_connected, battery_installed, time_remaining = ioregs.map { |l| l.sub(/.*= /, '') }
 
   external_connected = external_connected == 'Yes' || false
   battery_installed  = battery_installed  == 'Yes' || false
