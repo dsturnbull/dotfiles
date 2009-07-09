@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby1.9
+# -*- coding: utf-8 -*-
 
 class String
   def blank?
@@ -55,13 +56,13 @@ def wifi_info
 
   # normalise
   info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank?
-    0
+    '.'
   else
     (info['agrCtlRSSI'].to_f / 127 * 100).round
   end
 
   # output format
-  "#{info['SSID']} : #{info['agrCtlRSSI']}"
+  "#{info['SSID']} Ψ#{info['agrCtlRSSI']}"
 end
 
 def _battery_info
@@ -76,10 +77,10 @@ def _battery_info
   perc = (current_capacity/max_capacity * 100).to_i rescue 100
 
   charging = is_charging == 'Yes' || false
-  is_charging = charging ? '~' : '-'
+  is_charging = charging ? '≈' : '-'
 
   if charging || time_remaining.to_i == 0
-    time_remaining = '..'
+    time_remaining = '∞'
   else
     time_remaining = time_remaining.to_i
     time_remaining *= 60 if time_remaining < 10
@@ -89,7 +90,7 @@ def _battery_info
   end
 
   if perc == 100 && is_charging == '-' && time_remaining == '..'
-    @battery_info = { perc: '~', is_charging: '~', time_remaining: '~' }
+    @battery_info = { perc: '~', is_charging: '≈', time_remaining: '~' }
   else
     @battery_info = { perc: perc, is_charging: is_charging, time_remaining: time_remaining }
   end
