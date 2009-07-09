@@ -56,7 +56,11 @@ def wifi_info
   info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank? || info['agrCtlRSSI'] == '0'
     '-'
   else
-    (info['agrCtlRSSI'].to_f.abs / 127 * 100).round
+    # 802.11n is max 600mbit. i get roughly 130mbit out of my 802.11n station with an RSSI of -54
+    # the ratios roughly match to give -54 almost "5 bars"
+    max = 130.0 / 600.0
+    rssi = info['agrCtlRSSI'].to_f.abs / 255
+    (rssi / max * 100).round
   end
 
   # output format
