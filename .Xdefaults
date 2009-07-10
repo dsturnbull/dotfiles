@@ -53,3 +53,4 @@ URxvt.tabbed.tab-bg:    4
 URxvt.termName: xterm-256color
 URxvt.imLocale: en_US.UTF-8
 
+URxvt*font: xft:terminus:pixelsize=12
