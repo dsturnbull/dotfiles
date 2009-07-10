@@ -4,7 +4,7 @@ xterm*metaSendsEscape: true
 !perl extensions
 !XXX why can't i use $HOME?
 URxvt.perl-lib: /Users/dave/.urxvt/
-URxvt.perl-ext-common: default,matcher,selection-autotransform,tabbed,x11-clipboard
+URxvt.perl-ext-common: default,selection-autotransform,tabbed,x11-clipboard,mark-yank-urls
 
 !make it work like terminal.app/gnome-term
 URxvt.scrollBar: false
@@ -30,10 +30,12 @@ URxvt.transparent: true
 
 !click on a url
 URxvt.urlLauncher: firefox-x11-standalone
-URxvt.keysym.C-i: perl:matcher
-URxvt.matcher.button: 1
-URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt.matcher.launcher.1: firefox-x11-standalone
+!URxvt.keysym.C-i: perl:matcher
+!URxvt.matcher.button: 1
+!URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+!URxvt.matcher.launcher.1: firefox-x11-standalone
+URxvt.keysym.C-i: perl:mark-yank-urls:activate_mark_mode
+URxvt.underlineURLs: true
 
 !copy paste stuff
 URxvt.keysym.4-c: perl:x11-clipboard:copy
@@ -53,4 +55,5 @@ URxvt.tabbed.tab-bg:    4
 URxvt.termName: xterm-256color
 URxvt.imLocale: en_US.UTF-8
 
-URxvt*font: xft:terminus:pixelsize=12
+URxvt*font: -*-terminus-*-*-*-*-12-*-*-*-*-*-*-u
+

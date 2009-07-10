@@ -2,6 +2,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 source $HOME/.bashrc
 xmodmap $HOME/.Xmodmap
+xset fp+ /usr/X11/lib/X11/fonts/local
 quartz-wm --proxy-only &
 xsetroot -solid black
 xset b off
