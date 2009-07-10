@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby1.9
+# -*- coding: utf-8 -*-
+ 
+require 'nokogiri'
+require 'open-uri'
+ 
+doc = Nokogiri::HTML(open('http://weather.smh.com.au/local.jsp'))
+doc.css('a.screenname').each do |city|
+  if city.text == 'Sydney'
+    conditions = city.previous
+    p conditions.attribute('alt')
+  end
+end
+
+# vim:filetype=ruby

@@ -1,9 +1,10 @@
 #!/bin/sh
-#
+# vim:filetype=sh
 ####################################
 # iTunes Command Line Control v1.0
 # written by David Schlosnagle
 # created 2001.11.08
+# modified by David Turnbull, 2009.7.10
 ####################################
 
 showHelp () {
@@ -23,6 +24,7 @@ showHelp () {
     echo " vol up   = Increase iTunes' volume by 10%";
     echo " vol down = Increase iTunes' volume by 10%";
     echo " vol #    = Set iTunes' volume to # [0-100]";
+    echo " getvol   = Get iTunes' volume";
     echo " stop     = Stop iTunes.";
     echo " quit     = Quit iTunes.";
 }
@@ -39,7 +41,7 @@ while [ $# -gt 0 ]; do
             if [ $state = "playing" ]; then
                 artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
                 track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
-                echo "Current track $artist:  $track";
+                echo "Current track $artist: $track";
             fi
             break ;;
 
@@ -82,6 +84,10 @@ while [ $# -gt 0 ]; do
             fi
             osascript -e "tell application \"iTunes\" to set sound volume to $newvol";
             break ;;
+
+        "getvol"  )
+            echo `osascript -e 'tell application "iTunes" to sound volume as integer'`;
+            break;;
 
         "stop"    ) echo "Stopping iTunes.";
             osascript -e 'tell application "iTunes" to stop';

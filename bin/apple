@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby1.9
 # -*- coding: utf-8 -*-
 
+require 'drb'
+
 RAINING = 'ʬ'
 BLUETOOTH = 'ß'
 WIFI = 'Ψ'
@@ -9,6 +11,7 @@ CHARGING = 'ϟ'
 HEADPHONES = 'Ω'
 SPEAKERS = '<'
 INTERNET = ''
+MUTED = 'm'
 
 class String
   def blank?
@@ -26,95 +29,133 @@ class NilClass
   end
 end
 
-def help
-  puts <<-EOH
-usage: $0 cmd
-  where cmd is one of:
-    vol               -- get volume, - if muted
-    wifi_info         -- connected wifi access point and signal strength (RSSI)
-    battery_info      -- ~ charging, else %hh%mm
-    bluetooth_network -- - or *
-    ip_addr           -- x.x.x.x
-  EOH
-end
-
-def vol
-  # 0-100, nil = muted
-  volume_settings = `osascript -e 'get volume settings'`.strip
-  _, output, _, input, _, alert, _, muted = volume_settings.split(':').map { |e| e.split(',') }.flatten.map(&:strip)
-  output = output.to_s
-  muted = eval(muted)
-
-  audio_terminal = `ioreg -r -n IOAudioStream -l | grep IOAudioStreamTerminalType | head -1 | awk '{print $3}'`.strip.to_i
-  headphones = audio_terminal != 769
-
-  (headphones ? "#{HEADPHONES} " : "#{SPEAKERS} ") + (muted ? '-' : output)
-end
-
-def wifi_info
-  # get airport data into hash
-  data = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I`.strip.split("\n")
-  info = {}
-  data.each do |line|
-    k, v = line.split(':')
-    k.strip!
-    v.strip!
-    info[k] = v
+class Apple
+  def help
+    puts <<-EOH
+  usage: $0 cmd
+    where cmd is one of:
+      vol_info          -- get volume, m if muted
+      itunes_info       -- get volume, current track
+      wifi_info         -- connected wifi access point and signal strength (RSSI)
+      battery_info      -- ~ charging, else %hh%mm
+      bluetooth_info    -- - or *
+      ip_addr           -- x.x.x.x
+    EOH
   end
 
-  # sanitise
-  info['SSID'] = 'no wifi' if info['SSID'].blank?
+  def vol_info
+    # 0-100, nil = muted
+    volume_settings = `osascript -e 'get volume settings'`.strip
+    _, output, _, input, _, alert, _, muted = volume_settings.split(':').map { |e| e.split(',') }.flatten.map(&:strip)
+    output = output.to_s
+    muted = eval(muted)
 
-  # normalise
-  info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank? || info['agrCtlRSSI'] == '0'
-    NO_WIFI
-  else
-    # 802.11n is max 600mbit. i get roughly 130mbit out of my 802.11n station with an RSSI of -54
-    # the ratios roughly match to give -54 almost "5 bars"
-    max = 130.0 / 600.0
-    rssi = info['agrCtlRSSI'].to_f.abs / 255
-    rssi = (rssi / max * 100).round
-    # output format
-    printf("#{WIFI}%3d", rssi)
+    audio_terminal = `ioreg -r -n IOAudioStream -l | grep IOAudioStreamTerminalType | head -1 | awk '{print $3}'`.strip.to_i
+    headphones = audio_terminal != 769
+
+    symbol = if muted
+              MUTED
+            elsif headphones
+              HEADPHONES
+            else
+              SPEAKERS
+            end
+
+    volume = if muted
+              ''
+            else
+              ' ' + output
+            end
+
+    symbol + volume
+  end
+
+  def itunes_info
+    vol = `itunes getvol`
+  end
+
+  def wifi_info
+    # get airport data into hash
+    data = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I`.strip.split("\n")
+    info = {}
+    data.each do |line|
+      k, v = line.split(':')
+      k.strip!
+      v.strip!
+      info[k] = v
+    end
+
+    # sanitise
+    info['SSID'] = 'no wifi' if info['SSID'].blank?
+
+    # normalise
+    info['agrCtlRSSI'] = if info['agrCtlRSSI'].blank? || info['agrCtlRSSI'] == '0'
+      NO_WIFI
+    else
+      # 802.11n is max 600mbit. i get roughly 130mbit out of my 802.11n station with an RSSI of -54
+      # the ratios roughly match to give -54 almost "5 bars"
+      max = 130.0 / 600.0
+      rssi = info['agrCtlRSSI'].to_f.abs / 255
+      rssi = (rssi / max * 100).round
+      # output format
+      sprintf("#{WIFI}%3d", rssi)
+    end
+  end
+
+  def battery_info
+    ioregs = `ioreg -r -n AppleSmartBattery -l | grep -e "ExternalConnected\\\|TimeRemaining\\\|BatteryInstalled"`.split("\n")
+    external_connected, battery_installed, time_remaining = ioregs.map { |l| l.sub(/.*= /, '') }
+
+    external_connected = external_connected == 'Yes' || false
+    battery_installed  = battery_installed  == 'Yes' || false
+    time_remaining     = time_remaining.to_i
+
+    # avoid batshit values
+    if !external_connected && battery_installed && time_remaining > 10 && time_remaining < 1000
+      hours = time_remaining / 60
+      mins  = time_remaining % 60
+      "#{hours}h#{mins}m"
+    else
+      CHARGING
+    end
+  end
+
+  def bluetooth_info
+    connected = `ioreg -r -n IOBluetoothBNEPDriver -l | grep IOLinkStatus | awk '{print $4}'`.strip
+    connected = connected.to_i == 3 || false
+    BLUETOOTH + (connected ? '+' : '-')
+  end
+
+  def ip_addr
+    default = "#{INTERNET} 127.0.0.1"
+    network = `route get default | grep gateway | awk '{print $2}' 2>/dev/null`.strip.sub(/\.[0-9]+$/, '')
+    network = `host #{network} | awk '{print $4}'`.strip.sub(/\.[0-9]+$/, '') unless network =~ /^[0-9]+\.[0-9]+\.[0-9]+/
+    unless network.blank?
+      ip = `ifconfig | grep #{network} | awk '{print $2}'`.strip
+      ip.blank? ? default : "#{INTERNET}#{ip}"
+    else
+      default
+    end
+  end
+
+  def ping
+    :ok
+  end
+
+  def quit
+    DRb.stop_service
   end
 end
 
-def battery_info
-  ioregs = `ioreg -r -n AppleSmartBattery -l | grep -e "ExternalConnected\\\|TimeRemaining\\\|BatteryInstalled"`.split("\n")
-  external_connected, battery_installed, time_remaining = ioregs.map { |l| l.sub(/.*= /, '') }
-
-  external_connected = external_connected == 'Yes' || false
-  battery_installed  = battery_installed  == 'Yes' || false
-  time_remaining     = time_remaining.to_i
-
-  # avoid batshit values
-  if !external_connected && battery_installed && time_remaining > 10 && time_remaining < 1000
-    hours = time_remaining / 60
-    mins  = time_remaining % 60
-    "#{hours}h#{mins}m"
-  else
-    CHARGING
-  end
+drb_uri = 'druby://localhost:9001'
+begin
+  apple = DRbObject.new(nil, drb_uri)
+  apple.ping
+rescue
+  fork { DRb.start_service(drb_uri, Apple.new); DRb.thread.join; exit 0 }
+  sleep 1
+  retry
 end
-
-def bluetooth_network
-  connected = `ioreg -r -n IOBluetoothBNEPDriver -l | grep IOLinkStatus | awk '{print $4}'`.strip
-  connected = connected.to_i == 3 || false
-  BLUETOOTH + (connected ? '+' : '-')
-end
-
-def ip_addr
-  default = "#{INTERNET} 127.0.0.1"
-  network = `route get default | grep gateway | awk '{print $2}' 2>/dev/null`.strip.sub(/\.[0-9]+$/, '')
-  network = `host #{network} | awk '{print $4}'`.strip.sub(/\.[0-9]+$/, '') unless network =~ /^[0-9]+\.[0-9]+\.[0-9]+/
-  unless network.blank?
-    ip = `ifconfig | grep #{network} | awk '{print $2}'`.strip
-    ip.blank? ? default : "#{INTERNET} #{ip}"
-  else
-    default
-  end
-end
-
-puts self.send(ARGV[0].to_sym)
+puts apple.send(ARGV[0].to_sym)
 
 # vim:filetype=ruby
