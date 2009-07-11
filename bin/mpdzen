@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'librmpd'
+require 'open3'
+
+class Dzenner
+  def initialize
+    @mpd = MPD.new('localhost', 6600)
+    register_callbacks
+    @mpd.connect(true)
+
+    # just do nothing
+    @thread = Thread.new { while true; sleep 3600; end }
+  end
+
+  def register_callbacks
+    @mpd.register_callback(self.method('on_song_change'), MPD::CURRENT_SONG_CALLBACK)
+  end
+
+  def on_song_change(song)
+    Open3.popen3("dzen2 -bg black -y 22 -fn '-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u' -ta right -p 2") do |stdin, stdout, stderr|
+      stdin << "#{song['artist']} - #{song['album']} #{song['title']}\n"
+      stdin.close
+    end
+  end
+
+  def self.daemonize
+    fork { Dzenner.new.instance_eval { @thread.join } }
+  end
+end
+
+if $0 == __FILE__
+  Dzenner.daemonize
+end
+
+# vim:ft=ruby
