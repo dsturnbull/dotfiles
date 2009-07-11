@@ -34,6 +34,9 @@ set guifont=monaco\ 9
 " use c-a in command mode
 cnoremap <C-A> <Home>
 
+" w!!
+cmap w!! %!sudo tee > /dev/null %
+
 " git/svn blame - \g/\s on a visual block
 vmap <Leader>g :<C-U>!git blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 vmap <Leader>s :<C-U>!svn blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
