@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby-1.9
+data = `sensors`.split("\n")
+sensors = {}
+data.each do |line|
+  next if line == ''
+  sensor, reading = line.split(':')
+  next if reading.nil?
+  next if sensor == 'Adapter'
+  sensor.strip!
+  reading.sub!(/.C .*/, '')
+  reading.sub!(/.R.*/, '')
+  reading = reading.to_f
+  sensors[sensor] = reading
+end
+
+puts sensors[ARGV[0]]
+
+# vim:ft=ruby

@@ -60,6 +60,7 @@ myKeys =
     , ((modShft, xK_j), sendMessage $ Swap D)
     , ((modShft, xK_k), sendMessage $ Swap U)
     , ((modShft, xK_l), sendMessage $ Swap R)
+    , ((modShft, xK_z), spawn "xscreensaver-command -lock")
     ]
     where modMask     = mod4Mask
           modShft     = modMask .|. shiftMask
