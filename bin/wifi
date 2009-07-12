@@ -1,2 +1,4 @@
 #!/bin/sh
 sudo wpa_supplicant -B -D wext -c /etc/wpa_supplicant.conf -i eth0
+sleep 2
+sudo dhcpcd eth0
