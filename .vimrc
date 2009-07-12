@@ -6,6 +6,7 @@ syntax on
 colorscheme leo
 
 " options
+set nobackup
 set ts=2
 set sts=2
 set hidden

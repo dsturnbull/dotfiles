@@ -1,5 +1,7 @@
-keycode 66 = Alt_L
-keycode 63 = Super_L
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+
 clear mod2
 clear mod4
 add mod4 = Super_L

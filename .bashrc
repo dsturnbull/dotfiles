@@ -1,6 +1,3 @@
-# xquartz dickery
-cd
-
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
@@ -52,7 +49,7 @@ fi
 export LANG=en_US.UTF-8
 export USERWM=`which xmonad`
 
-alias vi='vi'
+alias vi='vim'
 alias grin='grin --force-color'
 alias less='less -R'
 

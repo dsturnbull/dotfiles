@@ -1,0 +1,7 @@
+# right click
+"xvkbd -text '\m3'"
+  m:0x101 + b:1
+
+# middle click
+"xvkbd -text '\m2'"
+  m:0x40 + b:1

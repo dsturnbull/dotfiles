@@ -3,7 +3,7 @@ xterm*metaSendsEscape: true
 
 !perl extensions
 !XXX why can't i use $HOME?
-URxvt.perl-lib: /Users/dave/.urxvt/
+URxvt.perl-lib: /home/dave/.urxvt/
 URxvt.perl-ext-common: default,selection-autotransform,tabbed,x11-clipboard,mark-yank-urls
 
 !make it work like terminal.app/gnome-term

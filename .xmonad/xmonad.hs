@@ -1,3 +1,4 @@
+import System.IO
 import System.Posix.Env
 import XMonad
 import XMonad.Actions.FindEmptyWorkspace
@@ -13,18 +14,17 @@ import XMonad.Prompt.Ssh
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 import qualified Data.Map as M
-import qualified System.IO.UTF8        as U
 import qualified XMonad.Actions.Search as S
 import qualified XMonad.Actions.Submap as SM
 import qualified XMonad.Prompt         as P
 
 main = do
-    putEnv "BROWSER=firefox-x11-standalone"
+    putEnv "BROWSER=firefox"
     xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
     xmonad $ myConfig xmproc `additionalKeys` myKeys
 
 myConfig xmproc = defaultConfig
-    { terminal           = "/opt/local/bin/urxvt"
+    { terminal           = "/usr/bin/urxvt"
     , borderWidth        = 1
     , normalBorderColor  = "#cccccc"
     , focusedBorderColor = "#cd8b00"
@@ -32,11 +32,15 @@ myConfig xmproc = defaultConfig
     , focusFollowsMouse  = sloppyFocus
     , manageHook         = manageDocks <+> manageHook defaultConfig
     , layoutHook         = smartBorders . layoutHints . avoidStruts $ myLayouts
+    , mouseBindings      = myMouseBindings
     , logHook            = dynamicLogWithPP $ xmobarPP
-        { ppOutput = U.hPutStrLn xmproc
+        { ppOutput = hPutStrLn xmproc
         , ppTitle  = xmobarColor "green" "" . shorten 50
         }
     }
+
+myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
+    [ ((mod4Mask .|. shiftMask .|. controlMask, button1), (\w -> focus w >> mouseMoveWindow w)) ]
 
 myKeys =
     [ ((modMask, xK_f), viewEmptyWorkspace)
