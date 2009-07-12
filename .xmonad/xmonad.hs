@@ -50,7 +50,7 @@ myKeys =
     , ((modMod1, xK_h), sendMessage Shrink)
     , ((modMod1, xK_j), sendMessage MirrorShrink)
     , ((modMask, xK_s), search)
-    , ((modMask, xK_t), itunesMap)
+    , ((modMask, xK_t), mpcMap)
     , ((modShft, xK_s), sshPrompt defaultXPConfig)
     , ((modMask, xK_h), sendMessage $ Go L)
     , ((modMask, xK_j), sendMessage $ Go D)
@@ -78,6 +78,11 @@ myKeys =
               , ((nilMask, xK_i), m S.imdb)
               , ((nilMask, xK_m), m S.maps)
               , ((nilMask, xK_y), m S.youtube)
+              ]
+          mpcMap    = SM.submap . M.fromList $
+              [ ((nilMask, xK_n),      spawn "mpc next")
+              , ((nilMask, xK_p),      spawn "mpc prev")
+              , ((nilMask, xK_space),  spawn "mpc toggle")
               ]
           itunesMap = SM.submap . M.fromList $
               [ ((nilMask, xK_n),      spawn "itunes next")

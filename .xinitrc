@@ -4,5 +4,5 @@ xmodmap $HOME/.Xmodmap
 xset fp+ /usr/share/fonts/local
 xset b off
 Esetroot -scaled -center $HOME/dotfiles/High-Resolution-3-ALKVC8G2MB-1600x1200.jpg 
-xbindkeys
+xbindkeys &
 exec xmonad
