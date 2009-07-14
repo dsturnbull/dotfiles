@@ -14,7 +14,7 @@ git cherry -v HEAD $1 | grep ^+ | while read line; do
             printf "+ \033[01;32m$hash\033[00m      $description\n"
         fi
         git reset --hard > /dev/null
-        git status | grep "#	" | awk '{print $2}' | xargs rm -r
+        git status | grep "#	" | awk '{print $2}' | xargs rm -r 2>/dev/null
 
     #else echo "- $hash      $description"
     else
