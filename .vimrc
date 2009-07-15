@@ -29,7 +29,7 @@ set shiftround
 set autoindent
 set smartindent
 set completeopt=longest,menuone
-set guifont=monaco\ 9
+set guifont=terminus\ 9
 
 " use c-a in command mode
 cnoremap <C-A> <Home>
@@ -93,6 +93,9 @@ let g:fuzzy_enumerating_limit = 20
 " tab hax
 nmap <c-n> :tabn<CR>
 nmap <c-p> :tabp<CR>
+" swap tag stack pop with tavnew
+nmap <c-[> :po<CR>
+nmap <c-t> :tabnew<CR>
 
 " indentation
 filetype on
