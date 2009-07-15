@@ -29,7 +29,6 @@ myConfig xmproc = defaultConfig
     , normalBorderColor  = "#cccccc"
     , focusedBorderColor = "#cd8b00"
     , modMask            = mod4Mask
-    , focusFollowsMouse  = sloppyFocus
     , manageHook         = manageDocks <+> manageHook defaultConfig
     , layoutHook         = smartBorders . layoutHints . avoidStruts $ myLayouts
     , logHook            = dynamicLogWithPP $ xmobarPP
