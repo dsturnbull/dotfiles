@@ -6,77 +6,86 @@ syntax on
 colorscheme leo
 
 " options
-set nobackup
-set ts=2
-set sts=2
-set hidden
-set shiftwidth=2
-set nocompatible
-set expandtab
-set backspace=indent,eol,start
-set guioptions-=m " menu
-set guioptions+=c " console dialogues
-set guioptions-=t " tearoff menu items
-set guioptions-=T " toolbar
-set guioptions-=L " left scroll (when vertically split)
-set guioptions-=b " bottom scroll bar
-set guioptions-=r " right scroll bar
-set guioptions-=e " text mode tab lines
-set mousemodel=popup
-set viminfo='100,f1
-set showtabline=2
-set wildmode=list:longest,full
-set shiftround
-set autoindent
-set smartindent
-set completeopt=longest,menuone
-set guifont=terminus\ 9
+set tabstop=2                     " tab stop
+set softtabstop=2                 " soft tab stop
+set shiftwidth=2                  " indent/outdent
+set expandtab                     " spaces, not tabs
+set shiftround                    " round indent to multiple of sw
+set autoindent                    " current line indent carries to next line
+set smartindent                   " also pay attention to syntax
+set hidden                        " do not unload buffers which go out of visibility
+set nocompatible                  " yeah
+set backspace=indent,eol,start    " backspace multi lines
+set guioptions-=m                 " no menu
+set guioptions+=c                 " console dialogues (no gui popups)
+set guioptions-=t                 " tearoff menu items
+set guioptions-=T                 " no toolbar
+set guioptions-=L                 " no left scroll (when vertically split)
+set guioptions-=b                 " no bottom scroll bar
+set guioptions-=r                 " no right scroll bar
+set guioptions-=e                 " text mode tab lines
+set mousemodel=extend             " right click extends selection
+set mouse=a                       " mouse selection in normal, command and insert modes
+set clipboard=autoselect,unnamed
+set viminfo='100,f1,%             " marks remembered for 100 files, enable mark storing, buffers stored
+                                  " FIXME % doesn't work
+set showtabline=2                 " always
+set wildmode=list:longest,full    " completion style
+set completeopt=longest,menuone   " sort by longest, show when single match
+set guifont=terminus\ 9           " yay fonts
+
+" FIXME dnw comment autoindent
+inoremap # X#
 
 " use c-a in command mode
-cnoremap <C-A> <Home>
+cnoremap <C-a> <Home>
 
 " w!!
 cmap w!! %!sudo tee > /dev/null %
 
 " git/svn blame - \g/\s on a visual block
-vmap <Leader>g :<C-U>!git blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
-vmap <Leader>s :<C-U>!svn blame <C-R>=expand("%") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+vmap <Leader>g :<C-u>!git blame <C-u>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
+vmap <Leader>s :<C-u>!svn blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
 
 " sudo writes
 cmap w!! %!sudo tee > /dev/null %
 
-" ?
-inoremap # X#
-nmap X ci"
-cnoremap <M-BS> <C-W>
+" FIXME ffffuuuu no M on osx?
+cnoremap <A-BS> <C-w>
 
 " move windows easily
-noremap <C-k> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
-noremap <C-j> <C-W>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+noremap <C-j> <C-w>j
 
 " slide text around
-imap <M-j> <Esc>:m+<CR>gi
-imap <M-k> <Esc>:m-2<CR>gi
-vmap <M-k> :m'<-2<CR>gv
-vmap <M-h> :<<CR>gv
-nmap <M-j> mz:m+<CR>`z
-nmap <M-k> mz:m-2<CR>`z
-vmap <M-j> :m'>+<CR>gv
-vmap <M-l> :><CR>gv
+imap <Up>    <Esc>:m-2<CR>gi
+imap <Down>  <Esc>:m+<CR>gi
 
-" redo ctags
-nmap <M-c> :!ctags -R .
+nmap <Up>    mz:m-2<CR>`z
+nmap <Down>  mz:m+<CR>`z
+
+vmap <Up>    :m'<-2<CR>gv
+vmap <Down>  :m'>+<CR>gv
+vmap <Left>  :<<CR>gv
+vmap <Right> :><CR>gv
+
+" redo ctags and fuzzy cache
+nmap <leader>T :call Fctags_and_fuzzy_rescan()<CR>
+function! Fctags_and_fuzzy_rescan()
+   exec "!ctags -R ."
+   exec "ruby finder.rescan!"
+endfunction
 
 " fuzzy - keybindings
-nmap <c-e> :FuzzyFinderTag<cr>
-nmap <c-s> :FuzzyFinderBuffer<cr>
-nmap <c-f> :FuzzyFinderFile \*\*\/<cr>
+map <leader>e :FuzzyFinderTag<CR>
+map <leader>s :FuzzyFinderBuffer<CR>
+map <leader>f :FuzzyFinderFile \*\*\/<CR>
 map <leader>t :FuzzyFinderTextMate<CR>
 
 " set paste! - keybindings
-map <leader>p :set paste!<cr>
+map <leader>p :set paste!<CR>
 
 " fuzzy - dont use these modes
 let g:fuzzy_ignore = ".git/*;.svn/*"
@@ -92,11 +101,11 @@ let g:FuzzyFinderOptions.Tag = { 'matching_limit': 20 }
 let g:fuzzy_enumerating_limit = 20
 
 " tab hax
-nmap <c-n> :tabn<CR>
-nmap <c-p> :tabp<CR>
+nmap <C-n> :tabn<CR>
+nmap <C-p> :tabp<CR>
 " swap tag stack pop with tavnew
-nmap <c-[> :po<CR>
-nmap <c-t> :tabnew<CR>
+nmap <C-BSlash> :po<CR>
+nmap <C-t> :tabnew<CR>
 
 " indentation
 filetype on
@@ -104,17 +113,17 @@ filetype indent on
 filetype plugin on
 
 augroup init
-  au FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  au FileType python     setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType ruby       setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType haskell setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType c setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType cs setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType sh setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType haskell    setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType cpp        setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType c          setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType cs         setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType sh         setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
-  au BufNewFile,BufRead *.as setlocal filetype=actionscript
-  au BufRead,BufNewFile *.json setlocal filetype=javascript
+  au BufNewFile,BufRead *.as    setlocal filetype=actionscript
+  au BufRead,BufNewFile *.json  setlocal filetype=javascript
   au BufRead,BufNewFile Capfile setlocal filetype=ruby
 augroup END
 
@@ -131,31 +140,31 @@ let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 
 " lambda key and sum key
-imap <c-a> λ
-imap <c-s> ∑
+imap <C-a> λ
+imap <C-s> ∑
 
 " snippets
 function! HighlightSnips()
-     exec "hi snippetEmuJump guibg=grey30"
-     exec "syn region snippetEmuJump start=/".g:snip_start_tag."/ end=/".g:snip_end_tag."/"
+  exec "hi snippetEmuJump guibg=grey30"
+  exec "syn region snippetEmuJump start=/".g:snip_start_tag."/ end=/".g:snip_end_tag."/"
 endfunction
 augroup highlight-snips
-    au BufNewFile,BufRead * call HighlightSnips()
+  au BufNewFile,BufRead * call HighlightSnips()
 augroup END
 
 " camel case motion overrides
-nmap <silent> <space> <Plug>CamelCaseMotion_w
-omap <silent> <space> <Plug>CamelCaseMotion_w
-vmap <silent> <space> <Plug>CamelCaseMotion_w
+nmap <silent> <Space> <Plug>CamelCaseMotion_w
+omap <silent> <Space> <Plug>CamelCaseMotion_w
+vmap <silent> <Space> <Plug>CamelCaseMotion_w
 
-nmap <silent> <bs> <Plug>CamelCaseMotion_b
-omap <silent> <bs> <Plug>CamelCaseMotion_b
-vmap <silent> <bs> <Plug>CamelCaseMotion_b
+nmap <silent> <BS> <Plug>CamelCaseMotion_b
+omap <silent> <BS> <Plug>CamelCaseMotion_b
+vmap <silent> <BS> <Plug>CamelCaseMotion_b
 
-omap <silent> i<space> <Plug>CamelCaseMotion_iw
-vmap <silent> i<space> <Plug>CamelCaseMotion_iw
-omap <silent> i<bs> <Plug>CamelCaseMotion_ib
-vmap <silent> i<bs> <Plug>CamelCaseMotion_ib
+omap <silent> i<Space> <Plug>CamelCaseMotion_iw
+vmap <silent> i<Space> <Plug>CamelCaseMotion_iw
+omap <silent> i<BS>    <Plug>CamelCaseMotion_ib
+vmap <silent> i<BS>    <Plug>CamelCaseMotion_ib
 
 " omni fail
 inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
