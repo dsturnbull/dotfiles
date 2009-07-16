@@ -71,8 +71,12 @@ vmap <Down>  :m'>+<CR>gv
 vmap <Left>  :<<CR>gv
 vmap <Right> :><CR>gv
 
-" redo ctags
-nmap <leader>T :!ctags -R .<CR>
+" redo ctags and fuzzy cache
+nmap <leader>T :call Fctags_and_fuzzy_rescan()<CR>
+function! Fctags_and_fuzzy_rescan()
+   exec "!ctags -R ."
+   exec "ruby finder.rescan!"
+endfunction
 
 " fuzzy - keybindings
 map <leader>e :FuzzyFinderTag<CR>
@@ -141,11 +145,11 @@ imap <C-s> ∑
 
 " snippets
 function! HighlightSnips()
-     exec "hi snippetEmuJump guibg=grey30"
-     exec "syn region snippetEmuJump start=/".g:snip_start_tag."/ end=/".g:snip_end_tag."/"
+  exec "hi snippetEmuJump guibg=grey30"
+  exec "syn region snippetEmuJump start=/".g:snip_start_tag."/ end=/".g:snip_end_tag."/"
 endfunction
 augroup highlight-snips
-    au BufNewFile,BufRead * call HighlightSnips()
+  au BufNewFile,BufRead * call HighlightSnips()
 augroup END
 
 " camel case motion overrides
