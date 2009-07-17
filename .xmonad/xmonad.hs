@@ -19,7 +19,7 @@ import qualified XMonad.Actions.Submap as SM
 import qualified XMonad.Prompt         as P
 
 main = do
-    putEnv "BROWSER=firefox"
+    putEnv "BROWSER=firefox-3.5"
     xmproc <- spawnPipe "/home/dave/.cabal/bin/xmobar $HOME/.xmonad/xmobar"
     xmonad $ myConfig xmproc `additionalKeys` myKeys
 
