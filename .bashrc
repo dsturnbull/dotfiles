@@ -62,7 +62,8 @@ export PATH=$HOME/bin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
 
-GEM_PATH=$(gem env path | sed -e 's/:/\/bin:/g' -e 's/$/\/bin/')
+# hardcoded for speed
+GEM_PATH=/Users/dave/.gem/ruby/1.8:/opt/local/lib/ruby/gems/1.8
 export PATH=$GEM_PATH:$PATH
 
 export EDITOR=vi
