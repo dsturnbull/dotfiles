@@ -21,7 +21,7 @@ shopt -s histappend
 PROMPT_COMMAND='history -a'
 
 # /ect/ -> /etc/
-shopt -s dirspell
+shopt -s dirspell 2>/dev/null
 
 # expand history completion by pressing space
 bind space:magic-space
