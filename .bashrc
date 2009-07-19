@@ -66,9 +66,6 @@ export EDITOR=vi
 export MANPATH=$MANPATH:/opt/local/share/man
 export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
-if [ $TERM == "rxvt-unicode" ]; then
-  export TERM=xterm-256color
-fi
 export LANG=en_US.UTF-8
 export USERWM=`which xmonad`
 

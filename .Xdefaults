@@ -52,9 +52,9 @@ URxvt.tabbed.tab-fg:    15
 URxvt.tabbed.tab-bg:    4
 
 !set env vars
-URxvt.termName: xterm-256color
+URxvt.termName: rxvt-unicode
 URxvt.imLocale: en_US.UTF-8
 
-URxvt*font: xft:terminus:pixelsize=12
-URxvt*boldFont: xft:terminus:pixelsize=12
+URxvt*font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+URxvt*boldFont: -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
 
