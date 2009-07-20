@@ -44,7 +44,7 @@ cnoremap <C-a> <Home>
 cmap w!! %!sudo tee > /dev/null %
 
 " git/svn blame - \g/\s on a visual block
-vmap <Leader>g :<C-u>!git blame <C-u>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
+vmap <Leader>g :<C-u>!git blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
 vmap <Leader>s :<C-u>!svn blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
 
 " sudo writes
@@ -121,6 +121,7 @@ augroup init
   au FileType c          setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType cs         setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType sh         setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType objc       setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
   au BufNewFile,BufRead *.as    setlocal filetype=actionscript
   au BufRead,BufNewFile *.json  setlocal filetype=javascript
