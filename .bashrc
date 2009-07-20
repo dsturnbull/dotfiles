@@ -63,7 +63,7 @@ export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
 
 # hardcoded for speed
-GEM_PATH=/Users/dave/.gem/ruby/1.8:/opt/local/lib/ruby/gems/1.8
+GEM_PATH=/Users/dave/.gem/ruby/1.8/bin:/opt/local/lib/ruby/gems/1.8/bin
 export PATH=$GEM_PATH:$PATH
 
 export EDITOR=vi
