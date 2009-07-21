@@ -42,7 +42,7 @@ export MXMLC_HOME=$HOME/src/flex_sdk_3
 export PATH=$MXMLC_HOME/bin:$PATH
 
 if [ `uname` == "Linux" ]; then
-  export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.13
+  export JAVA_HOME=/usr/lib/jvm/java-6-sun
 else
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 fi
