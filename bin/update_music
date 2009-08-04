@@ -1,2 +1,0 @@
-#!/bin/sh
-cd /Volumes/wessel/music && rsync --stats -v --progress --size-only -r -t --delete  /Volumes/fleet/music/ . && cd - 
