@@ -7,8 +7,8 @@ from re   import *
 
 # CONFIGURATION ___________________________________________________________________________________
 aa        = " .,:+*&%#08@"  # ASCII-art character set
-rmargin   = 1               # Distance from gfx to right edge of window
-tmargin   = 16              # Distance from gfx to top edge of buffer
+rmargin   = 0               # Distance from gfx to right edge of window
+tmargin   = 1               # Distance from gfx to top edge of buffer
 bmargin   = 0               # Distance from gfx to bottom edge of buffer
 w         = current.window.width
 b         = current.buffer
