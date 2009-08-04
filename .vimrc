@@ -1,5 +1,9 @@
 " vim:filetype=vim
 " inspiration: http://github.com/foot/dotfiles/tree/master/.vimrc
+" check for updates:
+"   snipMate snippets: git://github.com/scrooloose/snipmate-snippets.git
+"   snipMate: http://www.vim.org/scripts/script.php?script_id=2540
+"   rails.vim: http://www.vim.org/scripts/script.php?script_id=1567
 
 " colours
 syntax on
@@ -112,7 +116,7 @@ filetype on
 filetype indent on
 filetype plugin on
 
-augroup init
+aug init
   au FileType python     setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType ruby       setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
@@ -123,17 +127,17 @@ augroup init
   au FileType sh         setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType objc       setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
+  au FileType ruby       let g:rubycomplete_rails=1
+  au FileType ruby       let g:rubycomplete_classes_in_global=1
+
   au BufNewFile,BufRead *.as    setlocal filetype=actionscript
   au BufRead,BufNewFile *.json  setlocal filetype=javascript
   au BufRead,BufNewFile Capfile setlocal filetype=ruby
-augroup END
+aug END
 
 " autosave folds
-aug views
-  au!
-  au BufWinLeave * nested silent! mkview
-  au BufWinEnter * nested silent! loadview
-aug END
+au BufWritePost * nested silent! mkview
+au BufReadPost  * nested silent! loadview
 
 " haskell
 au BufEnter *.hs compiler ghc
@@ -143,15 +147,6 @@ let g:haddock_browser_callformat = "%s %s"
 " lambda key and sum key
 imap <C-a> λ
 imap <C-s> ∑
-
-" snippets
-function! HighlightSnips()
-  exec "hi snippetEmuJump guibg=grey30"
-  exec "syn region snippetEmuJump start=/".g:snip_start_tag."/ end=/".g:snip_end_tag."/"
-endfunction
-augroup highlight-snips
-  au BufNewFile,BufRead * call HighlightSnips()
-augroup END
 
 " camel case motion overrides
 nmap <silent> <Space> <Plug>CamelCaseMotion_w
@@ -168,6 +163,7 @@ omap <silent> i<BS>    <Plug>CamelCaseMotion_ib
 vmap <silent> i<BS>    <Plug>CamelCaseMotion_ib
 
 " omni fail
+imap <C-]> <C-x><C-]>
 inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
