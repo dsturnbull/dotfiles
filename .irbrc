@@ -1,8 +1,12 @@
 require 'rubygems'
+require 'hirb'
 require 'wirble'
 require 'pp'
 require 'irb/completion'
 require 'irb/ext/save-history'
+
+include Hirb
+Hirb::View.enable
 
 ARGV.concat [ "--readline", "--prompt-mode", "simple" ]
 IRB.conf[:SAVE_HISTORY] = 100 
