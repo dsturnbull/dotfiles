@@ -30,7 +30,7 @@ set guioptions-=r                 " no right scroll bar
 set guioptions-=e                 " text mode tab lines
 set mousemodel=extend             " right click extends selection
 set mouse=a                       " mouse selection in normal, command and insert modes
-set clipboard=autoselect,unnamed
+"set clipboard=autoselect,unnamed
 set viminfo='100,f1,%             " marks remembered for 100 files, enable mark storing, buffers stored
                                   " FIXME % doesn't work
 set showtabline=2                 " always
@@ -167,3 +167,21 @@ imap <C-]> <C-x><C-]>
 inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
+" fold text between all contexts and specify lines
+function! ShowRSpecAnnotation()
+ call cursor('$', 0)
+ try
+   foldo!
+ catch
+ endtry
+ let cur_line = line('$')
+ while cur_line > 0
+   let prev_spec = search('it\s\+["''].\+["'']', 'Wb', '^')
+   if ! prev_spec
+     break
+   endif
+   exec (prev_spec).','.cur_line.'fold'
+   let cur_line=prev_spec-1
+ endwhile
+endfunction
+command! Sa :call ShowRSpecAnnotation()
