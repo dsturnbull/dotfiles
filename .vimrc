@@ -30,13 +30,14 @@ set guioptions-=r                 " no right scroll bar
 set guioptions-=e                 " text mode tab lines
 set mousemodel=extend             " right click extends selection
 set mouse=a                       " mouse selection in normal, command and insert modes
-"set clipboard=autoselect,unnamed
+set clipboard=autoselect,unnamed
 set viminfo='100,f1,%             " marks remembered for 100 files, enable mark storing, buffers stored
                                   " FIXME % doesn't work
 set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style
 set completeopt=longest,menuone   " sort by longest, show when single match
 set guifont=terminus\ 9           " yay fonts
+set transparency=10               " yay web 2.0
 
 " FIXME dnw comment autoindent
 inoremap # X#
