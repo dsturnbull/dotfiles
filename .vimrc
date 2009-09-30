@@ -37,7 +37,7 @@ set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style
 set completeopt=longest,menuone   " sort by longest, show when single match
 set guifont=terminus\ 9           " yay fonts
-set transparency=10               " yay web 2.0
+set transparency=30               " yay web 2.0
 
 " FIXME dnw comment autoindent
 inoremap # X#
