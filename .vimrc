@@ -33,6 +33,7 @@ set mouse=a                       " mouse selection in normal, command and inser
 set clipboard=autoselect,unnamed
 set viminfo='100,f1,%             " marks remembered for 100 files, enable mark storing, buffers stored
                                   " FIXME % doesn't work
+set wrap
 set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style
 set completeopt=longest,menuone   " sort by longest, show when single match
@@ -119,7 +120,7 @@ filetype plugin on
 
 aug init
   au FileType python     setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType ruby       setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  au FileType ruby       setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab textwidth=129
   au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType haskell    setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType cpp        setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
