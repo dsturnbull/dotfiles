@@ -35,8 +35,8 @@ set viminfo='100,f1,%             " marks remembered for 100 files, enable mark 
                                   " FIXME % doesn't work
 set wrap
 set showtabline=2                 " always
-set wildmode=list:longest,full    " completion style
-set completeopt=longest,menuone   " sort by longest, show when single match
+"set wildmode=list:longest,full    " completion style
+"set completeopt=longest,menuone   " sort by longest, show when single match
 set guifont=terminus\ 9           " yay fonts
 set transparency=30               " yay web 2.0
 
@@ -303,3 +303,5 @@ command! -nargs=? -complete=command Fs call Foldsearch(<q-args>)
 command! -nargs=? -complete=command Fold call Foldsearch(<q-args>)
 "command! R Fs \(^\s*\(\(def\|class\|module\)\s\)\)\|^\s*[#%"0-9]\{0,4\}\s*{\({{\|!!\)
 command! J Fs 
+
+let g:acp_behaviorKeywordLength = 4
