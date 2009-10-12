@@ -35,7 +35,7 @@ set viminfo='100,f1,%             " marks remembered for 100 files, enable mark 
                                   " FIXME % doesn't work
 set wrap
 set showtabline=2                 " always
-"set wildmode=list:longest,full    " completion style
+set wildmode=list:longest,full    " completion style when opening files
 "set completeopt=longest,menuone   " sort by longest, show when single match
 set guifont=terminus\ 9           " yay fonts
 set transparency=30               " yay web 2.0
