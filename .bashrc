@@ -76,9 +76,6 @@ fi
 export LANG=en_US.UTF-8
 export USERWM=`which xmonad`
 
-if [ `uname` == "Darwin" ]; then
-  alias vi='mvim'
-fi
 alias grin='grin --force-color'
 alias less='less -R'
 

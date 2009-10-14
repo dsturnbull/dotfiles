@@ -7,7 +7,6 @@
 
 " colours
 syntax on
-colorscheme leo
 
 " options
 set tabstop=2                     " tab stop
@@ -38,7 +37,6 @@ set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style when opening files
 "set completeopt=longest,menuone   " sort by longest, show when single match
 set guifont=terminus\ 9           " yay fonts
-set transparency=30               " yay web 2.0
 
 " FIXME dnw comment autoindent
 inoremap # X#
