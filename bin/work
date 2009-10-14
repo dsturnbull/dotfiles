@@ -1,0 +1,110 @@
+#!/usr/bin/python
+import os, sys
+import struct
+import time, mx.DateTime
+
+today = mx.DateTime.today().strftime('%Y%m%d')
+ROOT = '.work'
+
+class Log:
+    def __init__(self, logfile):
+        os.chdir(os.environ['HOME'])
+        try: os.mkdir('.work')
+        except: pass
+        self.now = int(logfile)
+        self.log = open(os.path.join(ROOT, logfile), 'a+')
+        self.format = '3shi'
+        self.ssize = struct.calcsize(self.format)
+
+    def parse_ticket(self, ticket):
+        project, ticket = ticket.split('-')
+        return project, int(ticket)
+
+    def push(self, ticket, finish=True):
+        project, ticketnum = self.parse_ticket(ticket)
+        now = int(time.time())
+        if finish:
+            self.finish_existing(ticket)
+        self.log.seek(0, os.SEEK_END)
+        self.log.write(struct.pack(self.format, project, ticketnum, now))
+
+    def finish_existing(self, curticket):
+        todo = []
+        for unfinished in self.parse_extents(unfinished=True):
+            if curticket != unfinished:
+                todo.append(unfinished)
+
+        for ticket in todo:
+            self.push(ticket, finish=False)
+
+    def __iter__(self):
+        self.log.seek(0, os.SEEK_END)
+        length = self.log.tell()
+        self.log.seek(0)
+
+        for i in range(0, length/self.ssize):
+            data = self.log.read(self.ssize)
+            project, ticket, when = struct.unpack(self.format, data)
+            yield '%s-%s' % (project, ticket), mx.DateTime.TimestampFrom(when)
+
+    def parse_extents(self, unfinished=False):
+        days = {}
+        work = {}
+        for ticket, when in self:
+            day = int(when.strftime('%Y%m%d'))
+
+            if day not in days:
+                days[day] = {}
+
+            if ticket in days[day]:
+                effort = (when - days[day][ticket]).minutes
+                if day not in work:
+                    work[day] = {}
+
+                if ticket in work[day]:
+                    work[day][ticket] += effort
+                else:
+                    work[day][ticket] = effort
+
+                del days[day][ticket]
+                if len(days[day]) == 0:
+                    del days[day]
+            else:
+                days[day][ticket] = when
+
+        if unfinished:
+            for day in days:
+                for ticket in days[day]:
+                    yield ticket
+
+        elif self.now in work:
+            for ticket, effort in work[self.now].iteritems():
+                yield ticket, effort
+
+    def effort(self):
+        for ticket, effort in self.parse_extents():
+            print '%s %sm' % (ticket, effort)
+        
+if len(sys.argv) == 4:
+    day, month, year = map(int, sys.argv[1:])
+    d = mx.DateTime.Date(year, month, day).strftime('%Y%m%d')
+    log = Log(d)
+    log.effort()
+elif len(sys.argv) == 2 and sys.argv[1] == '-f':
+    log = Log(today)
+    for i in log.parse_extents(unfinished=True):
+        print i
+elif len(sys.argv) == 2 and sys.argv[1] == '-s':
+    log = Log(today)
+    try:
+        ticket = log.parse_extents(unfinished=True).next()
+        log.push(ticket)
+    except StopIteration:
+        pass
+elif len(sys.argv) == 2:
+    ticket = sys.argv[1]
+    log = Log(today)
+    log.push(ticket)
+else:
+    log = Log(today)
+    log.effort()
