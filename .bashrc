@@ -68,6 +68,7 @@ export PATH=$GEM_PATH:$PATH
 
 # osol stuff
 export EDITOR=vi
+export PAGER=less
 export MANPATH=$MANPATH:/opt/local/share/man:/usr/gnu/share/man:/usr/share/man:/usr/X11/share/man
 export PATH=$PATH/usr/gnu/bin:/usr/bin:/usr/X11/bin:/usr/sbin:/sbin:/usr/sfw/bin/:$HOME/bin
 
