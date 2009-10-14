@@ -5,9 +5,32 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# 290ms
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
+
+# less tabs
+bind 'set completion-query-items 3000' # don't ask, show them all
+bind 'set show-all-if-ambiguous on'    # don't require two tabs
+bind 'set page-completions off'        # no pager for long completion lists, show them all at once
+bind 'set visible-stats on'            # append file type characters to completion items
+
+# history less shit
+shopt -s histappend
+PROMPT_COMMAND='history -a'
+
+# /ect/ -> /etc/
+shopt -s dirspell 2>/dev/null
+
+# expand history completion by pressing space
+bind space:magic-space
+
+# .../really/long/5/is/enough
+export PROMPT_DIRTRIM=5
+
+# Ignore these on completion
+export FIGNORE=CVS:.svn:.DS_Store:.git:.gitignore
 
 export EC2_PRIVATE_KEY=~/.ec2/pk.pem
 export EC2_CERT=~/.ec2/cert.pem
@@ -171,5 +194,4 @@ if test -n "$PS1"; then
   # give back <c-s> to forward search (opposite of c-r)
   stty stop undef
 fi
-
 
