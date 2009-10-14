@@ -1,6 +1,5 @@
 defscrollback 5000
 termcapinfo xterm* ti@:te@
-bind y eval writebuf 'exec /bin/sh -c "/usr/bin/xsel -i < $HOME/.scr_buf"' 'exec /bin/sh -c "killall xsel"'
 startup_message off
 bufferfile $HOME/.scr_buf
-escape ^Vv
+escape ^Xx
