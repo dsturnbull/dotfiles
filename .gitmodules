@@ -1,3 +1,9 @@
-[submodule "vim-ruby"]
-	path = vim-ruby
+[submodule ".vim/vim-ruby"]
+	path = .vim/vim-ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule ".vim/vim-rails"]
+	path = .vim/vim-rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule ".vim/vim-fugitive"]
+	path = .vim/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git

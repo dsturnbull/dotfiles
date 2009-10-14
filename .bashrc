@@ -62,7 +62,8 @@ export PATH=$HOME/bin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
 
-GEM_PATH=$(gem env path | sed -e 's/:/\/bin:/g' -e 's/$/\/bin/')
+# hardcoded for speed
+GEM_PATH=/Users/dave/.gem/ruby/1.8/bin:/opt/local/lib/ruby/gems/1.8/bin
 export PATH=$GEM_PATH:$PATH
 
 export EDITOR=vi
@@ -71,11 +72,13 @@ export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
 if [ $TERM == "rxvt-unicode" ]; then
   export TERM=xterm-256color
+elif [ `uname` == "Darwin" ]; then
+  export TERM=xterm
 fi
 export LANG=en_US.UTF-8
 export USERWM=`which xmonad`
 
-alias vi='vi'
+alias vi='mvim'
 alias grin='grin --force-color'
 alias less='less -R'
 
@@ -184,7 +187,8 @@ function do_ps1 {
   BLUE="\[\033[01;34m\]"
   LIGHT_BLUE="\[\033[01;36m\]"
 
-  PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR\$(git_prompt_info)\n→ "
+  #PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR\$(git_prompt_info)\n→ "
+  PS1="\j \[\033[1;0m\][\[\033[00;33m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]\$(git_prompt_info)\n→ "
 }
 
 do_ps1
