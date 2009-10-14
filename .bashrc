@@ -72,8 +72,6 @@ export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
 if [ $TERM == "rxvt-unicode" ]; then
   export TERM=xterm-256color
-elif [ `uname` == "Darwin" ]; then
-  export TERM=xterm
 fi
 export LANG=en_US.UTF-8
 export USERWM=`which xmonad`
