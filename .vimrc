@@ -1,5 +1,9 @@
 " vim:filetype=vim
 " inspiration: http://github.com/foot/dotfiles/tree/master/.vimrc
+" check for updates:
+"   snipMate snippets: git://github.com/scrooloose/snipmate-snippets.git
+"   snipMate: http://www.vim.org/scripts/script.php?script_id=2540
+"   rails.vim: http://www.vim.org/scripts/script.php?script_id=1567
 
 " colours
 syntax on
@@ -33,6 +37,7 @@ set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style
 set completeopt=longest,menuone   " sort by longest, show when single match
 set guifont=terminus\ 9           " yay fonts
+set transparency=30               " yay web 2.0
 
 " FIXME dnw comment autoindent
 inoremap # X#
@@ -44,7 +49,7 @@ cnoremap <C-a> <Home>
 cmap w!! %!sudo tee > /dev/null %
 
 " git/svn blame - \g/\s on a visual block
-vmap <Leader>g :<C-u>!git blame <C-u>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
+vmap <Leader>g :<C-u>!git blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
 vmap <Leader>s :<C-u>!svn blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
 
 " sudo writes
@@ -112,7 +117,7 @@ filetype on
 filetype indent on
 filetype plugin on
 
-augroup init
+aug init
   au FileType python     setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType ruby       setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
@@ -121,18 +126,19 @@ augroup init
   au FileType c          setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType cs         setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   au FileType sh         setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  au FileType objc       setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+
+  au FileType ruby       let g:rubycomplete_rails=1
+  au FileType ruby       let g:rubycomplete_classes_in_global=1
 
   au BufNewFile,BufRead *.as    setlocal filetype=actionscript
   au BufRead,BufNewFile *.json  setlocal filetype=javascript
   au BufRead,BufNewFile Capfile setlocal filetype=ruby
-augroup END
+aug END
 
 " autosave folds
-aug views
-  au!
-  au BufWinLeave * nested silent! mkview
-  au BufWinEnter * nested silent! loadview
-aug END
+au BufWritePost * nested silent! mkview
+au BufReadPost  * nested silent! loadview
 
 " haskell
 au BufEnter *.hs compiler ghc
@@ -142,15 +148,6 @@ let g:haddock_browser_callformat = "%s %s"
 " lambda key and sum key
 imap <C-a> λ
 imap <C-s> ∑
-
-" snippets
-function! HighlightSnips()
-  exec "hi snippetEmuJump guibg=grey30"
-  exec "syn region snippetEmuJump start=/".g:snip_start_tag."/ end=/".g:snip_end_tag."/"
-endfunction
-augroup highlight-snips
-  au BufNewFile,BufRead * call HighlightSnips()
-augroup END
 
 " camel case motion overrides
 nmap <silent> <Space> <Plug>CamelCaseMotion_w
@@ -167,6 +164,25 @@ omap <silent> i<BS>    <Plug>CamelCaseMotion_ib
 vmap <silent> i<BS>    <Plug>CamelCaseMotion_ib
 
 " omni fail
+imap <C-]> <C-x><C-]>
 inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
+" fold text between all contexts and specify lines
+function! ShowRSpecAnnotation()
+ call cursor('$', 0)
+ try
+   foldo!
+ catch
+ endtry
+ let cur_line = line('$')
+ while cur_line > 0
+   let prev_spec = search('it\s\+["''].\+["'']', 'Wb', '^')
+   if ! prev_spec
+     break
+   endif
+   exec (prev_spec).','.cur_line.'fold'
+   let cur_line=prev_spec-1
+ endwhile
+endfunction
+command! Sa :call ShowRSpecAnnotation()

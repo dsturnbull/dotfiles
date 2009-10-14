@@ -62,7 +62,8 @@ export PATH=$HOME/bin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
 
-GEM_PATH=$(gem env path | sed -e 's/:/\/bin:/g' -e 's/$/\/bin/')
+# hardcoded for speed
+GEM_PATH=/Users/dave/.gem/ruby/1.8/bin:/opt/local/lib/ruby/gems/1.8/bin
 export PATH=$GEM_PATH:$PATH
 
 export EDITOR=vi
@@ -71,11 +72,13 @@ export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
 if [ $TERM == "rxvt-unicode" ]; then
   export TERM=xterm-256color
+elif [ `uname` == "Darwin" ]; then
+  export TERM=xterm-256color
 fi
 export LANG=en_US.UTF-8
 export USERWM=`which xmonad`
 
-alias vi='vi'
+alias vi='mvim'
 alias grin='grin --force-color'
 alias less='less -R'
 
