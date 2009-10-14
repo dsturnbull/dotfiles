@@ -76,7 +76,9 @@ fi
 export LANG=en_US.UTF-8
 export USERWM=`which xmonad`
 
-alias vi='mvim'
+if [ `uname` == "Darwin" ]; then
+  alias vi='mvim'
+fi
 alias grin='grin --force-color'
 alias less='less -R'
 
@@ -85,11 +87,16 @@ alias sl='/Applications/Silverlight/sdl-sdk/script/sl'
 alias slserver='/Applications/Silverlight/sdl-sdk/script/server'
 
 . $HOME/dotfiles/resty/resty
-. $HOME/.ec2/local_keys
+
+if [ -e $HOME/.ec2/local_keys ]; then
+  . $HOME/.ec2/local_keys
+fi
 
 ## git status prompt
 # Get the name of the branch we are on
 function git_prompt_info {
+  determine_git_ps1_availability
+
   branch_prompt=$(__git_ps1 "$@")
   if [ -n "$branch_prompt" ]; then
     current_git_status=$(git status)
@@ -171,6 +178,15 @@ excludelist='*.@(o|O|so|SO|so.!(conf)|SO.!(CONF)|a|A|rpm|RPM|deb|DEB|gif|GIF|jp?
 
 complete -F _vim_ctags -f -X "${excludelist}" vi vim gvim rvim view rview rgvim rgview gview
 
+function determine_git_ps1_availability {
+  type __git_ps1 2>/dev/null | grep 'is a function' > /dev/null
+  if [ $? -ne 0 ]; then
+    function __git_ps1 {
+      return 0
+    }
+  fi
+}
+
 function do_ps1 {
 # PS1 prompt
   NICE_ORANGE="\[\033[38;5;208m\]"
@@ -186,14 +202,20 @@ function do_ps1 {
   LIGHT_BLUE="\[\033[01;36m\]"
 
   #PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR\$(git_prompt_info)\n→ "
-  PS1="\j \[\033[1;0m\][\[\033[00;33m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]\$(git_prompt_info)\n→ "
-}
+  if [ `uname` == "SunOS" ]; then
+    EXTRA_LINE_CHAR=">"
+  else
+    EXTRA_LINE_CHAR="→"
+  fi
 
-do_ps1
+  PS1="\j \[\033[1;0m\][\[\033[00;33m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]\$(git_prompt_info)\n$EXTRA_LINE_CHAR "
+}
 
 if test -n "$PS1"; then
   stty -ixon
   # give back <c-s> to forward search (opposite of c-r)
   stty stop undef
 fi
+
+do_ps1
 
