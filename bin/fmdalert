@@ -1,0 +1,24 @@
+#!/bin/ksh
+
+# Public domain. Use as you wish.
+
+EMAIL=admins@darkstar
+TMPFILE=/tmp/fmadm.output.$$
+
+export PATH=/usr/bin:/usr/sbin
+
+#
+# run fmadm and cut away the first two lines
+#
+fmadm faulty >$TMPFILE
+
+#
+# check if the file size is greater than zero
+# which means we got some output from fmadm and
+# therefore some hardware may be bad
+#
+if [ -s $TMPFILE ]; then
+        cat $TMPFILE | mailx -s "Hardware failed on `hostname`" $EMAIL
+fi
+
+rm -f $TMPFILE
