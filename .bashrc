@@ -188,7 +188,7 @@ function do_ps1 {
   LIGHT_BLUE="\[\033[01;36m\]"
 
   #PS1="\j $NO_COLOUR[$NICE_ORANGE\u$NO_COLOUR] $NICE_GREEN\h$NO_COLOUR:$NICE_BLUE\w$NO_COLOUR\$(git_prompt_info)\n→ "
-  PS1="\j \[\033[1;0m\][\[\033[00;33m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]\n→ "
+  PS1="\j \[\033[1;0m\][\[\033[00;33m\]\u\[\033[1;0m\]] \[\033[1;34m\]\h\[\033[00m\]: \[\033[00;36m\]\w\[\033[00m\]\$(git_prompt_info)\n→ "
 }
 
 do_ps1
