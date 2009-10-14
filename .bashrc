@@ -66,8 +66,11 @@ export PATH=$HOME/.cabal/bin:$PATH
 GEM_PATH=/Users/dave/.gem/ruby/1.8/bin:/opt/local/lib/ruby/gems/1.8/bin
 export PATH=$GEM_PATH:$PATH
 
+# osol stuff
 export EDITOR=vi
-export MANPATH=$MANPATH:/opt/local/share/man
+export MANPATH=$MANPATH:/opt/local/share/man:/usr/gnu/share/man:/usr/share/man:/usr/X11/share/man
+export PATH=$PATH/usr/gnu/bin:/usr/bin:/usr/X11/bin:/usr/sbin:/sbin:/usr/sfw/bin/:$HOME/bin
+
 export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
 if [ $TERM == "rxvt-unicode" ]; then
