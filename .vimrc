@@ -24,9 +24,9 @@ set guioptions-=L                 " no left scroll (when vertically split)
 set guioptions-=b                 " no bottom scroll bar
 set guioptions-=r                 " no right scroll bar
 set guioptions-=e                 " text mode tab lines
-set mousemodel=extend             " right click extends selection
-set mouse=a                       " mouse selection in normal, command and insert modes
-set clipboard=autoselect,unnamed
+"set mousemodel=extend             " right click extends selection
+"set mouse=a                       " mouse selection in normal, command and insert modes
+"set clipboard=autoselect,unnamed
 set viminfo='100,f1,%             " marks remembered for 100 files, enable mark storing, buffers stored
                                   " FIXME % doesn't work
 set showtabline=2                 " always
