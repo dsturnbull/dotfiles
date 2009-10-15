@@ -78,7 +78,7 @@ if [ $TERM == "rxvt-unicode" ]; then
   export TERM=xterm-256color
 fi
 export LANG=en_US.UTF-8
-export USERWM=`which xmonad`
+export USERWM=`which xmonad 2>/dev/null`
 
 alias grin='grin --force-color'
 alias less='less -R'
