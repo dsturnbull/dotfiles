@@ -39,7 +39,9 @@ export EC2_HOME=$HOME/src/ec2-api-tools-1.3-36506
 export AMI_HOME=$HOME/src/ec2-ami-tools-1.3-31780
 export ELB_HOME=$HOME/src/ElasticLoadBalancing-1.0
 export AUTO_SCALING_HOME=$HOME/src/AutoScaling-1.0
-export PATH=$EC2_HOME/bin:$AMI_HOME/bin:$ELB_HOME/bin:$AUTO_SCALING_HOME/bin:$PATH
+export MAGLEV_HOME=$HOME/src/MagLev-installer/MagLev-22384.Solaris-x86
+export PATH=$MAGLEV_HOME/bin:$EC2_HOME/bin:$AMI_HOME/bin:$ELB_HOME/bin:$AUTO_SCALING_HOME/bin:$PATH
+
 
 export MXMLC_HOME=$HOME/src/flex_sdk_3
 export PATH=$MXMLC_HOME/bin:$PATH
@@ -69,8 +71,8 @@ export PATH=$GEM_PATH:$PATH
 # osol stuff
 export EDITOR=vi
 export PAGER=less
-export MANPATH=$MANPATH:/opt/local/share/man:/usr/gnu/share/man:/usr/share/man:/usr/X11/share/man
-export PATH=/usr/local/bin:/usr/gnu/bin:/usr/bin:/usr/X11/bin:/usr/sbin:/sbin:/usr/sfw/bin/:$HOME/bin:$PATH
+export MANPATH=/opt/SUNWut/share/man:/opt/csw/share/man:$MANPATH:/opt/local/share/man:/usr/gnu/share/man:/usr/share/man:/usr/X11/share/man
+export PATH=/opt/csw/bin:/opt/SUNWut/sbin:/opt/SUNWut/bin:/opt/DTT/Bin:/usr/local/bin:/usr/gnu/bin:/usr/bin:/usr/X11/bin:/usr/sbin:/sbin:/usr/sfw/bin/:$HOME/bin:$PATH
 
 export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
