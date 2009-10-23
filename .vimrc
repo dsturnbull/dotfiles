@@ -44,9 +44,6 @@ inoremap # X#
 " use c-a in command mode
 cnoremap <C-a> <Home>
 
-" w!!
-cmap w!! %!sudo tee > /dev/null %
-
 " git/svn blame - \g/\s on a visual block
 vmap <Leader>g :<C-u>!git blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
 vmap <Leader>s :<C-u>!svn blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
