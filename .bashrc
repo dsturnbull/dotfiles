@@ -84,6 +84,7 @@ export USERWM=`which xmonad 2>/dev/null`
 
 alias grin='grin --force-color'
 alias less='less -R'
+alias new='ls -lath $HOME/Downloads/ | head'
 
 alias chiron='mono /Applications/Silverlight/sdl-sdk/bin/Chiron.exe'
 alias sl='/Applications/Silverlight/sdl-sdk/script/sl'
