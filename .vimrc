@@ -161,6 +161,14 @@ imap <C-]> <C-x><C-]>
 inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
+" align commas nicely
+function! AlignCommasNicely()
+  exec ":AlignCtrl =Wl"
+  exec ":%Align ,"
+  exec ":%s/\\([ ]\\+\\),/,\\1/g"
+endfunction
+command! AC :call AlignCommasNicely()
+
 " fold text between all contexts and specify lines
 function! ShowRSpecAnnotation()
  call cursor('$', 0)
