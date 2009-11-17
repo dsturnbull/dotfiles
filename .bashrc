@@ -74,6 +74,9 @@ export PAGER=less
 export MANPATH=/opt/SUNWut/share/man:/opt/csw/share/man:$MANPATH:/opt/local/share/man:/usr/gnu/share/man:/usr/share/man:/usr/X11/share/man
 export PATH=/opt/csw/bin:/opt/SUNWut/sbin:/opt/SUNWut/bin:/opt/DTT/Bin:/usr/local/bin:/usr/gnu/bin:/usr/bin:/usr/X11/bin:/usr/sbin:/sbin:/usr/sfw/bin/:$HOME/bin:$PATH
 
+# too confusing now.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
 export NNTPSERVER=news.giganews.com
 export CLICOLOR=1
 if [ $TERM == "rxvt-unicode" ]; then
