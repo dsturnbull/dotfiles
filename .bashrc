@@ -226,3 +226,5 @@ fi
 
 do_ps1
 
+
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
