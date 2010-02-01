@@ -1,1 +1,1 @@
-perl -0007 -MJSON -n -e 'print to_json(from_json($_, {allow_nonref=>1}),{pretty=>1})' 2>/dev/null
+/opt/local/bin/perl -0007 -MJSON -n -e 'print to_json(from_json($_, {allow_nonref=>1}),{pretty=>1})'
