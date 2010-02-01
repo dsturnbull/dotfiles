@@ -46,16 +46,22 @@ export PATH=$MAGLEV_HOME/bin:$EC2_HOME/bin:$AMI_HOME/bin:$ELB_HOME/bin:$AUTO_SCA
 export MXMLC_HOME=$HOME/src/flex_sdk_3
 export PATH=$MXMLC_HOME/bin:$PATH
 
+# LINUX FLAGS
 if [ `uname` == "Linux" ]; then
   export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.13
 else
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 fi
 
+# DARWIN FLAGS
+if [ `uname` == "Darwin" ]; then
+  export ARCHFLAGS="-arch x86_64"
+fi
+
 export IRONRUBY_HOME=~/src/ironruby
 export PATH=$IRONRUBY_HOME/bin:$PATH
 
-export PATH=/opt/local/lib/postgresql83/bin:$PATH
+export PATH=/opt/local/lib/postgresql84/bin:$PATH
 export PATH=/opt/local/sbin:$PATH
 export PATH=/opt/local/bin:$PATH
 export PATH=/opt/ruby-enterprise/bin:$PATH
@@ -228,3 +234,4 @@ do_ps1
 
 
 test -r /sw/bin/init.sh && . /sw/bin/init.sh
+
