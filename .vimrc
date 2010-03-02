@@ -15,15 +15,6 @@ set viminfo='100,f1               " marks remembered for 100 files, enable mark 
 set wrap                          " for julio
 set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style when opening files
-set guifont=terminus\ 9           " yay fonts
-set guioptions-=m                 " no menu
-set guioptions+=c                 " console dialogues (no gui popups)
-set guioptions-=t                 " tearoff menu items
-set guioptions-=T                 " no toolbar
-set guioptions-=L                 " no left scroll (when vertically split)
-set guioptions-=b                 " no bottom scroll bar
-set guioptions-=r                 " no right scroll bar
-set guioptions-=e                 " text mode tab lines
 
 " autoindent
 set formatoptions+=r              " keep autoindent for <CR>
@@ -31,7 +22,7 @@ set formatoptions-=o              " but stop it when o/O
 set formatoptions+=t              " autowrap text to textwidth
 
 " yes
-set textwidth=80
+set textwidth=79
 
 " use c-a in command mode
 cnoremap <C-a> <Home>
@@ -149,8 +140,6 @@ nmap <silent> <C-p> :tabp<CR>
 nmap <C-BSlash> :po<CR>
 nmap <silent> <C-t> :tabnew<CR>
 
-" FIXME it's not ready!
-" osx yank/put
 " nmap y  <Plug>(fakeclip-y)
 " nmap Y  <Plug>(fakeclip-Y)
 " nmap yy <Plug>(fakeclip-Y)
@@ -173,3 +162,4 @@ nmap <silent> <C-t> :tabnew<CR>
 " vmap ]P <Plug>(fakeclip-]P)
 " vmap [p <Plug>(fakeclip-[p)
 " vmap [P <Plug>(fakeclip-[P)
+
