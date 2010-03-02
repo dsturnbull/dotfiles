@@ -134,3 +134,10 @@ function! AlignCommasNicely()
 endfunction
 command! AC :call AlignCommasNicely()
 
+" tab hax
+nmap <silent> <C-n> :tabn<CR>
+nmap <silent> <C-p> :tabp<CR>
+" swap tag stack pop with tabnew
+nmap <C-BSlash> :po<CR>
+nmap <silent> <C-t> :tabnew<CR>
+
