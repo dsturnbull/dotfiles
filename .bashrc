@@ -61,6 +61,9 @@ fi
 export IRONRUBY_HOME=~/src/ironruby
 export PATH=$IRONRUBY_HOME/bin:$PATH
 
+export PATH=$HOME/src/depot_tools:$PATH
+
+export PATH=/opt/local/lib/postgresql83/bin:$PATH
 export PATH=/opt/local/lib/postgresql84/bin:$PATH
 export PATH=/opt/local/sbin:$PATH
 export PATH=/opt/local/bin:$PATH
