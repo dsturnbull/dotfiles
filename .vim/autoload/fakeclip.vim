@@ -196,7 +196,7 @@ endfunction
 
 
 function! s:write_clipboard_mac(text)
-  call system('pbcopy', a:text)
+  call system('ssh localhost pbcopy', a:text)
   return
 endfunction
 
