@@ -24,3 +24,4 @@ bin/xmobar
 .vimperator/info/
 .vim/doc/tags
 bin/backup
+tags

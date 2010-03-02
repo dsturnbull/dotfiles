@@ -11,4 +11,5 @@ mv .Xmodmap .Xmodmap.old ; ln -sf dotfiles/.Xmodmap
 mv .Xdefaults .Xdefaults.old ; ln -sf dotfiles/.Xdefaults
 mv .xmonad .xmonad.old ; ln -sf dotfiles/.xmonad .xmonad
 mv .gitconfig .gitconfig.old ; ln -sf dotfiles/.gitconfig .gitconfig
+mv .tmux.conf .tmux.conf.old ; ln -sf dotfiles/.tmux.conf .tmux.conf
 mv bin bin.old; ln -sf dotfiles/bin bin
