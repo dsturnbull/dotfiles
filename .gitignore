@@ -25,3 +25,15 @@ bin/xmobar
 .vim/doc/tags
 bin/backup
 tags
+.DS_Store
+bin/capinfos
+bin/dftest
+bin/dumpcap
+bin/editcap
+bin/idl2wrs
+bin/mergecap
+bin/randpkt
+bin/rawshark
+bin/text2pcap
+bin/tshark
+bin/wireshark
