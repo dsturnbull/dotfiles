@@ -128,26 +128,3 @@ nmap <silent> <C-p> :tabp<CR>
 nmap <C-BSlash> :po<CR>
 nmap <silent> <C-t> :tabnew<CR>
 
-" nmap y  <Plug>(fakeclip-y)
-" nmap Y  <Plug>(fakeclip-Y)
-" nmap yy <Plug>(fakeclip-Y)
-" vmap y  <Plug>(fakeclip-y)
-" vmap Y  <Plug>(fakeclip-Y)
-" 
-" nmap p  <Plug>(fakeclip-p)
-" nmap P  <Plug>(fakeclip-P)
-" nmap gp <Plug>(fakeclip-gp)
-" nmap gP <Plug>(fakeclip-gP)
-" nmap ]p <Plug>(fakeclip-]p)
-" nmap ]P <Plug>(fakeclip-]P)
-" nmap [p <Plug>(fakeclip-[p)
-" nmap [P <Plug>(fakeclip-[P)
-" vmap p  <Plug>(fakeclip-p)
-" vmap P  <Plug>(fakeclip-P)
-" vmap gp <Plug>(fakeclip-gp)
-" vmap gP <Plug>(fakeclip-gP)
-" vmap ]p <Plug>(fakeclip-]p)
-" vmap ]P <Plug>(fakeclip-]P)
-" vmap [p <Plug>(fakeclip-[p)
-" vmap [P <Plug>(fakeclip-[P)
-
