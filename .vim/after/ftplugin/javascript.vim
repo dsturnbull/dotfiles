@@ -4,3 +4,7 @@ if ! exists('b:current_compiler')
   compiler jsl 
 endif 
 
+setlocal shiftwidth=4
+setlocal tabstop=4
+setlocal expandtab
+setlocal softtabstop=4

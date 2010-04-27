@@ -76,21 +76,9 @@ let g:FuzzyFinderOptions.Tag = { 'matching_limit': 20 }
 map <leader>p :set paste!<CR>
 
 " indentation
-filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 
 aug init
-  au FileType python     setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType ruby       setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-  au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-  au FileType haskell    setlocal tabstop=4 shiftwidth=4
-  au FileType cpp        setlocal tabstop=4 shiftwidth=4
-  au FileType c          setlocal tabstop=4 shiftwidth=4
-  au FileType cs         setlocal tabstop=4 shiftwidth=4
-  au FileType sh         setlocal tabstop=4 shiftwidth=4
-  au FileType objc       setlocal tabstop=4 shiftwidth=4
-
   au FileType ruby       let g:rubycomplete_rails=1
   au FileType ruby       let g:rubycomplete_classes_in_global=1
 
