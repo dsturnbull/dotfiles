@@ -1,6 +1,6 @@
-keycode 66 = Alt_L
-keycode 63 = Super_L
-clear mod2
-clear mod4
-add mod4 = Super_L
-add mod2 = Alt_L
+clear Mod1
+clear Mod2
+keycode 63 = Mode_switch
+keycode 66 = Meta_L
+add Mod1 = Meta_L
+add Mod2 = Mode_switch

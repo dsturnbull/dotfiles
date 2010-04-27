@@ -19,32 +19,28 @@ import qualified XMonad.Actions.Submap as SM
 import qualified XMonad.Prompt         as P
 
 main = do
-    putEnv "BROWSER=firefox-x11-standalone"
-    xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
-    xmonad $ myConfig xmproc `additionalKeys` myKeys
+    -- putEnv "BROWSER=firefox-x11-standalone"
+    -- xmproc <- spawnPipe "xmobar $HOME/.xmonad/xmobar"
+    xmonad $ myConfig `additionalKeys` myKeys
 
-myConfig xmproc = defaultConfig
+myConfig = defaultConfig
     { terminal           = "/opt/local/bin/urxvt"
     , borderWidth        = 1
     , normalBorderColor  = "#cccccc"
     , focusedBorderColor = "#cd8b00"
-    , modMask            = mod4Mask
+    , modMask            = mod1Mask
     , focusFollowsMouse  = sloppyFocus
     , manageHook         = manageDocks <+> manageHook defaultConfig
     , layoutHook         = smartBorders . layoutHints . avoidStruts $ myLayouts
-    , logHook            = dynamicLogWithPP $ xmobarPP
-        { ppOutput = U.hPutStrLn xmproc
-        , ppTitle  = xmobarColor "green" "" . shorten 50
-        }
     }
 
 myKeys =
     [ ((modMask, xK_f), viewEmptyWorkspace)
     , ((modShft, xK_f), tagToEmptyWorkspace)
-    , ((modMod1, xK_k), sendMessage MirrorExpand)
-    , ((modMod1, xK_l), sendMessage Expand)
-    , ((modMod1, xK_h), sendMessage Shrink)
-    , ((modMod1, xK_j), sendMessage MirrorShrink)
+    , ((modMod2, xK_k), sendMessage MirrorExpand)
+    , ((modMod2, xK_l), sendMessage Expand)
+    , ((modMod2, xK_h), sendMessage Shrink)
+    , ((modMod2, xK_j), sendMessage MirrorShrink)
     , ((modMask, xK_s), search)
     , ((modMask, xK_t), itunesMap)
     , ((modShft, xK_s), sshPrompt defaultXPConfig)
@@ -57,12 +53,12 @@ myKeys =
     , ((modShft, xK_k), sendMessage $ Swap U)
     , ((modShft, xK_l), sendMessage $ Swap R)
     ]
-    where modMask     = mod4Mask
+    where modMask     = mod1Mask
           modShft     = modMask .|. shiftMask
           modCtrl     = modMask .|. controlMask
           modShCr     = modMask .|. shiftMask .|. controlMask
-          modMod1     = mod1Mask
-          modM1Cr     = modMask .|. mod1Mask .|. controlMask
+          modMod2     = mod2Mask
+          modM1Cr     = modMask .|. mod2Mask .|. controlMask
           search      = SM.submap $ searchMap $ S.promptSearch P.defaultXPConfig
           nilMask     = 0
           jstShft     = shiftMask

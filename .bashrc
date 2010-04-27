@@ -35,7 +35,7 @@ export FIGNORE=CVS:.svn:.DS_Store:.git:.gitignore
 export EC2_PRIVATE_KEY=~/.ec2/pk.pem
 export EC2_CERT=~/.ec2/cert.pem
 
-export EC2_HOME=$HOME/src/ec2-api-tools-1.3-36506
+export EC2_HOME=$HOME/src/ec2-api-tools-1.3-46266
 export AMI_HOME=$HOME/src/ec2-ami-tools-1.3-31780
 export ELB_HOME=$HOME/src/ElasticLoadBalancing-1.0
 export AUTO_SCALING_HOME=$HOME/src/AutoScaling-1.0
