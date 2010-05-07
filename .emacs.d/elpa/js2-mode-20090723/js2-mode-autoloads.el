@@ -3,8 +3,9 @@
 ;;; Code:
 
 
-;;;### (autoloads (js2-mode) "js2-mode" "js2-mode.el" (19387 12523))
-;;; Generated autoloads from js2-mode.el
+;;;### (autoloads (js2-mode) "js2-mode" "../../../../.emacs.d/elpa/js2-mode-20090723/js2-mode.el"
+;;;;;;  (19428 15484))
+;;; Generated autoloads from ../../../../.emacs.d/elpa/js2-mode-20090723/js2-mode.el
  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 (autoload 'js2-mode "js2-mode" "\
@@ -14,7 +15,9 @@ Major mode for editing JavaScript code.
 
 ;;;***
 
-;;;### (autoloads nil nil ("js2-mode-pkg.el") (19387 12523 932176))
+;;;### (autoloads nil nil ("../../../../.emacs.d/elpa/js2-mode-20090723/js2-mode-pkg.el"
+;;;;;;  "../../../../.emacs.d/elpa/js2-mode-20090723/js2-mode.el")
+;;;;;;  (19428 15484 299002))
 
 ;;;***
 
