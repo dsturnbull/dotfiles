@@ -20,12 +20,14 @@
 (require 'dave-rsense)
 (require 'dave-ctags)
 (require 'dave-jabber)
-
-;; languages
+(require 'dave-nxhtml)
 (require 'dave-javascript)
 (require 'dave-ruby)
+(require 'dave-rspec-mode)
+(require 'dave-rinari)
+(require 'dave-magit)
 
-;; load libs
+;; load libs - probably going to make initializers for these
 (require 'fuzzy-match)
 (require 'auto-complete)
 (require 'rsense)

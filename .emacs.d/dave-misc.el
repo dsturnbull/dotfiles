@@ -34,4 +34,7 @@
 (setq viper-mode nil)
 (require 'viper)
 
+;; when you go over a parenthesis, the matching will highlight
+(show-paren-mode)
+
 (provide 'dave-misc)
