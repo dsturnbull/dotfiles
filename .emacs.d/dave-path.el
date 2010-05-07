@@ -1,5 +1,5 @@
 ;;;; exec path
 
-(setenv "PATH" "/usr/bin:/usr/local/bin:/opt/local/bin:$HOME/bin")
+(setenv "PATH" "/bin:/usr/bin:/usr/local/bin:/opt/local/bin:$HOME/bin")
 
 (provide 'dave-path)
