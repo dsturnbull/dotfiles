@@ -23,6 +23,8 @@ set formatoptions+=t              " autowrap text to textwidth
 
 " yes
 set textwidth=79
+match ErrorMsg '\%>80v.\+'
+au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " use c-a in command mode
 cnoremap <C-a> <Home>
@@ -128,3 +130,5 @@ nmap <silent> <C-p> :tabp<CR>
 nmap <C-BSlash> :po<CR>
 nmap <silent> <C-t> :tabnew<CR>
 
+" ptag
+nmap <Leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
