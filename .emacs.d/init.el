@@ -8,7 +8,7 @@
   (package-initialize))
 
 ;;;; starting appearance
-(set-default-font "menlo-9")
+(set-default-font "menlo-10")
 (setq default-frame-alist
       '(
 		(cursor-color . "Grey")
@@ -19,6 +19,9 @@
 		(left-fringe . 0)
 		))
 (menu-bar-no-scroll-bar)
+
+;;;; flymake
+(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;;;; fuzzy match
 (load "fuzzy-match.el")
