@@ -7,3 +7,9 @@
 [submodule ".vim/vim-fugitive"]
 	path = .vim/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule ".emacs.d/rsense"]
+	path = .emacs.d/rsense
+	url = git://github.com/m2ym/rsense.git
+[submodule ".emacs.d/auto-complete"]
+	path = .emacs.d/auto-complete
+	url = git://github.com/m2ym/auto-complete.git
