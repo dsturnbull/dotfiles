@@ -11,3 +11,7 @@
   mergy = !sh -c 'git cherry -v HEAD $0 | grep ^+'
 [branch]
 	autosetupmerge = true
+[core]
+	excludesfile = /Users/dave/.gitignore
+[merge]
+	tool = vimdiff
