@@ -1,0 +1,9 @@
+;; rsense keys
+(global-set-key (kbd "C-c C-c") 'ac-complete-rsense)
+(global-set-key (kbd "C-c C-v") 'rsense-complete)
+
+;; org mode keys
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+(provide 'dave-keys)
