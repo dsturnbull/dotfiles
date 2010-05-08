@@ -29,6 +29,7 @@
 (require 'dave-rinari)
 (require 'dave-magit)
 (require 'dave-themes)
+(require 'dave-yaml)
 
 ;; load libs - probably going to make initializers for these
 (require 'fuzzy-match)

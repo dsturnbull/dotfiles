@@ -13,3 +13,6 @@
 [submodule ".emacs.d/vendor/auto-complete"]
 	path = .emacs.d/vendor/auto-complete
 	url = git://github.com/m2ym/auto-complete.git
+[submodule ".emacs.d/vendor/yaml-mode"]
+	path = .emacs.d/vendor/yaml-mode
+	url = git://github.com/yoshiki/yaml-mode.git

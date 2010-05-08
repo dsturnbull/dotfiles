@@ -8,12 +8,13 @@ Based on Dark Laptop by Laurent Michel, created 2001-05-24."
   (interactive)
   (color-theme-install
    '(color-theme-dark-laptop
+
      ((background-color . "black")
-      (background-mode . dark)
-      (border-color . "black")
-      (cursor-color . "yellow")
+      (background-mode	. dark)
+      (border-color		. "black")
+      (cursor-color		. "yellow")
       (foreground-color . "white")
-      (mouse-color . "sienna1"))
+      (mouse-color		. "sienna1"))
 
      ((gnus-mouse-face . highlight)
       (list-matching-lines-face . bold)
