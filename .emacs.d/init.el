@@ -19,7 +19,5 @@
 ;; package initialisers
 (mapc #'load (mapcar 'add-initialiser-prefix (directory-files initialiser-dir nil ".*el$")))
 
-(load-file (concat dotfiles-dir "libs.el"))
-
 ;; local config
 (mapc #'load (mapcar 'add-config-prefix (directory-files config-dir nil ".*el$")))
