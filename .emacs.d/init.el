@@ -32,6 +32,8 @@
 (require 'dave-yaml)
 (require 'dave-haml)
 (require 'dave-itunes)
+(require 'dave-cucumber)
+(require 'dave-column-marker)
 
 ;; load libs - probably going to make initializers for these
 (require 'fuzzy-match)

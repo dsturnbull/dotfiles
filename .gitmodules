@@ -16,3 +16,6 @@
 [submodule ".emacs.d/vendor/yaml-mode"]
 	path = .emacs.d/vendor/yaml-mode
 	url = git://github.com/yoshiki/yaml-mode.git
+[submodule ".emacs.d/vendor/cucumber"]
+	path = .emacs.d/vendor/cucumber
+	url = git://github.com/michaelklishin/cucumber.el.git
