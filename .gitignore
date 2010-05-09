@@ -39,3 +39,8 @@ bin/tshark
 bin/wireshark
 .emacs.d/auto-save-list/
 *.elc
+/.emacs.d/vendor/rdebug/.svn/props/
+/.emacs.d/vendor/rdebug/.svn/tmp/
+/.emacs.d/vendor/rdebug/test/.svn/prop-base/
+/.emacs.d/vendor/rdebug/test/.svn/props/
+/.emacs.d/vendor/rdebug/test/.svn/tmp/

@@ -35,7 +35,7 @@
      (ad-activate 'ruby-do-run-w/compilation)))
 
 ;; gud
-(load-file (concat vendor-dir "rubydb3x.el"))
-(require 'rubydb)
+(add-to-list 'load-path (concat vendor-dir "rdebug"))
+(require 'rdebug)
 
 (provide 'dave-ruby)

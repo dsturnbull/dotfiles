@@ -37,4 +37,7 @@
 ;; when you go over a parenthesis, the matching will highlight
 (show-paren-mode)
 
+;; git-blame-mode
+(load-file "/opt/local/share/doc/git-core/contrib/emacs/git-blame.el")
+
 (provide 'dave-misc)
