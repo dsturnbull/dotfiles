@@ -1,5 +1,5 @@
 ;; starting appearance
-(set-default-font "menlo-10")
+(set-frame-font "menlo-10")
 (setq default-frame-alist
       '(
 		(cursor-color . "Grey")
