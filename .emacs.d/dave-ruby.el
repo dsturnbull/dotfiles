@@ -34,4 +34,8 @@
              (delete-region (point-min) (point-max))))))
      (ad-activate 'ruby-do-run-w/compilation)))
 
+;; gud
+(load-file (concat vendor-dir "rubydb3x.el"))
+(require 'rubydb)
+
 (provide 'dave-ruby)

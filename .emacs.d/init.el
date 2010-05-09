@@ -30,6 +30,7 @@
 (require 'dave-magit)
 (require 'dave-themes)
 (require 'dave-yaml)
+(require 'dave-haml)
 
 ;; load libs - probably going to make initializers for these
 (require 'fuzzy-match)

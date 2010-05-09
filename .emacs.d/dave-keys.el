@@ -6,4 +6,7 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 
+;; magit keys
+(global-set-key "\C-cg" 'magit-status)
+
 (provide 'dave-keys)
