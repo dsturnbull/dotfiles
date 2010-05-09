@@ -6,4 +6,3 @@
   (shell-command
    (format "%s -f %s/TAGS -e -R %s" path-to-ctags dir-name dir-name)))
 
-(provide 'dave-ctags)

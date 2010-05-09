@@ -3,4 +3,3 @@
 ;; need the proper hook
 ;; (add-hook 'after-init-hook (lambda () (interactive) (column-marker-1 80)))
 
-(provide 'dave-column-marker)

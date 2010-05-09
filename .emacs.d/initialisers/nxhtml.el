@@ -10,4 +10,3 @@
  nxml-degraded t)
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo))
 
-(provide 'dave-nxhtml)

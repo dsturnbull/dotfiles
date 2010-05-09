@@ -24,4 +24,3 @@
 		 ))
 	  )
 
-(provide 'dave-agenda)

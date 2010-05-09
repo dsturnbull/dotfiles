@@ -19,4 +19,3 @@
   (interactive)
   (rspec-run-single-file (rspec-spec-file-for (buffer-file-name)) "--format specdoc" "--reverse" "--color" (concat "--line " (number-to-string (line-number-at-pos)))))
 
-(provide 'dave-rspec-mode)

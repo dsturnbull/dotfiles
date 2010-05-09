@@ -4,4 +4,3 @@
 ;; not just yet actually
 ;; (icy-mode 1)
 
-(provide 'dave-icicles)

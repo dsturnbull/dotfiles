@@ -8,4 +8,3 @@
 ;(semantic-load-enable-gaudy-code-helpers)
 ;(semantic-load-enable-excessive-code-helpers)
 
-(provide 'dave-cedet)

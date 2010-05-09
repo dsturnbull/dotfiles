@@ -11,4 +11,3 @@
 		))
 (menu-bar-no-scroll-bar)
 
-(provide 'dave-appearance)

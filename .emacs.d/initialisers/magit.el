@@ -11,4 +11,3 @@
 		     'magit-wash-untracked-files
 		     "ls-files" "-t" "--others" "--exclude-standard" "--directory"))
 
-(provide 'dave-magit)

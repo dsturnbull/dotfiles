@@ -38,4 +38,3 @@
 (add-to-list 'load-path (concat vendor-dir "rdebug"))
 (require 'rdebug)
 
-(provide 'dave-ruby)

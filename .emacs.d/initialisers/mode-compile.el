@@ -8,4 +8,3 @@
   "Command to kill a compilation launched by `mode-compile'" t)
 ;; (global-set-key "\C-ck" 'mode-compile-kill)
 
-(provide 'dave-mode-compile)

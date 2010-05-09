@@ -21,4 +21,3 @@
  visible-bell t
  )
 
-(provide 'dave-defaults)
