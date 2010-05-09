@@ -1,4 +1,4 @@
-;; agena files
+;; agenda files
 (setq org-agenda-files (list
 						"~/org/uni.org"
 						"~/org/todo.org"
@@ -23,4 +23,3 @@
 		 "WONTFIX(w!@)"
 		 ))
 	  )
-

@@ -18,4 +18,3 @@
   "Runs the specified example at the point of the current buffer."
   (interactive)
   (rspec-run-single-file (rspec-spec-file-for (buffer-file-name)) "--format specdoc" "--reverse" "--color" (concat "--line " (number-to-string (line-number-at-pos)))))
-

@@ -10,4 +10,3 @@
 		(left-fringe . 0)
 		))
 (menu-bar-no-scroll-bar)
-

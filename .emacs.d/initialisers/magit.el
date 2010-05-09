@@ -10,4 +10,3 @@
   (magit-git-section 'untracked "Untracked files:"
 		     'magit-wash-untracked-files
 		     "ls-files" "-t" "--others" "--exclude-standard" "--directory"))
-

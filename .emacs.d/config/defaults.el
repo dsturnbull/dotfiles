@@ -20,4 +20,3 @@
  vc-follow-symlinks t
  visible-bell t
  )
-

@@ -10,4 +10,3 @@
 ;; system-type-config (concat dotfiles-dir system-type ".el")
 
 (if (file-exists-p system-specific-config) (load system-specific-config))
-

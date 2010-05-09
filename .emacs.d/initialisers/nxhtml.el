@@ -9,4 +9,3 @@
  rng-nxml-auto-validate-flag nil
  nxml-degraded t)
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo))
-
