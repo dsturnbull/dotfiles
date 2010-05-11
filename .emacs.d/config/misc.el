@@ -39,4 +39,5 @@
 (show-paren-mode)
 
 ;; git-blame-mode
-(load-file "/opt/local/share/doc/git-core/contrib/emacs/git-blame.el")
+(if (file-exists-p "/opt/local/share/doc/git-core/contrib/emacs/git-blame.el")
+	(load-file "/opt/local/share/doc/git-core/contrib/emacs/git-blame.el"))

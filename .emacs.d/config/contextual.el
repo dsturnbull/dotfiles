@@ -10,7 +10,7 @@
 	(if (file-exists-p (concat dotfiles-dir "darwin.el"))
 		(load (concat dotfiles-dir "darwin.el"))))
 
-(if (eq system-type 'linux)
+(if (eq system-type 'gnu/linux)
 	(if (file-exists-p (concat dotfiles-dir "linux.el"))
 		(load (concat dotfiles-dir "linux.el"))))
 
