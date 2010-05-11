@@ -8,6 +8,6 @@
 		(right-fringe . 0)
 		(left-fringe . 0)
 		(font . "menlo-10")
-		(alpha . (85 50))
+		(alpha . (85 85))
 		))
 (menu-bar-no-scroll-bar)
