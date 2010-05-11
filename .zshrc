@@ -23,9 +23,10 @@ autoload -U git_status
 
 # PS1
 fg_lblue=$'\e[1;34m'
+fg_reset=$'\e[0m'
 PROMPT="%j \
 [%{$fg[yellow]%}%n%{$fg[default]%}] \
-%{$fg[green]%}%m: %{$fg[default]%}\
+%{$fg_lblue%}%m%{$fg_reset%}: \
 %{$fg[cyan]%}%~%{$fg[default]%} \
 %# "
 RPS1='$(git_status) %*'
@@ -35,7 +36,7 @@ RPS1='$(git_status) %*'
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-WORDCHARS="!-"
+WORDCHARS="!-" # FIXME need proper emacs/bash style word movement
 EDITOR=emacs
 
 # path
