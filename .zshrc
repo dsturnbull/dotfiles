@@ -36,7 +36,7 @@ RPS1='$(git_status) %*'
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-WORDCHARS="!-" # FIXME need proper emacs/bash style word movement
+WORDCHARS=""
 EDITOR=emacs
 
 # path
