@@ -1,3 +1,7 @@
+if [ -f /bin/zsh ]; then
+  zsh && exit
+fi
+
 # xquartz dickery
 cd
 
