@@ -34,7 +34,7 @@ RPS1='$(git_status) %*'
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-WORDCHARS=${}
+WORDCHARS="!-"
 
 # path
 PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
@@ -42,6 +42,7 @@ PATH=/opt/local/libexec/git-core:$PATH
 
 # bindings
 bindkey '^w' kill-region # FIXME need to detect mark-active for ^w to be nice
+bindkey '\ed' kill-word
 
 # special dirs
 rt=~/src/incite/rt
