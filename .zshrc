@@ -46,6 +46,8 @@ PATH=/opt/local/libexec/git-core:$PATH
 # bindings
 bindkey '^w' kill-region # FIXME need to detect mark-active for ^w to be nice
 bindkey '\ed' kill-word
+bindkey '\ef' emacs-forward-word
+bindkey '\eb' emacs-backward-word
 
 # special dirs
 rt=~/src/incite/rt
