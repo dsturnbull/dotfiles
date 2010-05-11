@@ -14,3 +14,6 @@ mv .gitconfig .gitconfig.old ; ln -sf dotfiles/.gitconfig .gitconfig
 mv .tmux.conf .tmux.conf.old ; ln -sf dotfiles/.tmux.conf .tmux.conf
 mv bin bin.old; ln -sf dotfiles/bin bin
 mv .emacs.d .emacs.d.old ; ln -sf dotfiles/.emacs.d .emacs.d
+mv .zsh .zsh.old; ln -sf dotfiles/.zsh .zsh
+mv .zshrc .zshrc.old; ln -sf dotfiles/.zshrc .zshrc
+mv .zshenv .zshenv.old; ln -sf dotfiles/.zshenv .zshenv

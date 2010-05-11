@@ -1,0 +1,2 @@
+zgit_isgit || return
+print "(git:$(zgit_branch))"
