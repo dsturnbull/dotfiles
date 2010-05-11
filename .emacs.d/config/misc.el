@@ -41,3 +41,6 @@
 ;; git-blame-mode
 (if (file-exists-p "/opt/local/share/doc/git-core/contrib/emacs/git-blame.el")
 	(load-file "/opt/local/share/doc/git-core/contrib/emacs/git-blame.el"))
+
+;; yegge-mode
+(load-file (concat vendor-dir "yegge.el"))
