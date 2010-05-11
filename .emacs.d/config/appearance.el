@@ -1,5 +1,4 @@
 ;; starting appearance
-(set-frame-font "menlo-10")
 (setq default-frame-alist
       '(
 		(cursor-color . "Grey")
@@ -8,5 +7,7 @@
 		(background-color . "Black")
 		(right-fringe . 0)
 		(left-fringe . 0)
+		(font . "menlo-10")
+		(alpha . (85 50))
 		))
 (menu-bar-no-scroll-bar)

@@ -26,6 +26,7 @@
 ;; remember buffer position
 (custom-set-variables
  '(save-place t nil (saveplace)))
+(setq save-place-file (concat dotfiles-dir "places"))
 
 ;; fuzzy find-file
 (ido-mode t)
