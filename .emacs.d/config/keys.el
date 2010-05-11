@@ -11,6 +11,3 @@
 
 ;; copy-region-as-kill
 (global-set-key (kbd "C-c C-y") 'copy-region-as-kill)
-
-;; handle shitty terminals
-(define-key key-translation-map [?\C-h] [?\C-?])

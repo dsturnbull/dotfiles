@@ -6,7 +6,12 @@
 
 (setq system-specific-config (concat dotfiles-dir system-name ".el"))
 
-;; FIXME disable this until i can figure out how to turn system-type into a string
-;; system-type-config (concat dotfiles-dir system-type ".el")
+(if (eq system-type 'darwin)
+	(if (file-exists-p (concat dotfiles-dir "darwin.el"))
+		(load (concat dotfiles-dir "darwin.el"))))
+
+(if (eq system-type 'linux)
+	(if (file-exists-p (concat dotfiles-dir "linux.el"))
+		(load (concat dotfiles-dir "linux.el"))))
 
 (if (file-exists-p system-specific-config) (load system-specific-config))
