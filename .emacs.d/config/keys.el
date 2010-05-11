@@ -8,3 +8,6 @@
 
 ;; magit keys
 (global-set-key "\C-cg" 'magit-status)
+
+;; copy-region-as-kill
+(global-set-key (kbd "C-c C-y") 'copy-region-as-kill)

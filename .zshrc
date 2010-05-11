@@ -31,10 +31,12 @@ PROMPT="%j \
 RPS1='$(git_status) %*'
 
 # various
+# FIXME why don't I need to export these, like the other crap below?
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 WORDCHARS="!-"
+EDITOR=emacs
 
 # path
 PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
@@ -49,3 +51,60 @@ rt=~/src/incite/rt
 tbx=~/src/incite/toolbox
 smarm=~/src/smarm
 ct=~/src/content_type
+
+# fruity colours for less
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+# OS-specific stuff
+# Linux
+if [ `uname` = "Linux" ]; then
+	export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.13
+fi
+
+# Darwin
+if [ `uname` = "Darwin" ]; then
+	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+	export ARCHFLAGS="-arch x86_64"
+fi
+
+# frameworks, platforms
+export ANDROID_HOME=~/src/android-sdk-mac_86
+export PATH=$ANDROID_HOME/tools:$PATH
+
+# package bin paths
+export PATH=/opt/local/lib/postgresql83/bin:$PATH
+export PATH=/opt/local/lib/postgresql84/bin:$PATH
+
+# user bin paths
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/local/bin:$PATH
+export PATH=$HOME/.cabal/bin:$PATH
+
+# make rxvt prettier
+if [ $TERM = "rxvt-unicode" ]; then
+  export TERM=xterm-256color
+fi
+
+# aliases
+alias grin='grin --force-color'
+alias less='less -R'
+alias new='ls -lath $HOME/Downloads/ | head'
+
+# resty
+. $HOME/dotfiles/resty/resty
+
+# ec2 keys
+if [ -e $HOME/.ec2/local_keys ]; then
+  . $HOME/.ec2/local_keys
+fi
+
+# I want ^S please
+if test -n $PS1; then
+	stty stop undef
+fi
