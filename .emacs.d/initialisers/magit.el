@@ -10,3 +10,14 @@
   (magit-git-section 'untracked "Untracked files:"
 		     'magit-wash-untracked-files
 		     "ls-files" "-t" "--others" "--exclude-standard" "--directory"))
+
+(defun git-log-patch ()
+  (interactive)
+  (let
+	  ((file-name (file-name-nondirectory buffer-file-name))
+	   (dir-name (file-name-directory buffer-file-name)))
+	(shell-command (concat "cd " dir-name "; git log -p " file-name))))
+
+;; (apply 'make-comint buf-name "git-log" nil '("-p" "magit.el"))))
+;; (comint-send-string (get-buffer-process (concat "*" buf-name "*"))
+;;					(concat "git log -p " buffer-file-name "\n"))))

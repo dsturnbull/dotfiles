@@ -13,6 +13,7 @@
 ;; git keys
 (global-set-key "\C-cg" 'magit-status)
 (global-set-key "\C-cb" 'git-blame-mode)
+(global-set-key "\C-cp" 'git-log-patch)
 
 ;; copy-region-as-kill
 (global-set-key (kbd "C-c C-y") 'copy-region-as-kill)
