@@ -1,3 +1,7 @@
+;; cmd/alt
+;; (setq ns-command-modifier 'meta)
+;; (setq ns-alternate-modifier 'super)
+
 ;; rsense keys
 (global-set-key (kbd "C-c C-c") 'ac-complete-rsense)
 (global-set-key (kbd "C-c C-v") 'rsense-complete)

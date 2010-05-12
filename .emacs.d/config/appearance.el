@@ -1,4 +1,6 @@
 ;; starting appearance
+(setq blink-cursor-mode t)
+(setq scroll-bar-mode nil)
 (setq default-frame-alist
       '(
 		(cursor-color . "Grey")
