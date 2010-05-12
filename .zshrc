@@ -39,10 +39,6 @@ HISTFILE=~/.zsh_history
 WORDCHARS=""
 EDITOR=emacs
 
-# path
-PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
-PATH=/opt/local/libexec/git-core:$PATH
-
 # bindings
 bindkey '^w' kill-region # FIXME need to detect mark-active for ^w to be nice
 bindkey '\ed' kill-word
@@ -75,19 +71,6 @@ if [ `uname` = "Darwin" ]; then
 	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 	export ARCHFLAGS="-arch x86_64"
 fi
-
-# frameworks, platforms
-export ANDROID_HOME=~/src/android-sdk-mac_86
-export PATH=$ANDROID_HOME/tools:$PATH
-
-# package bin paths
-export PATH=/opt/local/lib/postgresql83/bin:$PATH
-export PATH=/opt/local/lib/postgresql84/bin:$PATH
-
-# user bin paths
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/local/bin:$PATH
-export PATH=$HOME/.cabal/bin:$PATH
 
 # make rxvt prettier
 if [ $TERM = "rxvt-unicode" ]; then
