@@ -46,3 +46,4 @@ bin/wireshark
 /.emacs.d/vendor/rdebug/test/.svn/tmp/
 /.emacs.d/places
 .emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc
+/.emacs.d/url/
