@@ -16,4 +16,4 @@ export PATH=/opt/local/lib/postgresql84/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
-export PATH=$HOME/.gem/ruby/1.8/bin:$PATH
+export PATH=$PATH:$HOME/src/jruby/bin
