@@ -189,6 +189,8 @@ SpiderMonkey."
                          local-file)))
      ((eq flymake-js-engine 'spidermonkey)
       (list "js" (list "-s" local-file)))
+	 ((eq flymake-js-engine 'jslintpy)
+	  (list "jslint.py" (list local-file "adsafe: false, bitwise: true, browser: true, cap: false, css: false, debug: false, devel: false, eqeqeq: false, es5: false, evil: true, forin: false, fragment: false, immed: false, indent: 2, laxbreak: false, nomen: true, newcap: true, on: false, onevar: false, passfail: false, plusplus: false, regexp: false, rhino: true, safe: false, strict: false, sub: false, undef: true, white: false, widget: false, windows: false" "ENV" "jQuery" "BrowserPlus")))
      (t
       (error "Bad value: %s" flymake-js-engine)))))
 
@@ -212,6 +214,9 @@ SpiderMonkey."
         (unless (file-exists-p flymake-js-rhino-js)
           (error "Could not find file %s" flymake-js-rhino-js))
         (flymake-js-check-rhino-js)))
+	 ;; jslint.py
+	 ((eq flymake-js-engine 'jslintpy))
+
      ;; SpiderMonkey
      ((eq flymake-js-engine 'spidermonkey)
       (unless (executable-find "js")
