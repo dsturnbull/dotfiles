@@ -47,5 +47,4 @@ bin/wireshark
 /.emacs.d/places
 .emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc
 /.emacs.d/url/
-/.emacs.d/vendor/nxhtml/related/rhino.js
 /.emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc~

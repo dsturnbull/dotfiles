@@ -1,5 +1,5 @@
 // Where you store your files
-var project_folder = 'file:///c:/emacs/p/091105/EmacsW32/nxhtml/related/';
+var project_folder = 'file:////Users/dave/.emacs.d/vendor/nxhtml/related/';
 // Browser environment wrapper over Rhino
 load(project_folder + 'env.js');
 // For DOM constructing
