@@ -17,3 +17,6 @@
 
 ;; copy-region-as-kill
 (global-set-key (kbd "C-c C-y") 'copy-region-as-kill)
+
+;; recompile
+(global-set-key (kbd "C-c r") 'recompile)
