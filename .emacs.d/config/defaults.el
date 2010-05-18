@@ -19,4 +19,5 @@
  show-trailing-whitespace t
  vc-follow-symlinks t
  visible-bell t
- )
+ debug-on-error nil
+ debug-on-signal nil)

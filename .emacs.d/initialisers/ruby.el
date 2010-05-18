@@ -37,3 +37,6 @@
 ;; gud
 (add-to-list 'load-path (concat vendor-dir "rdebug"))
 (require 'rdebug)
+
+;; ri
+(require 'ri)
