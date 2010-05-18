@@ -1,5 +1,5 @@
 ;; base
-(setq dotfiles-dir "~/.emacs.d/")
+(setq dotfiles-dir (expand-file-name "~/.emacs.d/"))
 (setq vendor-dir (concat dotfiles-dir "vendor/"))
 (setq theme-dir (concat dotfiles-dir "themes/"))
 (setq initialiser-dir (concat dotfiles-dir "initialisers/"))
