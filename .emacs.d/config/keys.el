@@ -40,8 +40,7 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
-;; ok, let's see
-(global-set-key (quote [tab]) 'smart-tab)
+;; no cmd-z
 (defun undo-warning ()
   (interactive)
   (message "ni!"))

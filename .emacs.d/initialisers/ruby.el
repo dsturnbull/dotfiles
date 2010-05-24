@@ -7,9 +7,7 @@
      (ignore-errors (require 'ruby-compilation))
      (setq ruby-use-encoding-map nil)
      (add-hook 'ruby-mode-hook 'inf-ruby-keys)
-     (define-key ruby-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
-     (define-key ruby-mode-map (kbd "C-M-h") 'backward-kill-word)
-     (define-key ruby-mode-map (kbd "C-c l") "lambda")))
+	 (define-key ruby-mode-map (quote [tab]) 'indent-for-tab-command)))
 
 ;; ri key
 (global-set-key (kbd "C-h r") 'ri)
@@ -40,3 +38,6 @@
 
 ;; ri
 (require 'ri)
+
+;; more pythony than lispy
+(setq ruby-deep-indent-paren nil)
