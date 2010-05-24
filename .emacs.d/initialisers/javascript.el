@@ -1,7 +1,7 @@
 ;; javascript stuff
-(defun my-espresso-mode-hook ()
-  (setq espresso-indent-level 2
-		indent-tabs-mode nil
-		c-basic-offset 2))
+(defun my-js-mode-hook ()
+  (setq indent-tabs-mode nil)
+  (setq c-basic-offset 4)
+  (setq espresso-indent-level 4))
 
-(add-hook 'espresso-mode-hook 'my-espresso-mode-hook)
+(add-hook 'js-mode-hook 'my-js-mode-hook)
