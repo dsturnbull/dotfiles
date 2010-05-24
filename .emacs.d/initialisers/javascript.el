@@ -5,3 +5,6 @@
   (setq espresso-indent-level 4))
 
 (add-hook 'js-mode-hook 'my-js-mode-hook)
+
+;; treat jaml as js
+(add-to-list 'auto-mode-alist '("\\.jaml$" . js-mode))
