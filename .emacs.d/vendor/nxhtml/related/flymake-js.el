@@ -190,9 +190,10 @@ SpiderMonkey."
      ((eq flymake-js-engine 'spidermonkey)
       (list "js" (list "-s" local-file)))
 	 ((eq flymake-js-engine 'jslintpy)
-	  (list "jslint.py" (list local-file "adsafe: false, bitwise: true, browser: true, cap: false, css: false, debug: false, devel: false, eqeqeq: false, es5: false, evil: false, forin: false, fragment: false, immed: false, indent: 2, laxbreak: false, nomen: false, newcap: true, on: false, onevar: false, passfail: false, plusplus: false, regexp: false, rhino: true, safe: false, strict: false, sub: false, undef: true, white: false, widget: false, windows: false" "ENV" "jQuery" "BrowserPlus" "window" "Class" "escape" "$" "SWFUpload" "Jaml" "div" "p" "option")))
+	  (list "jslint.py" (list local-file "adsafe: false, bitwise: true, browser: true, cap: false, css: false, debug: false, devel: false, eqeqeq: false, es5: false, evil: false, forin: true, fragment: false, immed: false, indent: 2, laxbreak: false, nomen: false, newcap: true, on: false, onevar: false, passfail: false, plusplus: false, regexp: false, rhino: true, safe: false, strict: false, sub: false, undef: true, white: false, widget: false, windows: false" "ENV" "jQuery" "BrowserPlus" "window" "Class" "escape" "$" "SWFUpload" "Jaml" "div" "p" "option")))
      (t
       (error "Bad value: %s" flymake-js-engine)))))
+
 
 (defvar flymake-js-has-engine nil)
 
