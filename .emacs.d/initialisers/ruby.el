@@ -40,4 +40,5 @@
 (require 'ri)
 
 ;; more pythony than lispy
-(setq ruby-deep-indent-paren nil)
+;; nope, it sucks
+;; (setq ruby-deep-indent-paren nil)
