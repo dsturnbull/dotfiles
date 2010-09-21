@@ -45,3 +45,6 @@
   (interactive)
   (message "ni!"))
 (global-set-key (kbd "s-z") 'undo-warning)
+
+;; handle shitty terminals
+(define-key key-translation-map [?\C-h] [?\C-?])
