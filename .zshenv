@@ -1,8 +1,7 @@
 # all shells
 
 # path
-PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
-PATH=/opt/local/libexec/git-core:$PATH
+PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # x11
 export PATH=/usr/X11/bin:$PATH
@@ -10,10 +9,6 @@ export PATH=/usr/X11/bin:$PATH
 # frameworks, platforms
 export ANDROID_HOME=~/src/android-sdk-mac_86
 export PATH=$ANDROID_HOME/tools:$PATH
-
-# package bin paths
-export PATH=/opt/local/lib/postgresql83/bin:$PATH
-export PATH=/opt/local/lib/postgresql84/bin:$PATH
 
 # user bin paths
 export PATH=$HOME/bin:$PATH
