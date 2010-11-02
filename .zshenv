@@ -4,6 +4,9 @@
 PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 PATH=/opt/local/libexec/git-core:$PATH
 
+# x11
+export PATH=/usr/X11/bin:$PATH
+
 # frameworks, platforms
 export ANDROID_HOME=~/src/android-sdk-mac_86
 export PATH=$ANDROID_HOME/tools:$PATH

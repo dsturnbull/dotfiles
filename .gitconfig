@@ -9,9 +9,13 @@
   st = status
   web = !open "http://ci/gitweb/?p=ssv.git"
   mergy = !sh -c 'git cherry -v HEAD $0 | grep ^+'
+  l = log --graph --all --pretty=format:'%Cred%h%Creset - %an %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
+  ls = log --graph --all --pretty=format:'%Cred%h%Creset - %an %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --stat
 [branch]
 	autosetupmerge = true
 [core]
 	excludesfile = /Users/dave/.gitignore
 [merge]
 	tool = vimdiff
+[gui]
+	recentrepo = /Users/dave/src/incite/innostone

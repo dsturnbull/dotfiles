@@ -19,3 +19,6 @@
 [submodule ".emacs.d/vendor/cucumber"]
 	path = .emacs.d/vendor/cucumber
 	url = git://github.com/michaelklishin/cucumber.el.git
+[submodule "pysty"]
+	path = pysty
+	url = http://github.com/gak/pysty.git
