@@ -22,12 +22,13 @@ autoload -U zgitinit; zgitinit
 autoload -U git_status
 
 # PS1
-fg_lblue=$'\e[1;34m'
-fg_reset=$'\e[0m'
+nice_orange=$'\e[38;5;208m'
+nice_green=$'\e[38;5;154m'
+nice_blue=$'\e[38;5;39m'
 PROMPT="%j \
-[%{$fg[yellow]%}%n%{$fg[default]%}] \
-%{$fg_lblue%}%m%{$fg_reset%}: \
-%{$fg[cyan]%}%~%{$fg[default]%} \
+[%{$nice_orange%}%n%{$fg[default]%}] \
+%{$nice_green%}%m%{$fg_reset%}: \
+%{$nice_blue%}%~%{$fg[default]%} \
 %# "
 RPS1='$(git_status) %*'
 
