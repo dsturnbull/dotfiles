@@ -40,16 +40,16 @@ noremap <C-l> <C-w>l
 noremap <C-j> <C-w>j
 
 " slide text around
-imap <Up>    <Esc>:m-2<CR>gi
-imap <Down>  <Esc>:m+<CR>gi
-
-nmap <Up>    mz:m-2<CR>`z
-nmap <Down>  mz:m+<CR>`z
-
-vmap <Up>    :m'<-2<CR>gv
-vmap <Down>  :m'>+<CR>gv
-vmap <Left>  :<<CR>gv
-vmap <Right> :><CR>gv
+" imap <Up>    <Esc>:m-2<CR>gi
+" imap <Down>  <Esc>:m+<CR>gi
+" 
+" nmap <Up>    mz:m-2<CR>`z
+" nmap <Down>  mz:m+<CR>`z
+" 
+" vmap <Up>    :m'<-2<CR>gv
+" vmap <Down>  :m'>+<CR>gv
+" vmap <Left>  :<<CR>gv
+" vmap <Right> :><CR>gv
 
 " redo ctags and fuzzy cache
 nmap <leader>T :call Fctags_and_fuzzy_rescan()<CR>
@@ -95,6 +95,11 @@ set viewoptions-=options
 au BufWinLeave * nested silent! mkview
 au BufWinEnter * nested silent! loadview
 
+nmap <Up> zk
+nmap <Down> zj
+nmap <Right> zo
+nmap <Left> zc
+
 " camel case motion overrides
 nmap <silent> <Space> <Plug>CamelCaseMotion_w
 omap <silent> <Space> <Plug>CamelCaseMotion_w
@@ -132,3 +137,17 @@ nmap <silent> <C-t> :tabnew<CR>
 
 " ptag
 nmap <Leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
+
+" -fblocks
+hi link cErrInParen Normal 
+
+set modelines=1
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = "// vim: ts=4:sw=4:sts=4:et"
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>

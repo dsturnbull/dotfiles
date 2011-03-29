@@ -82,6 +82,7 @@ fi
 alias grin='grin --force-color'
 alias less='less -R'
 alias new='ls -lath $HOME/Downloads/ | head'
+alias ls='ls -G'
 
 # resty
 . $HOME/dotfiles/resty/resty

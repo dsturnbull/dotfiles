@@ -84,7 +84,7 @@ hi Directory		cterm=none		ctermfg=196
 hi ErrorMsg			cterm=none		ctermfg=255		ctermbg=160		guifg=#ffffff
 hi FoldColumn		cterm=none		ctermfg=110		ctermbg=16		guibg=#000000
 hi SignColumn		cterm=none		ctermbg=16		guibg=#000000
-hi Folded				cterm=none		ctermfg=16		ctermbg=110		guifg=#000000	guibg=#87afd7
+hi Folded				cterm=none		ctermfg=16		ctermbg=110		guifg=#87afd7	guibg=#000000
 hi IncSearch		cterm=reverse
 hi LineNr				cterm=none		ctermfg=228		ctermbg=16		guifg=#ffff87	guibg=#000000
 hi ModeMsg			cterm=bold

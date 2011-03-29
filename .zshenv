@@ -1,5 +1,8 @@
 # all shells
 
+# ffu
+export JAVA_HOME=/Library/Java/Home
+
 # path
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
