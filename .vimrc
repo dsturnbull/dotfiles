@@ -26,6 +26,25 @@ set textwidth=79
 match ErrorMsg '\%>80v.\+'
 au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
+" vundles
+set rtp+=~/.vim/vundle.git/ 
+call vundle#rc()
+
+" github repos
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-fugitive'
+Bundle 'lokaltog/vim-easymotion'
+
+" vim-scripts repos
+Bundle 'NERD_tree'
+Bundle 'camelcasemotion'
+Bundle 'fuzzyfinder'
+Bundle 'fuzzyfinder_textmate'
+Bundle 'acp'
+
+" non github repos
+
 " use c-a in command mode
 cnoremap <C-a> <Home>
 
@@ -81,8 +100,8 @@ map <leader>p :set paste!<CR>
 filetype plugin indent on
 
 aug init
-  au FileType ruby       let g:rubycomplete_rails=1
-  au FileType ruby       let g:rubycomplete_classes_in_global=1
+  au FileType ruby      let g:rubycomplete_rails=1
+  au FileType ruby      let g:rubycomplete_classes_in_global=1
 
   au BufNewFile,BufRead *.as    setlocal filetype=actionscript
   au BufRead,BufNewFile *.json  setlocal filetype=javascript
@@ -160,10 +179,3 @@ function! AppendModeline()
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
-" syntax
-function! MyPython()
-  set syntax=python
-  set ts=4 sw=4 et sts=4
-endfunction
-
-autocmd BufRead *.py call MyPython()

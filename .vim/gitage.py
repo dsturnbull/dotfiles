@@ -1,1 +1,0 @@
-/Users/dave/src/foot/dotfiles/.vim/gitage.py

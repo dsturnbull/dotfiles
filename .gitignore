@@ -48,3 +48,4 @@ bin/wireshark
 .emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc
 /.emacs.d/url/
 /.emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc~
+.vim/bundle
