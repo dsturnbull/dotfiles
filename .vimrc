@@ -34,16 +34,18 @@ call vundle#rc()
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
-Bundle 'lokaltog/vim-easymotion'
+Bundle 'jamis/fuzzyfinder_textmate'
 
 " vim-scripts repos
-Bundle 'NERD_tree'
 Bundle 'camelcasemotion'
-Bundle 'fuzzyfinder'
-Bundle 'fuzzyfinder_textmate'
-Bundle 'acp'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'AutoComplPop'
+Bundle 'TabLineSet.vim'
+Bundle 'ack.vim'
 
 " non github repos
+Bundle 'git://git.wincent.com/command-t.git'
 
 " use c-a in command mode
 cnoremap <C-a> <Home>
@@ -77,21 +79,10 @@ function! Fctags_and_fuzzy_rescan()
    exec "ruby finder.rescan!"
 endfunction
 
-" fuzzy - keybindings
-map <leader>e :FuzzyFinderTag<CR>
-map <leader>s :FuzzyFinderBuffer<CR>
-map <leader>f :FuzzyFinderFile \*\*\/<CR>
-map <leader>t :FuzzyFinderTextMate<CR>
-
-" fuzzy - dont use these modes
-let g:fuzzy_ignore = ".git/*;.svn/*"
-let g:FuzzyFinderOptions = {}
-let g:FuzzyFinderOptions.Bookmark = {'mode_available': 0}
-let g:FuzzyFinderOptions.Dir = {'mode_available': 0}
-let g:FuzzyFinderOptions.MruFile = {'mode_available': 0}
-let g:FuzzyFinderOptions.MruCmd = {'mode_available': 0}
-let g:FuzzyFinderOptions.TaggedFile = {'mode_available': 0}
-let g:FuzzyFinderOptions.Tag = { 'matching_limit': 20 }
+" command-t - keybindings
+map <leader>e :FufTag<CR>
+map <leader>s :CommandTBuffer<CR>
+map <leader>t :CommandT<CR>
 
 " set paste! - keybindings
 map <leader>p :set paste!<CR>
