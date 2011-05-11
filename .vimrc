@@ -134,6 +134,14 @@ nmap <silent> <C-p> :tabp<CR>
 " swap tag stack pop with tabnew
 nmap <C-BSlash> :po<CR>
 nmap <silent> <C-t> :tabnew<CR>
+nmap <SwipeUp> :tabp<CR>
+nmap <SwipeDown> :tabp<CR>
+
+" counterparts
+nmap <SwipeUp> :split<CR>
+nmap <SwipeDown> :split<CR><C-w>j<CR>
+nmap <SwipeLeft> <C-w>v<CR>
+nmap <SwipeRight> <C-w>v<CR><C-w>l<CR>
 
 " ptag
 nmap <Leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
@@ -151,3 +159,11 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+" syntax
+function! MyPython()
+  set syntax=python
+  set ts=4 sw=4 et sts=4
+endfunction
+
+autocmd BufRead *.py call MyPython()
