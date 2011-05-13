@@ -73,19 +73,17 @@ noremap <C-j> <C-w>j
 " vmap <Right> :><CR>gv
 
 " redo ctags and fuzzy cache
-nmap <leader>T :call Fctags_and_fuzzy_rescan()<CR>
-function! Fctags_and_fuzzy_rescan()
+nmap <leader>T :call Fctags_rescan()<CR>
+function! Fctags_rescan()
    exec "!ctags -R ."
-   exec "ruby finder.rescan!"
 endfunction
 
-" command-t - keybindings
+" leader key bindings
 map <leader>e :FufTag<CR>
 map <leader>s :CommandTBuffer<CR>
 map <leader>t :CommandT<CR>
-
-" set paste! - keybindings
 map <leader>p :set paste!<CR>
+map <leader>r :Ack 
 
 " indentation
 filetype plugin indent on
@@ -93,9 +91,6 @@ filetype plugin indent on
 aug init
   au FileType ruby      let g:rubycomplete_rails=1
   au FileType ruby      let g:rubycomplete_classes_in_global=1
-
-  au BufNewFile,BufRead *.as    setlocal filetype=actionscript
-  au BufRead,BufNewFile *.json  setlocal filetype=javascript
 aug END
 
 " don't save options in view
