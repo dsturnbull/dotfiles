@@ -83,7 +83,7 @@ map <leader>e :FufTag<CR>
 map <leader>s :CommandTBuffer<CR>
 map <leader>t :CommandT<CR>
 map <leader>p :set paste!<CR>
-map <leader>r :Ack 
+map <leader>r :Ack
 
 " indentation
 filetype plugin indent on
