@@ -26,6 +26,9 @@ set textwidth=79
 match ErrorMsg '\%>80v.\+'
 au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
+" chut up tabs
+au BufWinEnter * let g:TabLineSet_verbose = 'modified'
+
 " vundles
 set rtp+=~/.vim/vundle.git/ 
 call vundle#rc()
@@ -76,6 +79,7 @@ noremap <C-j> <C-w>j
 nmap <leader>T :call Fctags_rescan()<CR>
 function! Fctags_rescan()
    exec "!ctags -R ."
+   exec "CommandTFlush"
 endfunction
 
 " leader key bindings
@@ -164,4 +168,3 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
-
