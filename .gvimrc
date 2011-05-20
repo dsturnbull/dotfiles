@@ -5,7 +5,7 @@ set mouse=a                       " mouse selection in normal, command and inser
 set clipboard=autoselect,unnamed
 
 " yay fonts
-set guifont=menlo:h11
+set guifont=menlo:h10
 set guioptions-=m                 " no menu
 set guioptions+=c                 " console dialogues (no gui popups)
 set guioptions-=t                 " tearoff menu items

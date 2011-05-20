@@ -26,3 +26,6 @@ export HADOOP_STREAMING_VERSION=0.21.0
 
 # mrtoolkit
 #export PATH=/Library/Ruby/Gems/1.8/gems/mrtoolkit-0.1.2/standalone:$PATH
+
+# node
+export NODE_PATH=/usr/local/lib/node

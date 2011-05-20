@@ -5,6 +5,7 @@
 syntax on
 
 " options
+set hlsearch
 set autoindent                    " current line indent carries to next line
 set smartindent                   " also pay attention to syntax
 set shiftround                    " round indent to multiple of sw
@@ -22,7 +23,7 @@ set formatoptions-=o              " but stop it when o/O
 set formatoptions+=t              " autowrap text to textwidth
 
 " yes
-set textwidth=79
+"set textwidth=79
 match ErrorMsg '\%>80v.\+'
 au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
@@ -46,6 +47,7 @@ Bundle 'FuzzyFinder'
 Bundle 'AutoComplPop'
 Bundle 'TabLineSet.vim'
 Bundle 'ack.vim'
+Bundle 'abolish.vim'
 
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
@@ -108,6 +110,17 @@ nmap <Up> zk
 nmap <Down> zj
 nmap <Right> zo
 nmap <Left> zc
+
+" alternates
+nmap <D-[> :A<CR>
+nmap <D-]> :R<CR>
+
+" remove highlighting
+nmap <Leader>\ :nohlsearch<CR>
+
+" testing
+nmap <Leader>q :.Rake<CR>
+nmap <Leader>w :Rake<CR>
 
 " camel case motion overrides
 nmap <silent> <Space> <Plug>CamelCaseMotion_w
