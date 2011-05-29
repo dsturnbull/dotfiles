@@ -5,7 +5,6 @@
 syntax on
 
 " options
-set hlsearch
 set autoindent                    " current line indent carries to next line
 set smartindent                   " also pay attention to syntax
 set shiftround                    " round indent to multiple of sw
@@ -166,7 +165,7 @@ nmap <SwipeLeft> <C-w>v<CR>
 nmap <SwipeRight> <C-w>v<CR><C-w>l<CR>
 
 " ptag
-nmap <Leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
+" nmap <Leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
 
 " -fblocks
 hi link cErrInParen Normal 

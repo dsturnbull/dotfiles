@@ -64,13 +64,13 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # OS-specific stuff
 # Linux
 if [ `uname` = "Linux" ]; then
-	export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.13
+  export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.13
 fi
 
 # Darwin
 if [ `uname` = "Darwin" ]; then
-	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
-	export ARCHFLAGS="-arch x86_64"
+  export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
+  export ARCHFLAGS="-arch x86_64"
 fi
 
 # make rxvt prettier
@@ -94,5 +94,10 @@ fi
 
 # I want ^S please
 if test -n $PS1; then
-	stty stop undef
+  stty stop undef
 fi
+
+# just doit
+. `brew --prefix`/etc/autojump
+. ~/.zsh/cap_completion
+. ~/.zsh/osx.plugin.zsh
