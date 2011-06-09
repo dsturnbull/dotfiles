@@ -65,12 +65,14 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # Linux
 if [ `uname` = "Linux" ]; then
   export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.13
+  alias ls='ls --color=auto'
 fi
 
 # Darwin
 if [ `uname` = "Darwin" ]; then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
   export ARCHFLAGS="-arch x86_64"
+  alias ls='ls -G'
 fi
 
 # make rxvt prettier
@@ -82,7 +84,6 @@ fi
 alias grin='grin --force-color'
 alias less='less -R'
 alias new='ls -lath $HOME/Downloads/ | head'
-alias ls='ls -G'
 
 # resty
 . $HOME/dotfiles/resty/resty
