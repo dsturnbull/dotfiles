@@ -38,6 +38,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 Bundle 'jamis/fuzzyfinder_textmate'
+Bundle 'Rip-Rip/clang_complete'
 
 " vim-scripts repos
 Bundle 'camelcasemotion'
@@ -180,3 +181,18 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+let g:clang_auto_select = 1
+let g:clang_complete_copen = 1
+let g:clang_periodic_quickfix = 1
+let g:clang_library_path = '/Developer/usr/clang-ide/lib'
+let g:clang_use_library = 1
+set updatetime=200
+
+nmap <Leader>c :call g:ClangUpdateQuickFix()<CR>
+nmap <Leader>x :ccl<CR>
+
+" why you not work?
+augroup ClangComplete
+  au! BufWritePost *.c call s<SID>DoPeriodicQuickFix()
+augroup end
