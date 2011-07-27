@@ -3,6 +3,7 @@
 
 " colours
 syntax on
+colorscheme BusyBee
 
 " options
 set autoindent                    " current line indent carries to next line
@@ -15,11 +16,15 @@ set viminfo='100,f1               " marks remembered for 100 files, enable mark 
 set wrap                          " for julio
 set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style when opening files
+set clipboard=autoselect,unnamed
 
 " autoindent
 set formatoptions+=r              " keep autoindent for <CR>
 set formatoptions-=o              " but stop it when o/O
 set formatoptions+=t              " autowrap text to textwidth
+
+" CHUT UP
+set vb
 
 " yes
 "set textwidth=79
@@ -27,7 +32,7 @@ match ErrorMsg '\%>80v.\+'
 au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " chut up tabs
-au BufWinEnter * let g:TabLineSet_verbose = 'modified'
+au BufWinEnter * let g:TabLineSet_verbose = 'buffers_list'
 
 " vundles
 set rtp+=~/.vim/vundle.git/ 
@@ -36,7 +41,9 @@ call vundle#rc()
 " github repos
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-cucumber'
 Bundle 'jamis/fuzzyfinder_textmate'
 Bundle 'Rip-Rip/clang_complete'
 
@@ -48,6 +55,7 @@ Bundle 'AutoComplPop'
 Bundle 'TabLineSet.vim'
 Bundle 'ack.vim'
 Bundle 'abolish.vim'
+Bundle 'a.vim'
 
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
@@ -196,3 +204,21 @@ nmap <Leader>x :ccl<CR>
 augroup ClangComplete
   au! BufWritePost *.c call s<SID>DoPeriodicQuickFix()
 augroup end
+
+" Protect large files from sourcing and other overhead.
+" Files become read only
+if !exists("my_auto_commands_loaded")
+  let my_auto_commands_loaded = 1
+  " Large files are > 10M
+  " Set options:
+  " eventignore+=FileType (no syntax highlighting etc
+  " assumes FileType always on)
+  " noswapfile (save copy of file)
+  " bufhidden=unload (save memory when other file is viewed)
+  " buftype=nowritefile (is read-only)
+  " undolevels=-1 (no undo possible)
+  let g:LargeFile = 1024 * 1024 * 10
+  augroup LargeFile
+    autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
+  augroup END
+end

@@ -1,8 +1,6 @@
 set transparency=5
-colorscheme BusyBee
 set mousemodel=extend             " right click extends selection
 set mouse=a                       " mouse selection in normal, command and insert modes
-set clipboard=autoselect,unnamed
 
 " yay fonts
 set guifont=menlo:h10
