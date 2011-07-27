@@ -24,6 +24,10 @@
 
 ;; FIXME move to erc.el
 (custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(erc-email-userid "dave")
  '(erc-nick "dave")
  '(erc-port 6667)
@@ -34,4 +38,12 @@
  '(erc-server-reconnect-timeout 10)
  '(erc-user-full-name "David Turnbull")
  '(erc-warn-about-blank-lines nil)
- '(erc-whowas-on-nosuchnick t))
+ '(erc-whowas-on-nosuchnick t)
+ '(jira-url "http://drjones.local:12000/jira/rpc/xmlrpc")
+ '(save-place t nil (saveplace)))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )

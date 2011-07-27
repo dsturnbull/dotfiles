@@ -48,3 +48,6 @@
 
 ;; handle shitty terminals
 (define-key key-translation-map [?\C-h] [?\C-?])
+
+;; fuck you shift-selection
+(setq shift-select-mode nil)
