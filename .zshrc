@@ -102,3 +102,4 @@ fi
 . `brew --prefix`/etc/autojump
 . ~/.zsh/cap_completion
 . ~/.zsh/osx.plugin.zsh
+. ~/.zsh/title
