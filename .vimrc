@@ -2,8 +2,9 @@
 " inspiration: http://github.com/foot/dotfiles/tree/master/.vimrc
 
 " colours
+set t_Co=256
 syntax on
-colorscheme BusyBee
+colorscheme leo
 
 " options
 set autoindent                    " current line indent carries to next line
@@ -46,6 +47,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-cucumber'
 Bundle 'jamis/fuzzyfinder_textmate'
 Bundle 'Rip-Rip/clang_complete'
+Bundle 'sjl/gundo.vim'
 
 " vim-scripts repos
 Bundle 'camelcasemotion'
@@ -102,11 +104,6 @@ map <leader>r :Ack
 " indentation
 filetype plugin indent on
 
-aug init
-  au FileType ruby      let g:rubycomplete_rails=1
-  au FileType ruby      let g:rubycomplete_classes_in_global=1
-aug END
-
 " don't save options in view
 set viewoptions-=options
 
@@ -114,17 +111,9 @@ set viewoptions-=options
 au BufWinLeave * nested silent! mkview
 au BufWinEnter * nested silent! loadview
 
-nmap <Up> zk
-nmap <Down> zj
-nmap <Right> zo
-nmap <Left> zc
-
 " alternates
 nmap <D-[> :A<CR>
 nmap <D-]> :R<CR>
-
-" remove highlighting
-nmap <Leader>\ :nohlsearch<CR>
 
 " testing
 nmap <Leader>q :.Rake<CR>
@@ -174,7 +163,10 @@ nmap <SwipeLeft> <C-w>v<CR>
 nmap <SwipeRight> <C-w>v<CR><C-w>l<CR>
 
 " ptag
-" nmap <Leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
+nmap <Leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
+
+" remove highlighting
+" nmap <Leader>\ :nohlsearch<CR>
 
 " -fblocks
 hi link cErrInParen Normal 
@@ -190,35 +182,18 @@ function! AppendModeline()
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
-let g:clang_auto_select = 1
 let g:clang_complete_copen = 1
 let g:clang_periodic_quickfix = 1
 let g:clang_library_path = '/Developer/usr/clang-ide/lib'
 let g:clang_use_library = 1
+let g:clang_complete_macros = 1
+let g:clang_complete_patterns = 1
+"let g:clang_debug = 1
 set updatetime=200
 
 nmap <Leader>c :call g:ClangUpdateQuickFix()<CR>
 nmap <Leader>x :ccl<CR>
 
-" why you not work?
-augroup ClangComplete
-  au! BufWritePost *.c call s<SID>DoPeriodicQuickFix()
-augroup end
+" gundo
+nmap <Leader>b :GundoToggle<CR>
 
-" Protect large files from sourcing and other overhead.
-" Files become read only
-if !exists("my_auto_commands_loaded")
-  let my_auto_commands_loaded = 1
-  " Large files are > 10M
-  " Set options:
-  " eventignore+=FileType (no syntax highlighting etc
-  " assumes FileType always on)
-  " noswapfile (save copy of file)
-  " bufhidden=unload (save memory when other file is viewed)
-  " buftype=nowritefile (is read-only)
-  " undolevels=-1 (no undo possible)
-  let g:LargeFile = 1024 * 1024 * 10
-  augroup LargeFile
-    autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
-  augroup END
-end

@@ -1,3 +1,5 @@
+colorscheme leo
+
 set transparency=5
 set mousemodel=extend             " right click extends selection
 set mouse=a                       " mouse selection in normal, command and insert modes
