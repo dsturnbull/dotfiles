@@ -29,35 +29,106 @@ set vb
 
 " yes
 "set textwidth=79
-match ErrorMsg '\%>80v.\+'
-au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"match ErrorMsg '\%>80v.\+'
+"au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " chut up tabs
 au BufWinEnter * let g:TabLineSet_verbose = 'buffers_list'
 
 " vundles
-set rtp+=~/.vim/vundle.git/ 
+set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
 " github repos
+
+" Vim/Ruby Configuration Files
 Bundle 'vim-ruby/vim-ruby'
+
+" Ruby on Rails power tools
 Bundle 'tpope/vim-rails'
+
+" It's like rails.vim without the rails
 Bundle 'tpope/vim-rake'
+
+" a Git wrapper so awesome, it should be illegal
 Bundle 'tpope/vim-fugitive'
+
+" Vim Cucumber runtime files
 Bundle 'tpope/vim-cucumber'
+
+" easily search for, substitute, and abbreviate multiple variants of a word
+Bundle 'tpope/vim-abolish'
+
+" fuzzyfinder plugin to support TextMate style file searches
 Bundle 'jamis/fuzzyfinder_textmate'
+
+" use clang for completing C/C++ code
 Bundle 'Rip-Rip/clang_complete'
+
+" visualize your Vim undo tree.
 Bundle 'sjl/gundo.vim'
+				
 
 " vim-scripts repos
+
+" Motion through CamelCaseWords and underscore_notation
 Bundle 'camelcasemotion'
+
+" dependency of FuzzyFinder
 Bundle 'L9'
+
+" buffer/file/command/tag/etc explorer with fuzzy matching
 Bundle 'FuzzyFinder'
+
+" Automatically opens popup menu for completions
 Bundle 'AutoComplPop'
+
+" A Vim7 tabline customization
 Bundle 'TabLineSet.vim'
+
+" Plugin for the Perl module / CLI script 'ack'
 Bundle 'ack.vim'
-Bundle 'abolish.vim'
+
+" Alternate Files quickly (.c --> .h etc)
 Bundle 'a.vim'
+
+" Automated Tag creation/inclusion
+Bundle 'Intelligent-Tags'
+
+" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+Bundle 'taglist.vim'
+
+" Simulate a split shell, using gnu screen or tmux, that you can send commands to.
+Bundle 'Screen-vim---gnu-screentmux'
+
+" A plugin that helps with switching between single-line and multiline code
+Bundle 'splitjoin.vim'
+
+" Plugin to supplement id-utils gid command for super-fast find-in-files.
+Bundle 'IDSearch'
+
+" Finally, the power of Vim + Figlet!
+Bundle 'Figlet.vim'
+
+" Update automatically the serial of DNS Zone
+Bundle 'UpdateDNSSerial'
+
+" PyREPL.vim is a plugin that provides a way to run a Python REPL inside buffer.
+Bundle 'PyREPL.vim'
+
+" Plugin for C/C++/ObjC/ObjC++ include directive completion.
+let g:inccomplete_findcmd = 'gfind'
+Bundle 'inccomplete'
+
+" Twitter client for Vim
+Bundle 'TwitVim'
+
+" use tmux, not screen
+let g:ScreenImpl = 'Tmux'
+
+" split/join
+nmap <leader>j :SplitjoinJoin<CR>
+nmap <leader>o :SplitjoinSplit<CR>
 
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
@@ -66,8 +137,8 @@ Bundle 'git://git.wincent.com/command-t.git'
 cnoremap <C-a> <Home>
 
 " git/svn blame - \g/\s on a visual block - FIXME svn blame not working
-vmap <Leader>g :<C-u>!git blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
-vmap <Leader>s :<C-u>!svn blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
+vmap <leader>g :<C-u>!git blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
+vmap <leader>s :<C-u>!svn blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
 
 " move windows easily
 noremap <C-k> <C-w>k
@@ -78,10 +149,10 @@ noremap <C-j> <C-w>j
 " slide text around
 " imap <Up>    <Esc>:m-2<CR>gi
 " imap <Down>  <Esc>:m+<CR>gi
-" 
+"
 " nmap <Up>    mz:m-2<CR>`z
 " nmap <Down>  mz:m+<CR>`z
-" 
+"
 " vmap <Up>    :m'<-2<CR>gv
 " vmap <Down>  :m'>+<CR>gv
 " vmap <Left>  :<<CR>gv
@@ -116,8 +187,8 @@ nmap <D-[> :A<CR>
 nmap <D-]> :R<CR>
 
 " testing
-nmap <Leader>q :.Rake<CR>
-nmap <Leader>w :Rake<CR>
+nmap <leader>q :.Rake<CR>
+nmap <leader>w :Rake<CR>
 
 " camel case motion overrides
 nmap <silent> <Space> <Plug>CamelCaseMotion_w
@@ -163,13 +234,13 @@ nmap <SwipeLeft> <C-w>v<CR>
 nmap <SwipeRight> <C-w>v<CR><C-w>l<CR>
 
 " ptag
-nmap <Leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
+nmap <leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
 
 " remove highlighting
-" nmap <Leader>\ :nohlsearch<CR>
+" nmap <leader>\ :nohlsearch<CR>
 
 " -fblocks
-hi link cErrInParen Normal 
+hi link cErrInParen Normal
 
 set modelines=1
 
@@ -180,7 +251,7 @@ function! AppendModeline()
   let l:modeline = "// vim: ts=4:sw=4:sts=4:et"
   call append(line("$"), l:modeline)
 endfunction
-nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+nnoremap <silent> <leader>ml :call AppendModeline()<CR>
 
 let g:clang_complete_copen = 1
 let g:clang_periodic_quickfix = 1
@@ -191,9 +262,18 @@ let g:clang_complete_patterns = 1
 "let g:clang_debug = 1
 set updatetime=200
 
-nmap <Leader>c :call g:ClangUpdateQuickFix()<CR>
-nmap <Leader>x :ccl<CR>
+nmap <leader>c :call g:ClangUpdateQuickFix()<CR>
+nmap <leader>x :ccl<CR>
 
 " gundo
-nmap <Leader>b :GundoToggle<CR>
+nmap <leader>b :GundoToggle<CR>
+
+" taglist
+nmap <leader>m :TlistToggle<CR>
+
+" include path
+set path=.,/usr/include,/usr/local/include
+
+" idutils gid
+nmap <leader>g :call g:IDSearchCurrentWord()<CR>
 

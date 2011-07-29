@@ -75,10 +75,8 @@ if [ `uname` = "Darwin" ]; then
   alias ls='ls -G'
 fi
 
-# make rxvt prettier
-if [ $TERM = "rxvt-unicode" ]; then
-  export TERM=xterm-256color
-fi
+# make EVERYTHING prettier
+export TERM=xterm-256color
 
 # aliases
 alias grin='grin --force-color'
