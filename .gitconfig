@@ -1,21 +1,26 @@
 [user]
 	name = David Turnbull
-	email = dave@redcordial.org
+	email = david@redcordial.org
+
 [color]
 	diff = auto
 	status = auto
 	branch = auto
+
 [alias]
   st = status
-  web = !open "http://ci/gitweb/?p=ssv.git"
-  mergy = !sh -c 'git cherry -v HEAD $0 | grep ^+'
   l = log --graph --all --pretty=format:'%Cred%h%Creset - %an %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
   ls = log --graph --all --pretty=format:'%Cred%h%Creset - %an %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --stat
+  br = "!git branch --no-merged | while read x; do printf \\\\033[31m%s\\\\033[0m\\\\n $x; git --no-pager log --pretty=oneline --abbrev-commit ..$x; echo; done"
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+
 [branch]
 	autosetupmerge = true
+
 [core]
 	excludesfile = /Users/dave/.gitignore
+
 [merge]
 	tool = vimdiff
-[gui]
-	recentrepo = /Users/dave/src/incite/innostone
