@@ -1,6 +1,6 @@
 [user]
 	name = David Turnbull
-	email = david@redcordial.org
+	email = david@broodax.net
 
 [color]
 	diff = auto
@@ -20,7 +20,13 @@
 	autosetupmerge = true
 
 [core]
-	excludesfile = /Users/dave/.gitignore
+	excludesfile = /Users/david/.gitignore_global
 
 [merge]
 	tool = vimdiff
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

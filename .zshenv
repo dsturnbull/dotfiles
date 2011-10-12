@@ -20,9 +20,7 @@ export PATH=$HOME/.cabal/bin:$PATH
 export PATH=$PATH:$HOME/src/jruby/bin
 
 # hadoop
-export HADOOP_HOME=/usr/local/Cellar/hadoop/0.21.0/libexec
-export HADOOP_STREAMING_VERSION=0.21.0
-#export RUBYLIB=$HOME/src/blackfoundry/packetloop/plmr/lib/packetloop/jobs/bins
+export HADOOP_HOME=/usr/local/Cellar/hadoop/0.20.204.0/libexec
 
 # mrtoolkit
 #export PATH=/Library/Ruby/Gems/1.8/gems/mrtoolkit-0.1.2/standalone:$PATH

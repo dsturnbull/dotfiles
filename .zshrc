@@ -73,6 +73,7 @@ if [ `uname` = "Darwin" ]; then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
   export ARCHFLAGS="-arch x86_64"
   alias ls='ls -G'
+  alias mvim='mvim --remote'
 fi
 
 # make EVERYTHING prettier
@@ -101,3 +102,5 @@ fi
 . ~/.zsh/cap_completion
 . ~/.zsh/osx.plugin.zsh
 . ~/.zsh/title
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

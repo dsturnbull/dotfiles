@@ -62,6 +62,8 @@ Bundle 'tpope/vim-rake'
 
 " a Git wrapper so awesome, it should be illegal
 Bundle 'tpope/vim-fugitive'
+set laststatus=2
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P\ %{fugitive#statusline()}
 
 " Vim Cucumber runtime files
 Bundle 'tpope/vim-cucumber'
@@ -78,6 +80,8 @@ Bundle 'Rip-Rip/clang_complete'
 " visualize your Vim undo tree.
 Bundle 'sjl/gundo.vim'
 
+" xpath -> html
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " vim-scripts repos
 
@@ -126,9 +130,6 @@ Bundle 'Figlet.vim'
 " Update automatically the serial of DNS Zone
 Bundle 'UpdateDNSSerial'
 
-" PyREPL.vim is a plugin that provides a way to run a Python REPL inside buffer.
-Bundle 'PyREPL.vim'
-
 " Plugin for C/C++/ObjC/ObjC++ include directive completion.
 let g:inccomplete_findcmd = 'gfind'
 "Bundle 'inccomplete'
@@ -136,6 +137,18 @@ let g:inccomplete_findcmd = 'gfind'
 " Twitter client for Vim
 "Bundle 'TwitVim'
 
+" Draw ascii stuff
+Bundle 'DrawIt'
+
+" Comment stuff easily
+Bundle 'tComment'
+
+" Surround text
+Bundle 'surround.vim'
+
+" Super fast motion
+Bundle 'EasyMotion'
+let g:EasyMotion_leader_key = ','
 
 " non github repos
 
