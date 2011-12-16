@@ -1,16 +1,24 @@
 # interactive shells
 
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+
+setopt AUTO_LIST
+setopt AUTO_MENU
+setopt AUTO_PARAM_KEYS
+setopt AUTO_PARAM_SLASH
+setopt LIST_TYPES
+
 setopt HIST_VERIFY
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_DUPS
-setopt prompt_subst
+setopt PROMPT_SUBST
 setopt NO_BEEP
 setopt EXTENDED_GLOB
 setopt MULTIOS
-setopt AUTO_PUSHD
+setopt CLOBBER
 
 bindkey -e
 
@@ -45,6 +53,8 @@ bindkey '^w' kill-region # FIXME need to detect mark-active for ^w to be nice
 bindkey '\ed' kill-word
 bindkey '\ef' emacs-forward-word
 bindkey '\eb' emacs-backward-word
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
 
 # special dirs
 rt=~/src/incite/rt
@@ -104,3 +114,9 @@ fi
 . ~/.zsh/title
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+if [[ -f "$HOME/.amazon_keys" ]]; then source "$HOME/.amazon_keys"; fi
+
+export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
+export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
+export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.4.4.1/jars"
+

@@ -11,22 +11,18 @@
   st = status
   l = log --graph --all --pretty=format:'%Cred%h%Creset - %an %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
   ls = log --graph --all --pretty=format:'%Cred%h%Creset - %an %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --stat
-  br = "!git branch --no-merged | while read x; do printf \\\\033[31m%s\\\\033[0m\\\\n $x; git --no-pager log --pretty=oneline --abbrev-commit ..$x; echo; done"
+  br = "!git branch -a --no-merged | while read x; do printf \\\\033[31m%s\\\\033[0m\\\\n $x; git --no-pager log --pretty=oneline --abbrev-commit ..$x; echo; done"
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
   graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+  b = "!git checkout origin/$1 -b"
+  cu = "!git_clean"
 
 [branch]
 	autosetupmerge = true
 
 [core]
-	excludesfile = $HOME/.gitignore_global
+	excludesfile = ~/.gitignore
 
 [merge]
 	tool = vimdiff
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
