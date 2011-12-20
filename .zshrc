@@ -33,12 +33,8 @@ autoload -U git_status
 nice_orange=$'\e[38;5;208m'
 nice_green=$'\e[38;5;154m'
 nice_blue=$'\e[38;5;39m'
-PROMPT="%j \
-[%{$nice_orange%}%n%{$fg[default]%}] \
-%{$nice_green%}%m%{$fg_reset%}: \
-%{$nice_blue%}%~%{$fg[default]%} \
-%# "
-RPS1='$(git_status) %*'
+PROMPT="%{$nice_green%}%m%{$fg_reset%} %{$nice_blue%}%~%{$fg[default]%} %# "
+RPS1='$(git_status) (%j)'
 
 # various
 # FIXME why don't I need to export these, like the other crap below?
@@ -81,7 +77,7 @@ fi
 # Darwin
 if [ `uname` = "Darwin" ]; then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
-  export ARCHFLAGS="-arch x86_64"
+  #export ARCHFLAGS="-arch x86_64"
   alias ls='ls -G'
   alias mvim='mvim --remote'
 fi

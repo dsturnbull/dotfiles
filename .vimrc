@@ -137,9 +137,6 @@ call vundle#rc()
   " visualize your Vim undo tree.
   Bundle 'sjl/gundo.vim'
 
-  " xpath -> html
-  Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-
 " non github repos
   " CommandT
   Bundle 'git://git.wincent.com/command-t.git'
