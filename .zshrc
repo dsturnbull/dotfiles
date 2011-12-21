@@ -42,7 +42,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 WORDCHARS=""
-EDITOR=emacs
 
 # bindings
 bindkey '^w' kill-region # FIXME need to detect mark-active for ^w to be nice
@@ -83,7 +82,7 @@ if [ `uname` = "Darwin" ]; then
 fi
 
 # make EVERYTHING prettier
-export TERM=xterm-256color
+#export TERM=xterm-256color
 
 # aliases
 alias grin='grin --force-color'
@@ -93,26 +92,19 @@ alias new='ls -lath $HOME/Downloads/ | head'
 # resty
 . $HOME/dotfiles/resty/resty
 
-# ec2 keys
-if [ -e $HOME/.ec2/local_keys ]; then
-  . $HOME/.ec2/local_keys
-fi
-
 # I want ^S please
 if test -n $PS1; then
   stty stop undef
 fi
 
 # just doit
-. `brew --prefix`/etc/autojump
+[[ $(which brew) ]] && source `brew --prefix`/etc/autojump
 . ~/.zsh/cap_completion
-. ~/.zsh/osx.plugin.zsh
 . ~/.zsh/title
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-if [[ -f "$HOME/.amazon_keys" ]]; then source "$HOME/.amazon_keys"; fi
-
-export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
-export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
+[[ -f "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -f "$HOME/.amazon_keys" ]] && source "$HOME/.amazon_keys"
+[[ -f "$HOME/.ec2/pl-*.pem" ]] && export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
+[[ -f "$HOME/.ec2/pl-*.pem" ]] && export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
 export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.4.4.1/jars"
 
