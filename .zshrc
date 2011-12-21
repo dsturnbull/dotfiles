@@ -4,21 +4,30 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
 setopt AUTO_LIST
-setopt AUTO_MENU
+setopt LIST_AMBIGUOUS
+setopt NO_AUTO_MENU
+setopt NO_MENU_COMPLETE
+
+setopt COMPLETE_IN_WORD
 setopt AUTO_PARAM_KEYS
 setopt AUTO_PARAM_SLASH
-setopt LIST_TYPES
+setopt AUTO_REMOVE_SLASH
 
 setopt HIST_VERIFY
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_ALLOW_CLOBBER
+
 setopt PROMPT_SUBST
 setopt NO_BEEP
 setopt EXTENDED_GLOB
 setopt MULTIOS
 setopt CLOBBER
+setopt NO_FLOW_CONTROL
+setopt RM_STAR_SILENT
 
 bindkey -e
 
@@ -42,6 +51,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 WORDCHARS=""
+LISTMAX=9000
 
 # bindings
 bindkey '^w' kill-region # FIXME need to detect mark-active for ^w to be nice
@@ -98,13 +108,21 @@ if test -n $PS1; then
 fi
 
 # just doit
-[[ $(which brew) ]] && source `brew --prefix`/etc/autojump
+[[ -n "$(which brew)" ]] && source `brew --prefix`/etc/autojump
 . ~/.zsh/cap_completion
 . ~/.zsh/title
 
-[[ -f "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-[[ -f "$HOME/.amazon_keys" ]] && source "$HOME/.amazon_keys"
-[[ -f "$HOME/.ec2/pl-*.pem" ]] && export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
-[[ -f "$HOME/.ec2/pl-*.pem" ]] && export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
+[[ -f "$HOME/.rvm/scripts/rvm" ]] &&	\
+	source "$HOME/.rvm/scripts/rvm"
+
+[[ -f "$HOME/.amazon_keys" ]] &&	\
+	source "$HOME/.amazon_keys"
+
+[[ -f "$HOME/.ec2/pk.pem" ]] &&		\
+	export EC2_PRIVATE_KEY="$HOME/.ec2/pk.pem"
+
+[[ -f "$HOME/.ec2/cert.pem" ]] &&	\
+	export EC2_CERT="$HOME/.ec2/cert.pem"
+
 export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.4.4.1/jars"
 
