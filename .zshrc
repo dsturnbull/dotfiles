@@ -91,9 +91,6 @@ if [ `uname` = "Darwin" ]; then
   alias mvim='mvim --remote'
 fi
 
-# make EVERYTHING prettier
-#export TERM=xterm-256color
-
 # aliases
 alias grin='grin --force-color'
 alias less='less -R'
