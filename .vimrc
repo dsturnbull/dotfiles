@@ -49,12 +49,6 @@ call vundle#rc()
   " buffer explorer
   " Bundle 'bufexplorer.zip'
 
-  " dependency of FuzzyFinder
-  Bundle 'L9'
-
-  " buffer/file/command/tag/etc explorer with fuzzy matching
-  Bundle 'FuzzyFinder'
-
   " Automatically opens popup menu for completions
   Bundle 'AutoComplPop'
 
@@ -63,6 +57,7 @@ call vundle#rc()
 
   " Plugin for the Perl module / CLI script 'ack'
   Bundle 'ack.vim'
+  map <leader>r :Ack
 
   " Alternate Files quickly (.c --> .h etc)
   Bundle 'a.vim'
@@ -104,9 +99,16 @@ call vundle#rc()
   Bundle 'EasyMotion'
   let g:EasyMotion_leader_key = ','
 
+  " Pig Latin syntax
+  Bundle 'pig.vim'
+
 " github repos
   " Vim/Ruby Configuration Files
   Bundle 'vim-ruby/vim-ruby'
+
+  " JIZZ
+  Bundle 'Lokaltog/vim-powerline.git'
+  let g:Powerline_symbols = 'fancy'
 
   " Copy syntax-highlighted code from vim to the OS X clipboard as RTF text
   Bundle 'aniero/vim-copy-as-rtf.git'
@@ -128,18 +130,51 @@ call vundle#rc()
   " easily search for, substitute, and abbreviate multiple variants of a word
   Bundle 'tpope/vim-abolish'
 
-  " fuzzyfinder plugin to support TextMate style file searches
-  Bundle 'jamis/fuzzyfinder_textmate'
-
   " use clang for completing C/C++ code
   Bundle 'Rip-Rip/clang_complete'
 
   " visualize your Vim undo tree.
   Bundle 'sjl/gundo.vim'
 
+  " detect end/endif etc
+  Bundle 'tpope/vim-endwise'
+
+  " more fuzzy shit
+  Bundle 'kien/ctrlp.vim'
+  let g:ctrlp_prompt_mappings = {
+    \ 'PrtSelectMove("j")':   ['<c-j>', '<c-n>'],
+    \ 'PrtSelectMove("k")':   ['<c-k>', '<c-p>'],
+    \ 'PrtHistory(-1)':       ['<down>'],
+    \ 'PrtHistory(1)':        ['<up>'],
+    \ }
+
+  " let g:ctrlp_match_window_bottom = 0
+  let g:ctrlp_match_window_reversed = 0
+  let g:ctrlp_max_height = 40
+  let g:ctrlp_dotfiles = 0
+  "let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+  let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir']
+  let g:ctrlp_map = '-'
+  " let g:ctrlp_lazy_update = 1
+
+  map <leader>s :CtrlPBuffer<CR>
+  map <leader>e :CtrlPTag<CR>
+  map <leader>t :CtrlP<CR>
+
+  " % extensions
+  Bundle 'edsono/vim-matchit'
+
+  " tabulate data
+  Bundle 'godlygeek/tabular'
+
+  " i(ndent) text object
+  Bundle 'michaeljsmith/vim-indent-object'
+
 " non github repos
   " CommandT
-  Bundle 'git://git.wincent.com/command-t.git'
+  " Bundle 'git://git.wincent.com/command-t.git'
+  " map <leader>t :CommandT<CR>
+  " map <leader>f :CommandTFlush<CR>
 
   " rfc5424 (syslog)
   " Bundle 'https://code.google.com/p/vim-syntax-rfc5424/'
@@ -173,19 +208,8 @@ noremap <C-j> <C-w>j
 " vmap <Left>  :<<CR>gv
 " vmap <Right> :><CR>gv
 
-" redo ctags and fuzzy cache
-nmap <leader>T :call Fctags_rescan()<CR>
-function! Fctags_rescan()
-   exec "!ctags -R ."
-   exec "CommandTFlush"
-endfunction
-
 " leader key bindings
-map <leader>e :FufTag<CR>
-map <leader>s :CommandTBuffer<CR>
-map <leader>t :CommandT<CR>
 map <leader>p :set paste!<CR>
-map <leader>r :Ack
 
 " indentation
 filetype plugin indent on
@@ -223,15 +247,6 @@ vmap <silent> i<BS>    <Plug>CamelCaseMotion_ib
 imap <C-]> <C-x><C-]>
 inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-" align commas nicely
-" FIXME it's bad
-function! AlignCommasNicely()
-  exec ":AlignCtrl =Wl"
-  exec ":%Align ,"
-  exec ":%s/\\([ ]\\+\\),/,\\1/g"
-endfunction
-command! AC :call AlignCommasNicely()
 
 " tab hax
 nmap <silent> <C-n> :tabn<CR>

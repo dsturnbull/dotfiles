@@ -19,7 +19,6 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
-setopt HIST_ALLOW_CLOBBER
 
 setopt PROMPT_SUBST
 setopt NO_BEEP
@@ -123,3 +122,4 @@ fi
 
 export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.4.4.1/jars"
 
+export CLOBBER=1
