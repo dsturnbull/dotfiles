@@ -2,11 +2,14 @@
 *.swo
 *.dSYM
 *.o
+*.d
+*.dylib
 
 .vim/view
 .vim/doc/tags
 .vim/bundle
 
+ID
 tags
 .DS_Store
 

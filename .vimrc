@@ -102,6 +102,9 @@ call vundle#rc()
   " Pig Latin syntax
   Bundle 'pig.vim'
 
+  " paste to html
+  Bundle 'formatvim'
+
 " github repos
   " Vim/Ruby Configuration Files
   Bundle 'vim-ruby/vim-ruby'
@@ -169,6 +172,17 @@ call vundle#rc()
 
   " i(ndent) text object
   Bundle 'michaeljsmith/vim-indent-object'
+
+  " PEP8 MTEHRUFKCER
+  Bundle 'pep8'
+
+  " automatically update tags
+  Bundle 'easytags.vim'
+  "let g:easytags_updatetime_autodisable = 1
+  let g:easytags_updatetime_min = 200
+  let g:easytags_python_enabled = 1
+  set tags=./tags;
+  let g:easytags_dynamic_files = 1
 
 " non github repos
   " CommandT
@@ -309,3 +323,4 @@ set path=,,.,/usr/include,/usr/local/include
 
 " idutils gid
 nmap <leader>g :call g:IDSearchCurrentWord()<CR>
+

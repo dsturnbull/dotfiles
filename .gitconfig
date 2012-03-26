@@ -26,3 +26,5 @@
 
 [merge]
 	tool = vimdiff
+[github]
+	user = dsturnbull

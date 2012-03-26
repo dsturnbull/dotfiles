@@ -19,11 +19,13 @@ export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
 export PATH=$PATH:$HOME/src/jruby/bin
 
-# hadoop
-export HADOOP_HOME=/usr/local/Cellar/hadoop/0.20.204.0/libexec
+export HADOOP_OPTS="-Djava.security.krb5.realm=OX.AC.UK -Djava.security.krb5.kdc=kdc0.ox.ac.uk:kdc1.ox.ac.uk"
 
 # mrtoolkit
 #export PATH=/Library/Ruby/Gems/1.8/gems/mrtoolkit-0.1.2/standalone:$PATH
 
 # node
 export NODE_PATH=/usr/local/lib/node
+
+# what
+export PAGER=less
