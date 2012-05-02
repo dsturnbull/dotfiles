@@ -29,3 +29,5 @@ export NODE_PATH=/usr/local/lib/node
 
 # what
 export PAGER=less
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

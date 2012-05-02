@@ -9,7 +9,7 @@
 		(background-color . "Black")
 		(right-fringe . 0)
 		(left-fringe . 0)
-		(font . "menlo-11")
+		(font . "menlo-10")
 ;		(alpha . (95 95))
 		))
 (menu-bar-no-scroll-bar)

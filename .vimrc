@@ -19,6 +19,9 @@ set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style when opening files
 set clipboard=autoselect,unnamed
 
+" yay mouse
+set mouse=a
+
 " autoindent
 set formatoptions+=r              " keep autoindent for <CR>
 set formatoptions-=o              " but stop it when o/O
@@ -127,6 +130,9 @@ call vundle#rc()
   set laststatus=2
   set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P\ %{fugitive#statusline()}
 
+  " edit icons in vim
+  Bundle 'tpope/vim-afterimage'
+
   " Vim Cucumber runtime files
   Bundle 'tpope/vim-cucumber'
 
@@ -140,7 +146,7 @@ call vundle#rc()
   Bundle 'sjl/gundo.vim'
 
   " detect end/endif etc
-  Bundle 'tpope/vim-endwise'
+  "Bundle 'tpope/vim-endwise'
 
   " more fuzzy shit
   Bundle 'kien/ctrlp.vim'
@@ -177,12 +183,12 @@ call vundle#rc()
   Bundle 'pep8'
 
   " automatically update tags
-  Bundle 'easytags.vim'
-  "let g:easytags_updatetime_autodisable = 1
-  let g:easytags_updatetime_min = 200
-  let g:easytags_python_enabled = 1
-  set tags=./tags;
-  let g:easytags_dynamic_files = 1
+  " Bundle 'easytags.vim'
+  " let g:easytags_updatetime_autodisable = 1
+  " "let g:easytags_updatetime_min = 200
+  " let g:easytags_python_enabled = 1
+  " set tags=./tags;
+  " let g:easytags_dynamic_files = 1
 
 " non github repos
   " CommandT
@@ -211,16 +217,16 @@ noremap <C-l> <C-w>l
 noremap <C-j> <C-w>j
 
 " slide text around
-" imap <Up>    <Esc>:m-2<CR>gi
-" imap <Down>  <Esc>:m+<CR>gi
-"
-" nmap <Up>    mz:m-2<CR>`z
-" nmap <Down>  mz:m+<CR>`z
-"
-" vmap <Up>    :m'<-2<CR>gv
-" vmap <Down>  :m'>+<CR>gv
-" vmap <Left>  :<<CR>gv
-" vmap <Right> :><CR>gv
+imap <Up>    <Esc>:m-2<CR>gi
+imap <Down>  <Esc>:m+<CR>gi
+
+nmap <Up>    mz:m-2<CR>`z
+nmap <Down>  mz:m+<CR>`z
+
+vmap <Up>    :m'<-2<CR>gv
+vmap <Down>  :m'>+<CR>gv
+vmap <Left>  :<<CR>gv
+vmap <Right> :><CR>gv
 
 " leader key bindings
 map <leader>p :set paste!<CR>
@@ -249,6 +255,27 @@ omap <silent> <Space> <Plug>CamelCaseMotion_w
 vmap <silent> <Space> <Plug>CamelCaseMotion_w
 
 nmap <silent> <BS> <Plug>CamelCaseMotion_b
+
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = "// vim: ts=4:sw=4:sts=4:et"
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <leader>ml :call AppendModeline()<CR>
+
+" gundo
+nmap <leader>b :GundoToggle<CR>
+
+" taglist
+nmap <leader>m :TlistToggle<CR>
+
+" include path
+set path=,,.,/usr/include,/usr/local/include
+
+" idutils gid
+nmap <leader>g :call g:IDSearchCurrentWord()<CR>
+
 omap <silent> <BS> <Plug>CamelCaseMotion_b
 vmap <silent> <BS> <Plug>CamelCaseMotion_b
 
@@ -305,22 +332,8 @@ let g:clang_complete_copen = 1
 let g:clang_periodic_quickfix = 1
 let g:clang_complete_snippets = 1
 let g:clang_use_library = 1
-let g:clang_library_path = '/Developer/usr/clang-ide/lib'
+let g:clang_library_path = '/usr/local/lib'
 let g:clang_complete_macros = 1
 let g:clang_complete_patterns = 1
 set updatetime=200
 nmap <leader>c :call g:ClangUpdateQuickFix()<CR>
-nmap <leader>x :ccl<CR>
-
-" gundo
-nmap <leader>b :GundoToggle<CR>
-
-" taglist
-nmap <leader>m :TlistToggle<CR>
-
-" include path
-set path=,,.,/usr/include,/usr/local/include
-
-" idutils gid
-nmap <leader>g :call g:IDSearchCurrentWord()<CR>
-

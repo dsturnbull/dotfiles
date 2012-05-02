@@ -61,10 +61,8 @@ bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 
 # special dirs
-rt=~/src/incite/rt
-tbx=~/src/incite/toolbox
-smarm=~/src/smarm
-ct=~/src/content_type
+sp=~/src/semitenn/spacemmo
+pl=~/src/blackfoundry/packetloop
 
 # fruity colours for less
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -104,7 +102,7 @@ if test -n $PS1; then
 fi
 
 # just doit
-[[ -n "$(which brew)" ]] && source `brew --prefix`/etc/autojump
+#[[ -n "$(which brew)" ]] && source `brew --prefix`/etc/autojump
 . ~/.zsh/cap_completion
 . ~/.zsh/title
 
@@ -123,3 +121,17 @@ fi
 export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.4.4.1/jars"
 
 export CLOBBER=1
+
+# packetloop
+export PL_KEYSPACE=PacketloopDevelopment
+
+# https://gist.github.com/1688857
+export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_HEAP_FREE_MIN=500000
+
+export NNTPSERVER=news.tpg.com.au
+
+export HADOOP_HOME=/usr/local/Cellar/hadoop/1.0.1/
