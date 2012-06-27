@@ -1,6 +1,5 @@
 # interactive shells
 
-setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
 setopt AUTO_LIST
@@ -26,7 +25,7 @@ setopt EXTENDED_GLOB
 setopt MULTIOS
 setopt CLOBBER
 setopt NO_FLOW_CONTROL
-setopt RM_STAR_SILENT
+#setopt RM_STAR_SILENT
 
 bindkey -e
 
@@ -104,7 +103,7 @@ fi
 # just doit
 #[[ -n "$(which brew)" ]] && source `brew --prefix`/etc/autojump
 . ~/.zsh/cap_completion
-. ~/.zsh/title
+#. ~/.zsh/title
 
 [[ -f "$HOME/.rvm/scripts/rvm" ]] &&	\
 	source "$HOME/.rvm/scripts/rvm"
@@ -134,4 +133,5 @@ export RUBY_HEAP_FREE_MIN=500000
 
 export NNTPSERVER=news.tpg.com.au
 
-export HADOOP_HOME=/usr/local/Cellar/hadoop/1.0.1/
+. /usr/local/bin/virtualenvwrapper.sh
+

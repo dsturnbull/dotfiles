@@ -16,3 +16,6 @@
 [submodule ".vim/vundle.git"]
 	path = .vim/vundle.git
 	url = http://github.com/gmarik/vundle.git
+[submodule "ondir"]
+	path = ondir
+	url = git://github.com/alecthomas/ondir.git

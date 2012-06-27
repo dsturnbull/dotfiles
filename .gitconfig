@@ -1,6 +1,7 @@
 [user]
 	name = David Turnbull
 	email = david@broodax.net
+	signingkey = 271D43AD
 
 [color]
 	diff = auto

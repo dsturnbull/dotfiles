@@ -165,6 +165,11 @@ call vundle#rc()
   let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir']
   let g:ctrlp_map = '-'
   " let g:ctrlp_lazy_update = 1
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.o$\|\.d$\|\.pyc$\|\.dylib$\|\.sys$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
 
   map <leader>s :CtrlPBuffer<CR>
   map <leader>e :CtrlPTag<CR>
@@ -329,11 +334,11 @@ nnoremap <silent> <leader>ml :call AppendModeline()<CR>
 let g:clang_auto_select = 1
 let g:clang_complete_auto = 1
 let g:clang_complete_copen = 1
-let g:clang_periodic_quickfix = 1
-let g:clang_complete_snippets = 1
+"let g:clang_periodic_quickfix = 1
+"let g:clang_complete_snippets = 1
 let g:clang_use_library = 1
 let g:clang_library_path = '/usr/local/lib'
 let g:clang_complete_macros = 1
 let g:clang_complete_patterns = 1
-set updatetime=200
+"set updatetime=200
 nmap <leader>c :call g:ClangUpdateQuickFix()<CR>
