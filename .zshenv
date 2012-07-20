@@ -18,6 +18,7 @@ export PATH=$HOME/bin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
 export PATH=$PATH:$HOME/src/jruby/bin
+export PATH=$PATH:/Users/david/src/play/depot_tools
 
 export HADOOP_OPTS="-Djava.security.krb5.realm=OX.AC.UK -Djava.security.krb5.kdc=kdc0.ox.ac.uk:kdc1.ox.ac.uk"
 

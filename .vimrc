@@ -18,6 +18,7 @@ set wrap                          " for julio
 set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style when opening files
 set clipboard=autoselect,unnamed
+set relativenumber
 
 " yay mouse
 set mouse=a
