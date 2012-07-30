@@ -30,3 +30,7 @@ tags
 
 *.pyc
 .cap_tasks
+
+old/*
+
+bin/dtbook_scripts/

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+pred=$1
+
+if [[ $pred = "" ]]; then
+	pred=blackfoundry
+fi
+
+hadoop fs -ls / | awk '{print $8}' | grep $pred | xargs -n 10 hadoop fs -rmr

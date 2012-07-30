@@ -1,19 +1,45 @@
-#!/bin/sh
-mv .vimrc .vimrc.old ; ln -sf dotfiles/.vimrc .vimrc
-mv .gvimrc .gvimrc.old ; ln -sf dotfiles/.gvimrc .gvimrc
-mv .vim .vim.old ; ln -sf dotfiles/.vim .vim
-mv .xinitrc .xinitrc.old ; ln -sf dotfiles/.xinitrc .xinitrc
-mv .vimperatorrc .vimperatorrc.old ; ln -sf dotfiles/.vimperatorrc .vimperatorrc
-mv .vimperator .vimperator.old ; ln -sf dotfiles/.vimperator .vimperator
-mv .irbrc .irbrc.old ; ln -sf dotfiles/.irbrc .irbrc
-mv .bashrc .bashrc.old ; ln -sf dotfiles/.bashrc
-mv .Xmodmap .Xmodmap.old ; ln -sf dotfiles/.Xmodmap
-mv .Xdefaults .Xdefaults.old ; ln -sf dotfiles/.Xdefaults
-mv .xmonad .xmonad.old ; ln -sf dotfiles/.xmonad .xmonad
-mv .gitconfig .gitconfig.old ; ln -sf dotfiles/.gitconfig .gitconfig
-mv .tmux.conf .tmux.conf.old ; ln -sf dotfiles/.tmux.conf .tmux.conf
-mv bin bin.old; ln -sf dotfiles/bin bin
-mv .emacs.d .emacs.d.old ; ln -sf dotfiles/.emacs.d .emacs.d
-mv .zsh .zsh.old; ln -sf dotfiles/.zsh .zsh
-mv .zshrc .zshrc.old; ln -sf dotfiles/.zshrc .zshrc
-mv .zshenv .zshenv.old; ln -sf dotfiles/.zshenv .zshenv
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+xmonad_dots = %w(
+  .Xmodmap
+  .Xdefaults
+  .xmonad
+  .xinitrc
+)
+
+obsolete_dots = %w(
+  .bashrc
+)
+
+dots = %w(
+  .vimrc
+  .gvimrc
+  .vim
+  .irbrc
+  .gitconfig
+  .tmux.conf
+  bin
+  .emacs.d
+  .zsh
+  .zshrc
+  .zshenv
+)
+
+FileUtils.mkdir_p 'dotfiles/old'
+
+dots.each do |dot|
+  if File.exist?(dot) && File.stat(dot).ino != File.stat("dotfiles/#{dot}").ino
+    puts "mv #{dot} dotfiles/old/#{dot}"
+    FileUtils.mv(dot, "dotfiles/old/#{dot}")
+    puts "ln -s dotfiles/#{dot} #{dot}"
+    FileUtils.ln("dotfiles/#{dot}", dot)
+  end
+
+  unless File.exist?(dot)
+    puts "ln -s dotfiles/#{dot} #{dot}"
+    FileUtils.ln("dotfiles/#{dot}", dot)
+  end
+end
+
