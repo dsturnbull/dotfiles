@@ -133,5 +133,5 @@ export RUBY_HEAP_FREE_MIN=500000
 
 export NNTPSERVER=news.tpg.com.au
 
-. /usr/local/bin/virtualenvwrapper.sh
+#. /usr/local/bin/virtualenvwrapper.sh
 
