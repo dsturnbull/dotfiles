@@ -27,6 +27,10 @@ dots = %w(
   .zshenv
 )
 
+Dir.chdir 'dotfiles' do
+  `git submodule update --init`
+end
+
 FileUtils.mkdir_p 'dotfiles/old'
 
 dots.each do |dot|
@@ -34,12 +38,12 @@ dots.each do |dot|
     puts "mv #{dot} dotfiles/old/#{dot}"
     FileUtils.mv(dot, "dotfiles/old/#{dot}")
     puts "ln -s dotfiles/#{dot} #{dot}"
-    FileUtils.ln("dotfiles/#{dot}", dot)
+    FileUtils.ln_s("dotfiles/#{dot}", dot)
   end
 
   unless File.exist?(dot)
     puts "ln -s dotfiles/#{dot} #{dot}"
-    FileUtils.ln("dotfiles/#{dot}", dot)
+    FileUtils.ln_s("dotfiles/#{dot}", dot)
   end
 end
 
