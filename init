@@ -47,3 +47,4 @@ dots.each do |dot|
   end
 end
 
+system('echo :BundleInstall | vi -s /dev/stdin')
