@@ -40,7 +40,7 @@ autoload -U git_status
 nice_orange=$'\e[38;5;208m'
 nice_green=$'\e[38;5;154m'
 nice_blue=$'\e[38;5;39m'
-PROMPT="%{$nice_green%}%m%{$fg_reset%} %{$nice_blue%}%~%{$fg[default]%} %# "
+PROMPT="%{$nice_green%}%M%{$fg_reset%} %{$nice_blue%}%~%{$fg[default]%} %# "
 RPS1='$(git_status) (%j)'
 
 # various
