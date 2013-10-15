@@ -1,2 +1,0 @@
-#!/bin/sh
-CLASSPATH=$HOME/src/rhino/js.jar java org.mozilla.javascript.tools.shell.Main $*

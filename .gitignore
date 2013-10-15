@@ -1,6 +1,4 @@
-*.swp
-*.swo
-*.swn
+*.sw?
 *.dSYM
 *.o
 *.d
@@ -27,6 +25,7 @@ tags
 .emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc~
 
 .clang_complete
+.rvmrc
 
 *.pyc
 .cap_tasks

@@ -1,5 +1,0 @@
-#!/bin/sh
-sudo ln -sf  /opt/local/bin/gem1.9 /opt/local/bin/gem
-sudo ln -sf  /opt/local/bin/irb1.9 /opt/local/bin/irb
-sudo ln -sf /opt/local/bin/rake1.9 /opt/local/bin/rake
-sudo ln -sf /opt/local/bin/ruby1.9 /opt/local/bin/ruby

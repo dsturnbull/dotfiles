@@ -10,8 +10,7 @@ PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/usr/X11/bin:$PATH
 
 # frameworks, platforms
-export ANDROID_HOME=~/src/android-sdk-mac_86
-export PATH=$ANDROID_HOME/tools:$PATH
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r20.0.3
 
 # user bin paths
 export PATH=$HOME/bin:$PATH
@@ -32,3 +31,12 @@ export NODE_PATH=/usr/local/lib/node
 export PAGER=less
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+#export http_proxy=http://localhost:3128
+#export HTTP_PROXY=http://localhost:3128
+#export https_proxy=https://localhost:3128
+#export HTTPS_PROXY=https://localhost:3128
+
+export LANG=en_AU.UTF-8
+export LC_ALL=en_AU.UTF-8
+#printf '\e]701;%s\007' $LANG

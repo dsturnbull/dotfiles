@@ -3,7 +3,7 @@ xterm*metaSendsEscape: true
 
 !perl extensions
 !XXX why can't i use $HOME?
-URxvt.perl-lib: /Users/dave/.urxvt/
+URxvt.perl-lib: /Users/david/.urxvt/
 URxvt.perl-ext-common: default,selection-autotransform,tabbed,x11-clipboard,mark-yank-urls
 
 !make it work like terminal.app/gnome-term
@@ -14,9 +14,6 @@ URxvt.scrollWithBuffer: true
 
 !max history
 URxvt.saveLines: 65535
-
-!for reference
-URxvt.cutchars: "BACKSLASH `"'&()*,;<=>?@[]^{|}"
 
 !colors
 URxvt.depth: 32
@@ -53,8 +50,12 @@ URxvt.tabbed.tab-bg:    4
 
 !set env vars
 URxvt.termName: xterm-256color
-URxvt.imLocale: en_US.UTF-8
+URxvt.imLocale: en_AU
 
 !URxvt*font: -*-terminus-*-*-*-*-12-*-*-*-*-*-*-u
-URxvt*font: xft:Terminus:pixelsize=10
+URxvt*font: xft:Terminus:pixelsize=9
 
+!for reference
+URxvt.cutchars: "BACKSLASH `"'&()*,;<=>?@[]^{|}"
+
+*VT100.translations: #override Meta <KeyPress> V:  insert-selection(PRIMARY, CUT_BUFFER0) \n

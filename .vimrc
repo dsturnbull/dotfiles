@@ -18,7 +18,11 @@ set wrap                          " for julio
 set showtabline=2                 " always
 set wildmode=list:longest,full    " completion style when opening files
 set clipboard=autoselect,unnamed
-set relativenumber
+"set relativenumber
+set undofile
+set undodir=$HOME/.vim/.VIM_UNDO_FILES
+set undolevels=50000
+set virtualedit=block
 
 " yay mouse
 set mouse=a
@@ -31,8 +35,11 @@ set formatoptions+=t              " autowrap text to textwidth
 " CHUT UP
 set vb
 
+set shell=zsh
+
 " textwidth colouring
 "set textwidth=79
+"set colorcolumn=80
 "match ErrorMsg '\%>80v.\+'
 "au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
@@ -45,7 +52,7 @@ call vundle#rc()
 
 " vim-scripts repos
   " gist plugin
-  Bundle 'Gist.vim'
+  "Bundle 'Gist.vim'
 
   " Motion through CamelCaseWords and underscore_notation
   Bundle 'camelcasemotion'
@@ -71,7 +78,7 @@ call vundle#rc()
   " Bundle 'Intelligent-Tags'
 
   " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-  Bundle 'taglist.vim'
+  "Bundle 'taglist.vim'
 
   " Simulate a split shell, using gnu screen or tmux, that you can send commands to.
   " use tmux, not screen
@@ -113,9 +120,12 @@ call vundle#rc()
   " Vim/Ruby Configuration Files
   Bundle 'vim-ruby/vim-ruby'
 
+  " multiple cursors
+  Bundle 'terryma/vim-multiple-cursors'
+
   " JIZZ
   Bundle 'Lokaltog/vim-powerline.git'
-  let g:Powerline_symbols = 'fancy'
+  " let g:Powerline_symbols = 'fancy'
 
   " Copy syntax-highlighted code from vim to the OS X clipboard as RTF text
   Bundle 'aniero/vim-copy-as-rtf.git'
@@ -141,7 +151,7 @@ call vundle#rc()
   Bundle 'tpope/vim-abolish'
 
   " use clang for completing C/C++ code
-  Bundle 'Rip-Rip/clang_complete'
+  " Bundle 'Rip-Rip/clang_complete'
 
   " visualize your Vim undo tree.
   Bundle 'sjl/gundo.vim'
@@ -195,6 +205,12 @@ call vundle#rc()
   " let g:easytags_python_enabled = 1
   " set tags=./tags;
   " let g:easytags_dynamic_files = 1
+
+  " tiling
+  " Bundle 'spolu/dwm.vim'
+  
+  " scala syntax
+  Bundle 'derekwyatt/vim-scala'
 
 " non github repos
   " CommandT
@@ -295,15 +311,6 @@ imap <C-]> <C-x><C-]>
 inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
-" tab hax
-nmap <silent> <C-n> :tabn<CR>
-nmap <silent> <C-p> :tabp<CR>
-" swap tag stack pop with tabnew
-nmap <C-BSlash> :po<CR>
-nmap <silent> <C-t> :tabnew<CR>
-nmap <SwipeUp> :tabp<CR>
-nmap <SwipeDown> :tabp<CR>
-
 " counterparts
 nmap <SwipeUp> :split<CR>
 nmap <SwipeDown> :split<CR><C-w>j<CR>
@@ -335,11 +342,33 @@ nnoremap <silent> <leader>ml :call AppendModeline()<CR>
 let g:clang_auto_select = 1
 let g:clang_complete_auto = 1
 let g:clang_complete_copen = 1
-"let g:clang_periodic_quickfix = 1
+let g:clang_periodic_quickfix = 1
 "let g:clang_complete_snippets = 1
-let g:clang_use_library = 1
-let g:clang_library_path = '/usr/local/lib'
+let g:clang_library_path = '/Applications/Xcode5-DP.app//Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 let g:clang_complete_macros = 1
 let g:clang_complete_patterns = 1
 "set updatetime=200
 nmap <leader>c :call g:ClangUpdateQuickFix()<CR>
+
+autocmd VimResized * wincmd=
+
+let g:ruby_path = "$HOME/.rvm/rubies/default/bin"
+
+nmap <Leader>a :Tabularize /
+vmap <Leader>a :Tabularize /
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+" tab hax
+nmap <silent> <C-j> :tabn<CR>
+nmap <silent> <C-k> :tabp<CR>
+" swap tag stack pop with tabnew
+nmap <C-BSlash> :po<CR>
+nmap <silent> <C-t> :tabnew<CR>
+nmap <SwipeUp> :tabp<CR>
+nmap <SwipeDown> :tabp<CR>
+
+command! F :%!python -m json.tool
+command! G :%!jshon

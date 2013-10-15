@@ -19,3 +19,15 @@
 [submodule "ondir"]
 	path = ondir
 	url = git://github.com/alecthomas/ondir.git
+[submodule "zsh-completions"]
+	path = zsh-completions
+	url = git://github.com/zsh-users/zsh-completions.git
+[submodule "tmux-MacOSX-pasteboard"]
+	path = tmux-MacOSX-pasteboard
+	url = git://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git
+[submodule "zsh-syntax-highlighting"]
+	path = zsh-syntax-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "fish/z-fish.git"]
+	path = fish/z-fish.git
+	url = git://github.com/sjl/z-fish.git

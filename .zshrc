@@ -1,6 +1,7 @@
 # interactive shells
 
 setopt PUSHD_IGNORE_DUPS
+setopt AUTO_PUSHD
 
 setopt AUTO_LIST
 setopt LIST_AMBIGUOUS
@@ -33,15 +34,15 @@ fpath=($HOME/.zsh $fpath)
 
 autoload -U compinit; compinit
 autoload -U colors; colors
-autoload -U zgitinit; zgitinit
-autoload -U git_status
+#autoload -U zgitinit; zgitinit
+#autoload -U git_status
 
 # PS1
 nice_orange=$'\e[38;5;208m'
 nice_green=$'\e[38;5;154m'
 nice_blue=$'\e[38;5;39m'
 PROMPT="%{$nice_green%}%M%{$fg_reset%} %{$nice_blue%}%~%{$fg[default]%} %# "
-RPS1='$(git_status) (%j)'
+#RPS1='$(git_status) (%j)'
 
 # various
 # FIXME why don't I need to export these, like the other crap below?
@@ -111,27 +112,46 @@ fi
 [[ -f "$HOME/.amazon_keys" ]] &&	\
 	source "$HOME/.amazon_keys"
 
-[[ -f "$HOME/.ec2/pk.pem" ]] &&		\
-	export EC2_PRIVATE_KEY="$HOME/.ec2/pk.pem"
-
-[[ -f "$HOME/.ec2/cert.pem" ]] &&	\
-	export EC2_CERT="$HOME/.ec2/cert.pem"
-
-export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.4.4.1/jars"
+export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.6.5.2/jars"
 
 export CLOBBER=1
 
 # packetloop
 export PL_KEYSPACE=PacketloopDevelopment
 
-# https://gist.github.com/1688857
-export RUBY_HEAP_MIN_SLOTS=1000000
-export RUBY_HEAP_SLOTS_INCREMENT=1000000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=1000000000
-export RUBY_HEAP_FREE_MIN=500000
-
 export NNTPSERVER=news.tpg.com.au
 
 #. /usr/local/bin/virtualenvwrapper.sh
 
+fpath=($HOME/dotfiles/zsh-completions/src $fpath)
+
+source /Users/david/dotfiles//zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+ZSH_HIGHLIGHT_STYLES[cursor]=white
+
+eval "$(fasd --init auto)"
+
+alias v='f -t -e vim -b viminfo'
+alias mi='f -t -e mvim -b viminfo'
+
+cd ~
+
+mssh() {
+	mosh omni.broodax.net ssh $*
+}
+
+
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/Users/david/perl5";
+export PERL_MB_OPT="--install_base /Users/david/perl5";
+export PERL_MM_OPT="INSTALL_BASE=/Users/david/perl5";
+export PERL5LIB="/Users/david/perl5/lib/perl5:$PERL5LIB";
+export PATH="/Users/david/perl5/bin:$PATH";
+
+export JAVA_OPTS="$JAVA_OPTS -Djava.awt.headless=true"
+
+source ~/.zsh/autodir
+source ~/.zsh/git-flow.plugin.zsh
+
+export URBIT_HOME=${HOME}/src/play/urbit/urb
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

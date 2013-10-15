@@ -1,0 +1,42 @@
+function _cd {
+	cd $1
+	__dirs+=($(pwd))
+	let "__currdir = $__currdir + 1"
+	#echo "__dirs: ${__dirs} __currdir: ${__currdir}"
+}
+
+function _next {
+	let "__currdir = $__currdir + 1"
+	[ $__currdir -gt $#__dirs ] && __currdir=0
+	cd $__dirs[$__currdir]
+	#echo "__dirs: ${__dirs} __currdir: ${__currdir}"
+	zle reset-prompt
+}
+
+function _prev {
+	let "__currdir = $__currdir - 1"
+	[ $__currdir -lt 0 ] && __currdir=$#__dirs
+	cd $__dirs[$__currdir]
+	#echo "__dirs: ${__dirs} __currdir: ${__currdir}"
+	zle reset-prompt
+}
+
+function _reset {
+	__dirs=()
+	__currdir=0
+}
+
+zle -N _cd
+zle -N _next
+zle -N _prev
+zle -N _reset
+
+_reset
+
+bindkey '[D' _prev
+bindkey '[C' _next
+
+alias cd=_cd
+alias reset_dirs=_reset
+
+# vim:ft=shell

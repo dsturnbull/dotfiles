@@ -3,8 +3,9 @@ Config { font = "xft:Courier New-9:bold"
        , fgColor = "white"
        , position = TopW L 100
        , lowerOnStart = True
-       , commands = [ Run Weather "YSSY" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Date "%a %b %_d %l:%M" "date" 10
+       , commands = [ 
+       --Run Weather "YSSY" ["-t"," <tempC>C","-L","15","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
+                      Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
                     , Run Com "apple" ["wifi_info"]         "wifi_info"         600
                     , Run Com "apple" ["battery_info"]      "battery_info"      600
@@ -12,11 +13,10 @@ Config { font = "xft:Courier New-9:bold"
                     , Run Com "apple" ["itunes_info"]       "itunes_info"       600
                     , Run Com "apple" ["bluetooth_info"]    "bluetooth_network" 600
                     , Run Com "apple" ["ip_addr"]           "ip_addr"           600
-                    , Run Com "goingtorain" []              "weather"           36000
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %YSSY% %weather% %ip_addr% | %bluetooth_network% | %wifi_info% | %vol_info%/%itunes_info% | %battery_info% <fc=#ee9a00>%date%</fc>"
+       , template = "}{ %ip_addr% | %bluetooth_network% | %wifi_info% | %vol_info%/%itunes_info% | %battery_info% <fc=#ee9a00>%date%</fc>"
        }
 
 -- vim:filetype=haskell

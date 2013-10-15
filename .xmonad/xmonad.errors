@@ -1,0 +1,6 @@
+
+xmonad.hs:97:1:
+    Couldn't match expected type `IO t0'
+                with actual type `XConfig l0 -> IO ()'
+    In the expression: main
+    When checking the type of the function `main'

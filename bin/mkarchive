@@ -1,5 +1,0 @@
-#!/bin/sh
-sudo zfs create -o mountpoint=/fleet/archive/$1 fleet/archive/$1
-sudo zfs set compression=on fleet/archive/$1
-sleep 5
-sudo zfs set sharenfs='root=.home.redcordial.org' fleet/archive/$1

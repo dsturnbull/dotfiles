@@ -1,0 +1,6 @@
+curl https://www.cloudflare.com/api_json.html \
+	-d 'a=fpurge_ts' \
+	-d 'tkn=d3c6f50c791e11c62529e80e928c3910f97ee' \
+	-d 'email=michael@blackfoundry.com' \
+	-d 'z=packetloop.com' \
+	-d 'v=1'
