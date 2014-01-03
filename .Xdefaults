@@ -53,7 +53,8 @@ URxvt.termName: xterm-256color
 URxvt.imLocale: en_AU
 
 !URxvt*font: -*-terminus-*-*-*-*-12-*-*-*-*-*-*-u
-URxvt*font: xft:Terminus:pixelsize=9
+URxvt*font: xft:Terminus:pixelsize=12
+!URxvt*font: xft:Monofur:pixelsize=13
 
 !for reference
 URxvt.cutchars: "BACKSLASH `"'&()*,;<=>?@[]^{|}"

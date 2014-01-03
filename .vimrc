@@ -136,6 +136,9 @@ call vundle#rc()
   " It's like rails.vim without the rails
   Bundle 'tpope/vim-rake'
 
+  " syntax checking
+  Bundle 'scrooloose/syntastic'
+
   " a Git wrapper so awesome, it should be illegal
   Bundle 'tpope/vim-fugitive'
   set laststatus=2

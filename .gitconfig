@@ -11,7 +11,7 @@
 [alias]
   st = status
   l = log --graph --all --pretty=format:'%Cred%h%Creset - %an %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
-  ls = log --graph --all --pretty=format:'%Cred%h%Creset - %an %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --stat
+  ls = log --graph --all --pretty=format:'%Cred%h%Creset - %Cgreen%cr%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --stat
   br = "!git branch -a --no-merged | grep -v -f ~/.gitmergeignore | grep -v HEAD | while read x; do printf \\\\033[31m%s\\\\033[0m\\\\n $x; git --no-pager log -3 --pretty=oneline --abbrev-commit ..$x; echo; done"
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"

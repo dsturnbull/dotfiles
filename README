@@ -1,1 +1,5 @@
-dot files
+* TODO
+** dot files
+
+* NOTES
+** grab nfs://beloch.local/pool/incoming/ubuntu-12.04.2-dvd-amd64.iso and create a vm in virtualbox
