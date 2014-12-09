@@ -113,15 +113,12 @@ call vundle#rc()
   " Pig Latin syntax
   Bundle 'pig.vim'
 
-  " paste to html
-  Bundle 'formatvim'
-
 " github repos
   " Vim/Ruby Configuration Files
   Bundle 'vim-ruby/vim-ruby'
 
   " multiple cursors
-  Bundle 'terryma/vim-multiple-cursors'
+  " Bundle 'terryma/vim-multiple-cursors'
 
   " JIZZ
   Bundle 'Lokaltog/vim-powerline.git'
@@ -137,7 +134,19 @@ call vundle#rc()
   Bundle 'tpope/vim-rake'
 
   " syntax checking
-  Bundle 'scrooloose/syntastic'
+  " Bundle 'scrooloose/syntastic'
+
+  " repl
+  Bundle 'jpalardy/vim-slime'
+
+  " ocaml
+  Bundle 'the-lambda-church/merlin'
+
+  " idris
+  Bundle 'idris-hackers/idris-vim'
+
+  Bundle 'Shougo/vimproc'
+  Bundle 'Shougo/vimshell'
 
   " a Git wrapper so awesome, it should be illegal
   Bundle 'tpope/vim-fugitive'
@@ -162,6 +171,9 @@ call vundle#rc()
   " detect end/endif etc
   "Bundle 'tpope/vim-endwise'
 
+  " ag
+  Bundle 'rking/ag.vim'
+
   " more fuzzy shit
   Bundle 'kien/ctrlp.vim'
   let g:ctrlp_prompt_mappings = {
@@ -184,6 +196,7 @@ call vundle#rc()
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.o$\|\.d$\|\.pyc$\|\.dylib$\|\.sys$',
     \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
     \ }
+  "let g:ctrlp_working_path_mode = 1
 
   map <leader>s :CtrlPBuffer<CR>
   map <leader>e :CtrlPTag<CR>
@@ -211,7 +224,7 @@ call vundle#rc()
 
   " tiling
   " Bundle 'spolu/dwm.vim'
-  
+
   " scala syntax
   Bundle 'derekwyatt/vim-scala'
 
@@ -319,18 +332,19 @@ nmap <SwipeUp> :split<CR>
 nmap <SwipeDown> :split<CR><C-w>j<CR>
 nmap <SwipeLeft> <C-w>v<CR>
 nmap <SwipeRight> <C-w>v<CR><C-w>l<CR>
+nmap <C-w>j :split<CR>
 
 " ptag
 nmap <leader>\ :ptag <C-r>=expand("<cword>")<CR><CR>
 
 " remove highlighting
-" nmap <leader>\ :nohlsearch<CR>
+nmap <leader>\ :nohlsearch<CR>
 
 " -fblocks
 hi link cErrInParen Normal
 
 " what
-set modelines=1
+set modelines=10
 
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
@@ -346,7 +360,7 @@ let g:clang_auto_select = 1
 let g:clang_complete_auto = 1
 let g:clang_complete_copen = 1
 let g:clang_periodic_quickfix = 1
-"let g:clang_complete_snippets = 1
+let g:clang_complete_snippets = 1
 let g:clang_library_path = '/Applications/Xcode5-DP.app//Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 let g:clang_complete_macros = 1
 let g:clang_complete_patterns = 1
@@ -355,18 +369,18 @@ nmap <leader>c :call g:ClangUpdateQuickFix()<CR>
 
 autocmd VimResized * wincmd=
 
-let g:ruby_path = "$HOME/.rvm/rubies/default/bin"
+"let g:ruby_path = "$HOME/.rvm/rubies/default/bin"
 
 nmap <Leader>a :Tabularize /
 vmap <Leader>a :Tabularize /
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a= :Tabularize / = <CR>
+vmap <Leader>a= :Tabularize / = <CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " tab hax
-nmap <silent> <C-j> :tabn<CR>
-nmap <silent> <C-k> :tabp<CR>
+nmap <silent> <C-n> :tabn<CR>
+nmap <silent> <C-p> :tabp<CR>
 " swap tag stack pop with tabnew
 nmap <C-BSlash> :po<CR>
 nmap <silent> <C-t> :tabnew<CR>
@@ -375,3 +389,13 @@ nmap <SwipeDown> :tabp<CR>
 
 command! F :%!python -m json.tool
 command! G :%!jshon
+
+:set rtp+=/usr/local/share/ocamlmerlin/vim
+
+" ocp-indent
+let g:ocp_indent_vimfile = system("opam config var share")
+let g:ocp_indent_vimfile = substitute(g:ocp_indent_vimfile, '[\r\n]*$', '', '')
+let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
+
+autocmd FileType ocaml exec ":source " . g:ocp_indent_vimfile
+au FileType crontab set nobackup nowritebackup

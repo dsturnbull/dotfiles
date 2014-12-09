@@ -39,4 +39,4 @@ bindkey '[C' _next
 alias cd=_cd
 alias reset_dirs=_reset
 
-# vim:ft=shell
+# vim:ft=sh

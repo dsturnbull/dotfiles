@@ -31,3 +31,5 @@
 	user = dsturnbull
 [push]
 	default = simple
+[diff]
+	algorithm = patience
