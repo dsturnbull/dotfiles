@@ -23,6 +23,9 @@ set undofile
 set undodir=$HOME/.vim/.VIM_UNDO_FILES
 set undolevels=50000
 set virtualedit=block
+set noshowmode
+set laststatus=2
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P\ %{fugitive#statusline()}
 
 " yay mouse
 set mouse=a
@@ -68,7 +71,19 @@ call vundle#rc()
 
   " Plugin for the Perl module / CLI script 'ack'
   Bundle 'ack.vim'
-  map <leader>r :Ack
+  " nmap <Leader>a :Tabularize /
+  " nmap <Leader>a= :Tabularize / = <CR>
+  " nmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>rn :cn<CR>
+  nmap <Leader>rp :cp<CR>
+  nmap <Leader>ro :cw<CR>
+  nmap <Leader>rf :cnf<CR>
+  nmap <Leader>rqo :cw<CR>
+  nmap <Leader>rqq :ccl<CR>
+  nmap <Leader>rlo :lw<CR>
+  nmap <Leader>rlq :lcl<CR>
+  nmap <Leader>gs :Gstatus<CR>
+  nmap <Leader>gb :Gblame<CR>
 
   " Alternate Files quickly (.c --> .h etc)
   Bundle 'a.vim'
@@ -121,8 +136,14 @@ call vundle#rc()
   " Bundle 'terryma/vim-multiple-cursors'
 
   " JIZZ
-  Bundle 'Lokaltog/vim-powerline.git'
+  " Bundle 'Lokaltog/vim-powerline.git'
   " let g:Powerline_symbols = 'fancy'
+  Bundle 'bling/vim-airline'
+  " let g:airline_powerline_fonts = 1
+
+  " show list of buffers in the command bar
+  Bundle 'bling/vim-bufferline'
+  let g:bufferline_echo = 0
 
   " Copy syntax-highlighted code from vim to the OS X clipboard as RTF text
   Bundle 'aniero/vim-copy-as-rtf.git'
@@ -140,7 +161,7 @@ call vundle#rc()
   Bundle 'jpalardy/vim-slime'
 
   " ocaml
-  Bundle 'the-lambda-church/merlin'
+  " Bundle 'the-lambda-church/merlin'
 
   " idris
   Bundle 'idris-hackers/idris-vim'
@@ -150,8 +171,6 @@ call vundle#rc()
 
   " a Git wrapper so awesome, it should be illegal
   Bundle 'tpope/vim-fugitive'
-  set laststatus=2
-  set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P\ %{fugitive#statusline()}
 
   " edit icons in vim
   Bundle 'tpope/vim-afterimage'
@@ -192,15 +211,16 @@ call vundle#rc()
   let g:ctrlp_map = '-'
   " let g:ctrlp_lazy_update = 1
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+    \ 'dir':  '\.git$\|\.hg$\|\.svn\|target$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.o$\|\.d$\|\.pyc$\|\.dylib$\|\.sys$',
     \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
     \ }
-  "let g:ctrlp_working_path_mode = 1
+  let g:ctrlp_working_path_mode = 'r'
 
-  map <leader>s :CtrlPBuffer<CR>
+  map <leader>b :CtrlPBuffer<CR>
   map <leader>e :CtrlPTag<CR>
-  map <leader>t :CtrlP<CR>
+  map <leader>f :CtrlP<CR>
+  map <leader>t :CtrlPMixed<CR>
 
   " % extensions
   Bundle 'edsono/vim-matchit'
@@ -241,8 +261,8 @@ call vundle#rc()
 cnoremap <C-a> <Home>
 
 " split/join
-nmap <leader>j :SplitjoinJoin<CR>
-nmap <leader>o :SplitjoinSplit<CR>
+"nmap <leader>j :SplitjoinJoin<CR>
+"nmap <leader>o :SplitjoinSplit<CR>
 
 " git/svn blame - \g/\s on a visual block - FIXME svn blame not working
 vmap <leader>g :<C-u>!git blame <C-r>=expand("%") <CR> \| sed -n <C-r>=line("'<") <CR>,<C-r>=line("'>") <CR>p <CR>
@@ -303,7 +323,7 @@ endfunction
 nnoremap <silent> <leader>ml :call AppendModeline()<CR>
 
 " gundo
-nmap <leader>b :GundoToggle<CR>
+nmap <leader>u :GundoToggle<CR>
 
 " taglist
 nmap <leader>m :TlistToggle<CR>
@@ -312,7 +332,7 @@ nmap <leader>m :TlistToggle<CR>
 set path=,,.,/usr/include,/usr/local/include
 
 " idutils gid
-nmap <leader>g :call g:IDSearchCurrentWord()<CR>
+" nmap <leader>g :call g:IDSearchCurrentWord()<CR>
 
 omap <silent> <BS> <Plug>CamelCaseMotion_b
 vmap <silent> <BS> <Plug>CamelCaseMotion_b
@@ -379,18 +399,20 @@ nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " tab hax
-nmap <silent> <C-n> :tabn<CR>
-nmap <silent> <C-p> :tabp<CR>
+nmap <silent> <Leader>j :tabn<CR>
+nmap <silent> <Leader>k :tabp<CR>
+nmap <silent> <Leader>n :tabnew<CR>
 " swap tag stack pop with tabnew
-nmap <C-BSlash> :po<CR>
-nmap <silent> <C-t> :tabnew<CR>
-nmap <SwipeUp> :tabp<CR>
-nmap <SwipeDown> :tabp<CR>
+"nmap <C-BSlash> :po<CR>
+"nmap <SwipeUp> :tabp<CR>
+"nmap <SwipeDown> :tabp<CR>
+nmap <C-t> :enew<CR>
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+nmap <leader>q :bd<CR>
 
 command! F :%!python -m json.tool
 command! G :%!jshon
-
-:set rtp+=/usr/local/share/ocamlmerlin/vim
 
 " ocp-indent
 let g:ocp_indent_vimfile = system("opam config var share")
@@ -399,3 +421,5 @@ let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
 
 autocmd FileType ocaml exec ":source " . g:ocp_indent_vimfile
 au FileType crontab set nobackup nowritebackup
+
+noremap <leader>d :diffoff \| windo if &diff \| hide \| endif<CR>
