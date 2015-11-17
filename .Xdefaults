@@ -5,11 +5,12 @@ XTerm*locale: true
 !perl extensions
 !XXX why can't i use $HOME?
 URxvt.perl-lib: /Users/david/.urxvt/
-URxvt.perl-ext-common: default,selection-autotransform,tabbed,x11-clipboard,mark-yank-urls,macosx-clipboard
+URxvt.perl-ext-common: default,selection-autotransform,tabbed,x11-clipboard,mark-yank-urls,macosx-clipboard,keyboard-select
 
 ! paste
 URxvt.keysym.M-c: perl:macosx-clipboard:copy
 URxvt.keysym.M-v: perl:macosx-clipboard:paste
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
 !URxvt.keysym.A-c: perl:macosx-clipboard:copy
 !URxvt.keysym.A-v: perl:macosx-clipboard:paste
 
@@ -34,11 +35,11 @@ URxvt.transparent: true
 
 !click on a url
 URxvt.urlLauncher: firefox-x11-standalone
-URxvt.keysym.C-i: perl:matcher
+!URxvt.keysym.C-i: perl:matcher
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.matcher.launcher.1: firefox-x11-standalone
-URxvt.keysym.C-i: perl:mark-yank-urls:activate_mark_mode
+!URxvt.keysym.C-i: perl:mark-yank-urls:activate_mark_mode
 URxvt.underlineURLs: true
 
 !copy paste stuff
@@ -62,14 +63,15 @@ URxvt.imLocale: en_AU
 !URxvt*font: -*-terminus-*-*-*-*-12-*-*-*-*-*-*-u
 URxvt*font: xft:Terminus:pixelsize=12
 !URxvt*font: xft:Monofur:pixelsize=13
-!URxvt*font: xft:bitstream vera sans mono:pixelsize=11
+!URxvt*font: xft:bitstream vera sans mono:pixelsize=12
 !URxvt*font: xft:Deja Vu Sans Mono:pixelsize=11
 !URxvt*font: xft:Menlo:pixelsize=11
 !URxvt*font: xft:Monospace:pixelsize=13
 
 Xft.dpi:        100
 Xft.antialias:  true
-Xft.rgba:       rgb
+Xft.autohint:   true
+Xft.rgba:       rgba
 Xft.hinting:    true
 Xft.hintstyle:  hintfull
 
