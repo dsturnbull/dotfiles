@@ -234,6 +234,9 @@ call vundle#rc()
   " PEP8 MTEHRUFKCER
   Bundle 'pep8'
 
+  " json
+  Bundle 'elzr/vim-json'
+
   " automatically update tags
   " Bundle 'easytags.vim'
   " let g:easytags_updatetime_autodisable = 1
@@ -256,6 +259,13 @@ call vundle#rc()
 
   " rfc5424 (syslog)
   " Bundle 'https://code.google.com/p/vim-syntax-rfc5424/'
+
+  " notes
+  " Bundle 'fmoralesc/vim-pad'
+  " let g:pad#silent_on_mappings_fail = 1
+  " let g:pad#dir = ".pad"
+
+  " Bundle 'fmoralesc/vim-tutor-mode'
 
 " use c-a in command mode
 cnoremap <C-a> <Home>
@@ -413,13 +423,8 @@ nmap <leader>q :bd<CR>
 
 command! F :%!python -m json.tool
 command! G :%!jshon
+command! J :%!jq .
 
-" ocp-indent
-let g:ocp_indent_vimfile = system("opam config var share")
-let g:ocp_indent_vimfile = substitute(g:ocp_indent_vimfile, '[\r\n]*$', '', '')
-let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
-
-autocmd FileType ocaml exec ":source " . g:ocp_indent_vimfile
 au FileType crontab set nobackup nowritebackup
 
 noremap <leader>d :diffoff \| windo if &diff \| hide \| endif<CR>
