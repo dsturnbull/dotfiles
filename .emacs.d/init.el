@@ -83,6 +83,8 @@
 	(background-color . "Black")
 	(right-fringe . 0)
 	(left-fringe . 0)
+	(width . 350)
+	(height . 95)
 	;;(font . "terminus-12")
 	;; alpha . (95 95))
 	)
@@ -91,7 +93,7 @@
 ;;(set-default-font "Terminus TTF-11")
 (setq system-uses-terminfo nil)
 (set-face-attribute 'default nil
-                    :family "Menlo" :height 100 :weight 'normal)
+                    :family "Menlo" :height 120 :weight 'normal)
 
 (setq scroll-bar-mode nil)
 
@@ -153,7 +155,21 @@
 
 ;; windmove
 (windmove-default-keybindings)
+(global-set-key (kbd "A-h") 'windmove-left)
+(global-set-key (kbd "A-l") 'windmove-right)
+(global-set-key (kbd "A-k") 'windmove-up)
+(global-set-key (kbd "A-j") 'windmove-down)
 (setq windmove-wrap-around t)
+
+;; framemove
+(require 'framemove)
+(framemove-default-keybindings)
+(global-set-key (kbd "M-h") 'fm-left-frame)
+(global-set-key (kbd "M-l") 'fm-right-frame)
+(global-set-key (kbd "M-k") 'fm-up-frame)
+(global-set-key (kbd "M-j") 'fm-down-frame)
+;(global-set-key (kbd "M-n") 'make-frame)
+(setq framemove-hook-into-windmove t)
 
 ;; evil leader
 (require 'evil-leader)
@@ -229,3 +245,112 @@
 
 ;; ag
 (require 'ag)
+
+;; alt-tab
+(global-set-key "\M-`" 'other-frame)
+
+;; magit
+(require 'evil-magit)
+
+;; guide-key
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '(
+                                     "C-x r"
+                                     "C-x 4"
+                                     "C-c p"
+                                     "C-c r"
+                                     ))
+(guide-key-mode 1)
+
+;; highlight-symbol
+;(require 'highlight-symbol)
+;(setq highlight-symbol-on-navigation t)
+
+;(add-hook 'prog-mode-hook #'highlight-symbol-mode)
+;(add-hook 'prog-mode-hook #'highlight-symbol-nav-mode)
+
+(global-set-key (kbd "M-n") 'next-error)
+(global-set-key (kbd "M-p") 'previous-error)
+
+;; mu4e
+(require 'mu4e)
+(setq
+ mu4e-maildir "~/Mail"
+ mu4e-sent-folder "/iCloud/Sent Messages"
+ mu4e-drafts-folder "/iCloud/Drafts"
+ mu4e-trash-folder "/iCloud/Deleted Messages"
+ mu4e-refile-folder "/iCloud/Archive"
+;mu4e-get-mail-command "offlineimap"
+ mu4e-get-mail-command "true"
+ mu4e-use-fancy-chars t
+ mu4e-attachment-dir "~/Desktop"
+ mu4e-view-show-images t
+ mu4e-update-interval 60)
+
+(setq
+ user-mail-address "david@broodax.net"
+ user-full-name "David Turnbull"
+ smtpmail-default-smtp-server "mail.broodax.net")
+
+(require 'smtpmail)
+
+(defun use-icloud ()
+  (setq message-send-mail-function 'smtpmail-send-it
+        starttls-use-gnutls t
+        smtpmail-starttls-credentials '(("smtp.mail.me.com" 587 nil nil))
+        smtpmail-auth-credentials
+        '(("smtp.mail.imap.com" 587 "dsturnbull" nil))
+        smtpmail-default-smtp-server "smtp.mail.me.com"
+        smtpmail-smtp-server "smtp.mail.me.com"
+        smtpmail-smtp-service 587))
+
+(defun use-arbor ()
+  (setq message-send-mail-function 'smtpmail-send-it
+        starttls-use-gnutls t
+        smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+        smtpmail-auth-credentials
+        '(("smtp.gmail.com" 587 "dturnbull" nil))
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587))
+
+(defun use-broodax ()
+  (setq message-send-mail-function 'smtpmail-send-it
+        starttls-use-gnutls t
+        smtpmail-starttls-credentials '(("mail.broodax.net" 587 nil nil))
+        smtpmail-auth-credentials
+        '(("smtp.mail.imap.com" 587 "david" nil))
+        smtpmail-default-smtp-server "mail.broodax.net"
+        smtpmail-smtp-server "mail.broodax.net"
+        smtpmail-smtp-service 587))
+
+(use-broodax)
+
+(add-hook 'mu4e-compose-hook
+          (defun my-set-from-address ()
+            "Set the From address based on the To address of the original."
+            (let ((msg mu4e-compose-parent-message)) ;; msg is shorter...
+              (when msg
+                (setq user-mail-address
+                      (cond
+                       ((mu4e-message-contact-field-matches msg :to "dsturnbull@me.com")
+                        "dsturnbull@me.com")
+                       ((mu4e-message-contact-field-matches msg :to "dturnbull@arbor.net")
+                        "dturnbull@arbor.net")
+                       (t "david@broodax.net")))
+                (cond
+                    ((mu4e-message-contact-field-matches msg :to "dsturnbull@me.com")
+                      use-icloud)
+                    ((mu4e-message-contact-field-matches msg :to "dturnbull@arbor.net")
+                      use-arbor)
+                    ((mu4e-message-contact-field-matches msg :to "david@broodax.net")
+                      use-broodax))))))
+
+;http://www.djcbsoftware.nl/code/mu/mu4e/Smart-refiling.html#Smart-refiling
+
+(setq message-kill-buffer-on-exit t)
+(setq mail-user-agent 'mu4e-user-agent)
+
+;; twitter
+(require 'twittering-mode)
+(setq twittering-use-master-password t)
