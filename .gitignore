@@ -35,3 +35,6 @@ tags
 old/*
 
 bin/dtbook_scripts/
+
+.ensime
+.ensime_cache/

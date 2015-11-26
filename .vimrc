@@ -149,7 +149,7 @@ call vundle#rc()
   Bundle 'aniero/vim-copy-as-rtf.git'
 
   " Ruby on Rails power tools
-  Bundle 'tpope/vim-rails'
+  " Bundle 'tpope/vim-rails'
 
   " It's like rails.vim without the rails
   Bundle 'tpope/vim-rake'
