@@ -172,8 +172,8 @@
 (setq framemove-hook-into-windmove t)
 
 ;; evil leader
-(require 'evil-leader)
-(global-evil-leader-mode)
+;(require 'evil-leader)
+;(global-evil-leader-mode)
 ;; (evil-leader/set-leader ",")
 ;; (evil-leader/set-key
 ;;   "e" 'find-file
@@ -181,22 +181,22 @@
 ;; (evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)
 
 ;; evil!
-(require 'evil)
-(evil-mode 1)
+;(require 'evil)
+;(evil-mode 1)
 
 ;; evil number incrementing
-(require 'evil-numbers)
-(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
-(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
+;(require 'evil-numbers)
+;(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
+;(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 
 ;; mark replace, not sure this is useful
-(require 'evil-mark-replace)
+;(require 'evil-mark-replace)
 
 ;; commentary
-(evil-commentary-mode)
+;(evil-commentary-mode)
 
 ;; easymotion
-(evilem-default-keybindings "SPC")
+;(evilem-default-keybindings "SPC")
 
 ;; rails
 (projectile-global-mode)
@@ -211,27 +211,27 @@
 (require 'rspec-mode)
 (require 'robe)
 (add-hook 'ruby-mode-hook 'robe-mode)
-(evil-define-key 'normal robe-mode-map (kbd "M-.") 'robe-jump)
-(require 'evil-rails)
+;(evil-define-key 'normal robe-mode-map (kbd "M-.") 'robe-jump)
+;(require 'evil-rails)
 
 ;; arg motion
-(require 'evil-args)
+;(require 'evil-args)
 
 ;; bind evil-args text objects
-(define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-(define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
+;(define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+;(define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
 
 ;; bind evil-forward/backward-args
-(define-key evil-normal-state-map "L" 'evil-forward-arg)
-(define-key evil-normal-state-map "H" 'evil-backward-arg)
-(define-key evil-motion-state-map "L" 'evil-forward-arg)
-(define-key evil-motion-state-map "H" 'evil-backward-arg)
+;(define-key evil-normal-state-map "L" 'evil-forward-arg)
+;(define-key evil-normal-state-map "H" 'evil-backward-arg)
+;(define-key evil-motion-state-map "L" 'evil-forward-arg)
+;(define-key evil-motion-state-map "H" 'evil-backward-arg)
 
 ;; bind evil-jump-out-args
-(define-key evil-normal-state-map "K" 'evil-jump-out-args)
+;(define-key evil-normal-state-map "K" 'evil-jump-out-args)
 
 ;; rsi
-(evil-rsi-mode)
+;(evil-rsi-mode)
 
 ;; fix ac keys
 (define-key ac-complete-mode-map "\C-n" 'ac-next)
@@ -250,17 +250,17 @@
 (global-set-key "\M-`" 'other-frame)
 
 ;; magit
-(require 'evil-magit)
+;(require 'evil-magit)
 
 ;; guide-key
-(require 'guide-key)
-(setq guide-key/guide-key-sequence '(
-                                     "C-x r"
-                                     "C-x 4"
-                                     "C-c p"
-                                     "C-c r"
-                                     ))
-(guide-key-mode 1)
+;; (require 'guide-key)
+;; (setq guide-key/guide-key-sequence '(
+;;                                      "C-x r"
+;;                                      "C-x 4"
+;;                                      "C-c p"
+;;                                      "C-c r"
+;;                                      ))
+;; (guide-key-mode 1)
 
 ;; highlight-symbol
 ;(require 'highlight-symbol)
@@ -354,3 +354,49 @@
 ;; twitter
 (require 'twittering-mode)
 (setq twittering-use-master-password t)
+
+;; which-key
+(require 'which-key)
+(which-key-mode)
+
+;; aggressive indent
+(add-hook 'emacs-lisp-moed-hook #'aggressive-indent-mode)
+(add-hook 'css-mode-hook #'aggressive-indent-mode)
+
+;; o, O
+
+(defun vi-open-line-above ()
+  "Insert a newline above the current line and put point at beginning."
+  (interactive)
+  (unless (bolp)
+    (beginning-of-line))
+  (newline)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(defun vi-open-line-below ()
+  "Insert a newline below the current line and put point at beginning."
+  (interactive)
+  (unless (eolp)
+    (end-of-line))
+  (newline-and-indent))
+
+(global-set-key (kbd "C-o") 'vi-open-line-below)
+(global-set-key (kbd "C-S-o") 'vi-open-line-above)
+
+;; yy p
+(defun yank-whole-line ()
+  (interactive)
+
+  (kill-whole-line)
+  (yank))
+
+(global-set-key (kbd "C-S-y") 'yank-whole-line)
+
+(defun yyp ()
+  (interactive)
+  (yank-whole-line)
+  (forward-line -1)
+  (yank))
+
+  (global-set-key (kbd "C-S-p") 'yyp)
