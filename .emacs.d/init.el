@@ -63,13 +63,7 @@
 (ido-ubiquitous-mode)
 (ido-vertical-mode)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
-
-;; ;; smex
-;; (smex-initialize)
-;; (global-set-key (kbd "M-x") 'smex)
-;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; ;; This is your old M-x.
-;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(global-set-key (kbd "C-x C-f") 'ido-find-file)
 
 ;; when you go over a parenthesis, the matching will highlight
 (show-paren-mode)
@@ -405,11 +399,20 @@
 (nyan-start-animation)
 (setq nyan-wavy-trail t)
 
+;; helm
 (require 'helm-config)
 
+(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-i") 'helm-semantic-or-imenu)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;;(global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x r l") 'helm-filtered-bookmarks)
+(global-set-key (kbd "C-:") 'ac-complete-with-helm)
+(global-set-key (kbd "C-c t") 'helm-cmd-t)
+
+(setq helm-mode-fuzzy-match t)
+(setq helm-completion-in-region-fuzzy-match t)
+(helm-autoresize-mode 1)
 (setq projectile-completion-system 'helm)
 (setq projectile-switch-project-action 'helm-projectile)
 (helm-projectile-on)
@@ -423,11 +426,6 @@
     (kill-new (file-truename buffer-file-name))))
 
 (global-set-key (kbd "C-c C-f") 'copy-full-path-to-kill-ring)
-
-;; helm
-(setq tramp-default-method "ssh")
-
-(global-set-key (kbd "M-x") 'helm-M-x)
 
 ;; c
 (add-hook 'c-mode-hook 'semantic-mode)
