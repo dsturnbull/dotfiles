@@ -64,12 +64,12 @@
 (ido-vertical-mode)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
-;; smex
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+;; ;; smex
+;; (smex-initialize)
+;; (global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; ;; This is your old M-x.
+;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; when you go over a parenthesis, the matching will highlight
 (show-paren-mode)
@@ -400,3 +400,40 @@
   (yank))
 
   (global-set-key (kbd "C-S-p") 'yyp)
+
+(nyan-mode t)
+(nyan-start-animation)
+(setq nyan-wavy-trail t)
+
+(require 'helm-config)
+
+(global-set-key (kbd "M-i") 'helm-semantic-or-imenu)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(setq projectile-completion-system 'helm)
+(setq projectile-switch-project-action 'helm-projectile)
+(helm-projectile-on)
+(require 'helm-projectile)
+
+;; resolve buffer to filename, insert into kill ring
+(defun copy-full-path-to-kill-ring ()
+  "copy buffer's full path to kill ring"
+  (interactive)
+  (when buffer-file-name
+    (kill-new (file-truename buffer-file-name))))
+
+(global-set-key (kbd "C-c C-f") 'copy-full-path-to-kill-ring)
+
+;; helm
+(setq tramp-default-method "ssh")
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+;; c
+(add-hook 'c-mode-hook 'semantic-mode)
+
+;; org-mode
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
