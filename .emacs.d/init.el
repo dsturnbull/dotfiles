@@ -412,18 +412,26 @@
 
 (setq helm-mode-fuzzy-match t)
 (setq helm-completion-in-region-fuzzy-match t)
-(helm-autoresize-mode 1)
 (setq projectile-completion-system 'helm)
 (setq projectile-switch-project-action 'helm-projectile)
 (helm-projectile-on)
 (require 'helm-projectile)
+(helm-autoresize-mode 1)
 
 ;; resolve buffer to filename, insert into kill ring
+(defun replace-in-string (what with in)
+  (replace-regexp-in-string (regexp-quote what) with in nil 'literal))
+
 (defun copy-full-path-to-kill-ring ()
   "copy buffer's full path to kill ring"
   (interactive)
   (when buffer-file-name
-    (kill-new (file-truename buffer-file-name))))
+    ;;(kill-new (replace-in-string (projectile-project-root) "" (file-truename buffer-file-name)))))
+    ;;(kill-new (file-truename buffer-file-name))))
+    (kill-new (concat
+                (replace-in-string "/Users/david/src/arbor/" "" (file-truename buffer-file-name))
+                ":"
+                (number-to-string (line-number-at-pos))))))
 
 (global-set-key (kbd "C-c C-f") 'copy-full-path-to-kill-ring)
 
@@ -435,3 +443,9 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+;; sigh, PATH
+(setenv "PATH"
+        (concat
+         "/usr/local/bin" ":"
+         (getenv "PATH")))
