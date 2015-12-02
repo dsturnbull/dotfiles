@@ -1,9 +1,8 @@
-[#]*[#]
-\.[#]*
 *.sw?
 *.dSYM
 *.o
 *.d
+*.elc
 *.dylib
 
 .vim/view
@@ -14,29 +13,10 @@ ID
 tags
 .DS_Store
 
-*.elc
-.emacs.d/auto-save-list/
-.emacs.d/vendor/rdebug/.svn/props/
-.emacs.d/vendor/rdebug/.svn/tmp/
-.emacs.d/vendor/rdebug/test/.svn/prop-base/
-.emacs.d/vendor/rdebug/test/.svn/props/
-.emacs.d/vendor/rdebug/test/.svn/tmp/
-.emacs.d/places
-.emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc
-.emacs.d/url/
-.emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc~
-.emacs.d/elpa/archives/melpa/archive-contents
-.emacs.d/elpa/archives/*/archive-contents*
-
 .clang_complete
 .rvmrc
 
 *.pyc
-.cap_tasks
-
-old/*
-
-bin/dtbook_scripts/
 
 .ensime
 .ensime_cache/
