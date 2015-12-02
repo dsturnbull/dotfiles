@@ -78,7 +78,7 @@
 	(right-fringe . 0)
 	(left-fringe . 0)
 	(width . 150)
-	(height . 95)
+	(height . 80)
 	;;(font . "terminus-12")
 	;; alpha . (95 95))
 	)
@@ -420,3 +420,33 @@
         (concat
          "/usr/local/bin" ":"
          (getenv "PATH")))
+
+;; irony
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; irony-mode's buffers by irony-mode's function
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async)
+  (flycheck-mode))
+
+(defun my-ac-irony-setup ()
+  ;;(yas-minor-mode 1)
+  (auto-complete-mode 1)
+  (add-to-list 'ac-sources 'ac-source-irony)
+  (define-key irony-mode-map (kbd "M-RET") 'ac-complete-irony-async))
+
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'my-ac-irony-setup)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+(add-to-list 'load-path "~/.emacs.d/vendor/")
+(require 'ac-irony)
