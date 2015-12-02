@@ -460,7 +460,7 @@
 	     [(12)
 	      nil "A theme loosely based on Tron: Legacy colors" single])
  (transmission .
-	       [(0 6)
+	       [(0 7)
 		((emacs
 		  (24 4))
 		 (let-alist
@@ -994,7 +994,7 @@
 	  [(20110708)
 	   nil "Mode-specific scratch buffers" single])
  (scpaste .
-	  [(0 6 4)
+	  [(0 6 5)
 	   ((htmlize
 	     (1 39)))
 	   "Paste to the web via scp." single])

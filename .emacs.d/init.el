@@ -77,7 +77,7 @@
 	(background-color . "Black")
 	(right-fringe . 0)
 	(left-fringe . 0)
-	(width . 350)
+	(width . 150)
 	(height . 95)
 	;;(font . "terminus-12")
 	;; alpha . (95 95))
@@ -109,7 +109,6 @@
 (setq mac-function-modifier 'hyper)
 
 ;; always auto-complete
-(require 'auto-complete)
 (global-auto-complete-mode t)
 ;;(set-cursor-color "white")
 ;;(setq ac-trigger-key 'TAB)
@@ -118,7 +117,6 @@
 (global-anzu-mode +1)
 
 ;; keep history of saves
-(require 'backup-each-save)
 (add-hook 'after-save-hook 'backup-each-save)
 
 ;; time
@@ -156,7 +154,6 @@
 (setq windmove-wrap-around t)
 
 ;; framemove
-(require 'framemove)
 (framemove-default-keybindings)
 (global-set-key (kbd "M-h") 'fm-left-frame)
 (global-set-key (kbd "M-l") 'fm-right-frame)
@@ -166,7 +163,6 @@
 (setq framemove-hook-into-windmove t)
 
 ;; evil leader
-;(require 'evil-leader)
 ;(global-evil-leader-mode)
 ;; (evil-leader/set-leader ",")
 ;; (evil-leader/set-key
@@ -175,16 +171,13 @@
 ;; (evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)
 
 ;; evil!
-;(require 'evil)
 ;(evil-mode 1)
 
 ;; evil number incrementing
-;(require 'evil-numbers)
 ;(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
 ;(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
 
 ;; mark replace, not sure this is useful
-;(require 'evil-mark-replace)
 
 ;; commentary
 ;(evil-commentary-mode)
@@ -195,21 +188,12 @@
 ;; rails
 (projectile-global-mode)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
-(require 'mmm-mode)
-(require 'rhtml-mode)
-(require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(require 'haml-mode)
-(require 'yaml-mode)
-(require 'rspec-mode)
-(require 'robe)
 (add-hook 'ruby-mode-hook 'robe-mode)
 ;(evil-define-key 'normal robe-mode-map (kbd "M-.") 'robe-jump)
-;(require 'evil-rails)
 
 ;; arg motion
-;(require 'evil-args)
 
 ;; bind evil-args text objects
 ;(define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
@@ -232,22 +216,16 @@
 (define-key ac-complete-mode-map "\C-p" 'ac-previous)
 
 ;; scala
-(require 'scala-mode2)
-(require 'sbt-mode)
-(require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; ag
-(require 'ag)
 
 ;; alt-tab
 (global-set-key "\M-`" 'other-frame)
 
 ;; magit
-;(require 'evil-magit)
 
 ;; guide-key
-;; (require 'guide-key)
 ;; (setq guide-key/guide-key-sequence '(
 ;;                                      "C-x r"
 ;;                                      "C-x 4"
@@ -257,7 +235,6 @@
 ;; (guide-key-mode 1)
 
 ;; highlight-symbol
-;(require 'highlight-symbol)
 ;(setq highlight-symbol-on-navigation t)
 
 ;(add-hook 'prog-mode-hook #'highlight-symbol-mode)
@@ -267,7 +244,6 @@
 (global-set-key (kbd "M-p") 'previous-error)
 
 ;; mu4e
-(require 'mu4e)
 (setq
  mu4e-maildir "~/Mail"
  mu4e-sent-folder "/iCloud/Sent Messages"
@@ -286,7 +262,6 @@
  user-full-name "David Turnbull"
  smtpmail-default-smtp-server "mail.broodax.net")
 
-(require 'smtpmail)
 
 (defun use-icloud ()
   (setq message-send-mail-function 'smtpmail-send-it
@@ -346,11 +321,9 @@
 (setq mail-user-agent 'mu4e-user-agent)
 
 ;; twitter
-(require 'twittering-mode)
 (setq twittering-use-master-password t)
 
 ;; which-key
-(require 'which-key)
 (which-key-mode)
 
 ;; aggressive indent
@@ -400,7 +373,6 @@
 (setq nyan-wavy-trail t)
 
 ;; helm
-(require 'helm-config)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-i") 'helm-semantic-or-imenu)
@@ -415,7 +387,6 @@
 (setq projectile-completion-system 'helm)
 (setq projectile-switch-project-action 'helm-projectile)
 (helm-projectile-on)
-(require 'helm-projectile)
 (helm-autoresize-mode 1)
 
 ;; resolve buffer to filename, insert into kill ring
