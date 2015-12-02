@@ -25,6 +25,8 @@ tags
 .emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc
 .emacs.d/url/
 .emacs.d/vendor/nxhtml/etc/schema/xhtml-loader.rnc~
+.emacs.d/elpa/archives/melpa/archive-contents
+.emacs.d/elpa/archives/*/archive-contents*
 
 .clang_complete
 .rvmrc
