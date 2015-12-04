@@ -400,7 +400,7 @@
     ;;(kill-new (replace-in-string (projectile-project-root) "" (file-truename buffer-file-name)))))
     ;;(kill-new (file-truename buffer-file-name))))
     (kill-new (concat
-                (replace-in-string "/Users/david/src/arbor/" "" (file-truename buffer-file-name))
+                (replace-in-string (projectile-project-root) "" (file-truename buffer-file-name))
                 ":"
                 (number-to-string (line-number-at-pos))))))
 
@@ -450,3 +450,27 @@
 
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 (require 'ac-irony)
+
+;; javascript
+(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
+
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(setq-default flycheck-disabled-checkers
+              (append flycheck-disabled-checkers
+                      '(javascript-jshint)))
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+
+;;(setq-default flycheck-disabled-checkers
+;;              (append flycheck-disabled-checkers
+;;                      ('json-jsonlist)))
+
+(defun my-web-mode-hook ()
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2))
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+
+(provide 'init)
+;;; init.el ends here
