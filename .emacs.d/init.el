@@ -85,7 +85,7 @@
       )
 
 ;;(set-default-font "Terminus TTF-11")
-(setq system-uses-terminfo nil)
+;(setq system-uses-terminfo nil)
 (set-face-attribute 'default nil
                     :family "Menlo" :height 120 :weight 'normal)
 
@@ -407,6 +407,9 @@
 (global-set-key (kbd "C-c C-f") 'copy-full-path-to-kill-ring)
 
 ;; c
+(defun my-c-setup ()
+  (c-set-offset 'case-label 0))
+(add-hook 'c-mode-hook 'my-c-setup)
 (add-hook 'c-mode-hook 'semantic-mode)
 
 ;; org-mode
@@ -471,6 +474,49 @@
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2))
 (add-hook 'web-mode-hook 'my-web-mode-hook)
+
+;; hideshow
+(defun toggle-selective-display (column)
+  (interactive "P")
+  (set-selective-display
+   (or column
+       (unless selective-display
+         (1+ (current-column))))))
+
+(defun toggle-hiding (column)
+  (interactive "P")
+  (if hs-minor-mode
+      (if (condition-case nil
+              (hs-toggle-hiding)
+            (error t))
+          (hs-show-all))
+    (toggle-selective-display column)))
+
+(global-set-key (kbd "C-+") 'toggle-hiding)
+(global-set-key (kbd "C-\\") 'toggle-selective-display)
+
+(add-hook 'c-mode-common-hook   'hs-minor-mode)
+(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+(add-hook 'java-mode-hook       'hs-minor-mode)
+(add-hook 'lisp-mode-hook       'hs-minor-mode)
+(add-hook 'perl-mode-hook       'hs-minor-mode)
+(add-hook 'sh-mode-hook         'hs-minor-mode)
+
+;; C-c C-c
+(defun comment-or-uncomment-region-or-line ()
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive)
+  (let (beg end)
+    (if (region-active-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)))
+
+(global-set-key (kbd "C-;") 'comment-or-uncomment-region-or-line)
+
+;; elscreen
+(elscreen-start)
+(setq elscreen-display-tab nil)
 
 (provide 'init)
 ;;; init.el ends here
