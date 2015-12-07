@@ -21,7 +21,7 @@ URxvt.scrollTtyKeypress: true
 URxvt.scrollWithBuffer: true
 
 !max history
-URxvt.saveLines: 65535
+URxvt.saveLines: 5000
 
 !colors
 URxvt.depth: 32
