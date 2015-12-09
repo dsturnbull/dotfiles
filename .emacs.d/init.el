@@ -4,12 +4,7 @@
 (package-initialize)
 
 ;; less turds
-(setq backup-directory-alist `(("." . "~/.saves"))
-      delete-old-versions t
-      kept-new-versions 6
-      kept-old-version 2
-      version-control t
-      make-backup-files nil)
+(setq make-backup-files nil)
 
 ;; formatting
 (setq c-basic-indent 4
@@ -115,9 +110,6 @@
 
 ;; show search n/m
 (global-anzu-mode +1)
-
-;; keep history of saves
-(add-hook 'after-save-hook 'backup-each-save)
 
 ;; time
 (defface egoge-display-time
