@@ -4,6 +4,7 @@
 *.d
 *.elc
 *.dylib
+^#.*#$
 
 .vim/view
 .vim/doc/tags
