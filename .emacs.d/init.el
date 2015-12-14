@@ -154,54 +154,14 @@
 ;(global-set-key (kbd "M-n") 'make-frame)
 (setq framemove-hook-into-windmove t)
 
-;; evil leader
-;(global-evil-leader-mode)
-;; (evil-leader/set-leader ",")
-;; (evil-leader/set-key
-;;   "e" 'find-file
-;;   "b" 'switch-to-buffer)
-;; (evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)
-
-;; evil!
-;(evil-mode 1)
-
-;; evil number incrementing
-;(global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
-;(global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt)
-
-;; mark replace, not sure this is useful
-
-;; commentary
-;(evil-commentary-mode)
-
-;; easymotion
-;(evilem-default-keybindings "SPC")
-
 ;; rails
 (projectile-global-mode)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-hook 'ruby-mode-hook 'robe-mode)
-;(evil-define-key 'normal robe-mode-map (kbd "M-.") 'robe-jump)
 
 ;; arg motion
-
-;; bind evil-args text objects
-;(define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
-;(define-key evil-outer-text-objects-map "a" 'evil-outer-arg)
-
-;; bind evil-forward/backward-args
-;(define-key evil-normal-state-map "L" 'evil-forward-arg)
-;(define-key evil-normal-state-map "H" 'evil-backward-arg)
-;(define-key evil-motion-state-map "L" 'evil-forward-arg)
-;(define-key evil-motion-state-map "H" 'evil-backward-arg)
-
-;; bind evil-jump-out-args
-;(define-key evil-normal-state-map "K" 'evil-jump-out-args)
-
-;; rsi
-;(evil-rsi-mode)
 
 ;; fix ac keys
 (define-key ac-complete-mode-map "\C-n" 'ac-next)
