@@ -388,6 +388,7 @@
     'irony-completion-at-point-async)
   (define-key irony-mode-map [remap complete-symbol]
     'irony-completion-at-point-async)
+
   (flycheck-mode))
 
 (defun my-ac-irony-setup ()
@@ -414,7 +415,9 @@
 
 (setq-default flycheck-disabled-checkers
               (append flycheck-disabled-checkers
-                      '(javascript-jshint)))
+                      '(javascript-jshint)
+                      '(emacs-lisp-checkdoc)
+                      ))
 (flycheck-add-mode 'javascript-eslint 'web-mode)
 
 ;;(setq-default flycheck-disabled-checkers
@@ -469,6 +472,3 @@
 ;; elscreen
 (elscreen-start)
 (setq elscreen-display-tab nil)
-
-(provide 'init)
-;;; init.el ends here
