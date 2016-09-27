@@ -21,3 +21,11 @@ tags
 
 .ensime
 .ensime_cache/
+
+\#*
+.\#*
+.agignore
+vendor/cache/ruby
+
+venv
+notes/

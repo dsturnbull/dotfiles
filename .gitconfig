@@ -26,10 +26,16 @@
 	excludesfile = ~/.gitignore
 
 [merge]
-	tool = vimdiff
+	tool = diffmerge
 [github]
 	user = dsturnbull
 [push]
 	default = simple
 [diff]
 	algorithm = patience
+	tool = diffmerge
+[difftool "diffmerge"]
+	cmd = /usr/local/bin/diffmerge \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	trustExitCode = true
+	cmd = /usr/local/bin/diffmerge --merge --result=\"$MERGED\"  \"$LOCAL\" \"$BASE\" \"$REMOTE\"

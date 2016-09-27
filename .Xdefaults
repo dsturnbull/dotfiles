@@ -5,7 +5,7 @@ XTerm*locale: true
 !perl extensions
 !XXX why can't i use $HOME?
 URxvt.perl-lib: /Users/david/.urxvt/
-URxvt.perl-ext-common: default,selection-autotransform,tabbed,x11-clipboard,mark-yank-urls,macosx-clipboard,keyboard-select
+URxvt.perl-ext-common: default,tabbed,x11-clipboard,mark-yank-urls,macosx-clipboard,keyboard-select
 
 ! paste
 URxvt.keysym.M-c: perl:macosx-clipboard:copy
@@ -24,7 +24,7 @@ URxvt.scrollWithBuffer: true
 URxvt.saveLines: 5000
 
 !colors
-URxvt.depth: 32
+URxvt.depth: 24
 URxvt*foreground: white
 URxvt*background: black
 
@@ -46,6 +46,8 @@ URxvt.underlineURLs: true
 URxvt.keysym.4-c: perl:x11-clipboard:copy
 URxvt.keysym.4-v: perl:x11-clipboard:paste
 
+!finder
+URxvt.keysym.M-i: perl:finder:activate
 
 !changes some/file.rb:32 to vi +32 some/file.rb
 URxvt.selection-autotransform.0: s/^([^:[:space:]]+):(\\d+):?$/vi +$2 \\Q$1\\E\\x0d/
@@ -61,14 +63,14 @@ URxvt.termName: xterm-256color
 URxvt.imLocale: en_AU
 
 !URxvt*font: -*-terminus-*-*-*-*-12-*-*-*-*-*-*-u
-URxvt*font: xft:Terminus:pixelsize=12
+URxvt*font: xft:Terminus (TTF):pixelsize=12
 !URxvt*font: xft:Monofur:pixelsize=13
 !URxvt*font: xft:bitstream vera sans mono:pixelsize=12
 !URxvt*font: xft:Deja Vu Sans Mono:pixelsize=11
 !URxvt*font: xft:Menlo:pixelsize=11
 !URxvt*font: xft:Monospace:pixelsize=13
 
-Xft.dpi:        100
+!Xft.dpi:        75
 Xft.antialias:  true
 Xft.autohint:   true
 Xft.rgba:       rgba
@@ -80,3 +82,5 @@ URxvt.cutchars: "BACKSLASH `"'&()*,;<=>?@[]^{|}"
 
 *VT100.translations: #override Meta <KeyPress> V:  insert-selection(PRIMARY, CUT_BUFFER0) \n
 
+URxvt*color4: royalblue
+URxvt*color12: lightblue
