@@ -143,8 +143,8 @@ call plug#begin('~/.vim/plugged')
   " let g:airline_powerline_fonts = 1
 
   " show list of buffers in the command bar
-  Plug 'bling/vim-bufferline'
-  let g:bufferline_echo = 0
+  " Plug 'bling/vim-bufferline'
+  " let g:bufferline_echo = 0
 
   " Ruby on Rails power tools
   " Plug 'tpope/vim-rails'
@@ -411,10 +411,13 @@ call plug#begin('~/.vim/plugged')
   "nmap <C-BSlash> :po<CR>
   "nmap <SwipeUp> :tabp<CR>
   "nmap <SwipeDown> :tabp<CR>
-  nmap <C-t> :enew<CR>
-  nmap <C-n> :bnext<CR>
-  nmap <C-p> :bprev<CR>
-  nmap <leader>q :bd<CR>
+  nmap <C-t> :tabnew<CR>
+  nmap <C-n> :tabn<CR>
+  nmap <C-p> :tabp<CR>
+  "nmap <C-t> :enew<CR>
+  "nmap <C-n> :bnext<CR>
+  "nmap <C-p> :bprev<CR>
+  "nmap <leader>q :bd<CR>
 
   command! F :%!python -m json.tool
   command! G :%!jshon
