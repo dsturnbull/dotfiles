@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module Kernel
   alias λ proc
 
